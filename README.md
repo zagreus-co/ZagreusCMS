@@ -1,4 +1,4 @@
-[![Software License](https://img.shields.io/github/license/zagreus-co/ZagreusCMS)](LICENSE.md) [![PHP7 Compatible](https://img.shields.io/badge/php-7.4-green.svg)](https://packagist.org/packages/asgardcms/platform) ![](https://img.shields.io/github/stars/zagreus-co/ZagreusCMS.svg) ![](https://img.shields.io/github/release/zagreus-co/ZagreusCMS.svg) ![](https://img.shields.io/github/issues/zagreus-co/ZagreusCMS.svg)
+[![Software License](https://img.shields.io/github/license/zagreus-co/ZagreusCMS)](LICENSE.md) [![PHP7 Compatible](https://img.shields.io/badge/php-7.4-green.svg)](https://github.com/zagreus-co/ZagreusCMS) ![](https://img.shields.io/github/stars/zagreus-co/ZagreusCMS.svg) ![](https://img.shields.io/github/release/zagreus-co/ZagreusCMS.svg) ![](https://img.shields.io/github/issues/zagreus-co/ZagreusCMS.svg)
 
 # ZagreusCMS
 
