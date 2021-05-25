@@ -1,0 +1,17 @@
+{
+    "name": "User",
+    "alias": "user",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\User\\Providers\\UserServiceProvider"
+    ],
+    "aliases": {},
+    "files": ["Helpers.php"],
+    "requires": [],
+    "permissions": {
+        "manage_users": "Add, Edit, Delete users",
+        "manage_roles": "Add, Edit, Delete roles"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Blog",
+    "alias": "blog",
+    "description": "",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Blog\\Providers\\BlogServiceProvider"
+    ],
+    "aliases": {},
+    "files": ["Helpers.php"],
+    "requires": [],
+    "permissions": {
+        "manage_blog": "Add, Edit, Delete Blog posts",
+        "manage_categories": "Add, Edit, Delete categories"
+    }
+}

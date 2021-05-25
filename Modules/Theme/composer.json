@@ -1,0 +1,23 @@
+{
+    "name": "nwidart/theme",
+    "description": "",
+    "authors": [
+        {
+            "name": "Mehrab Hojjati Pour",
+            "email": "thisismehrab@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Theme\\": ""
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Theme",
+    "alias": "theme",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Theme\\Providers\\ThemeServiceProvider"
+    ],
+    "aliases": {
+        "Theme": "Modules\\Theme\\Facades\\Theme"
+    },
+    "files": [
+        "Helpers.php"
+    ],
+    "requires": [],
+    "permissions": {
+        "manage_themes": "Add, Edit, Delete themes"
+    }
+}

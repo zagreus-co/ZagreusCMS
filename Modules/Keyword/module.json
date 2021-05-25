@@ -1,0 +1,13 @@
+{
+    "name": "Keyword",
+    "alias": "keyword",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Keyword\\Providers\\KeywordServiceProvider"
+    ],
+    "aliases": {},
+    "files": ["Helpers.php"],
+    "requires": []
+}

@@ -1,0 +1,18 @@
+{
+    "Theme": true,
+    "Blog": true,
+    "Option": true,
+    "User": true,
+    "Panel": true,
+    "Comment": true,
+    "Page": true,
+    "Keyword": true,
+    "Media": true,
+    "Score": true,
+    "Gallery": true,
+    "Advertisement": true,
+    "Poll": true,
+    "Football": true,
+    "Notification": true,
+    "ZEO": true
+}

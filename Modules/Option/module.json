@@ -1,0 +1,18 @@
+{
+    "name": "Option",
+    "alias": "option",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Option\\Providers\\OptionServiceProvider"
+    ],
+    "aliases": {
+        "Option": "Modules\\Option\\Facades\\Option"
+    },
+    "files": ["Helpers.php"],
+    "requires": [],
+    "permissions": {
+        "manage_options": "Add, Edit, Delete options"
+    }
+}

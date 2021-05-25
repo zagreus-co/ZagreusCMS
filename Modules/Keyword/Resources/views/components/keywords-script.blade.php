@@ -1,0 +1,1 @@
+<script> $("#keyword_inputs").select2({ tags: true, }) </script>
