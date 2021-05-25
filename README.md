@@ -9,6 +9,7 @@
 3.  Configure the .env file and enter database information (you can use .env.example)
 4.  run the following commands
 	`composer install`
+    `npm install`
 	`npm run dev`
     `php artisan key:generate`
 	`php artisan migrate`
