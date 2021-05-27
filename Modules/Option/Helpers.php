@@ -1,12 +1,16 @@
 <?php
 if (! function_exists('get_option')) {
     function get_option($tag, $default = null) {
-        return \Cache::remember('Option::'.$tag.'-'.app()->getLocale(), 14400, function () use ($tag, $default) {
-            $option = \Option::whereTag($tag)->first();
-            if (is_null($option)) return $default;
-            
-            return ($option->is_translatable ? $option->data : $option->plain_data);
-        });
+        try {
+            return \Cache::remember('Option::'.$tag.'-'.app()->getLocale(), 14400, function () use ($tag, $default) {
+                $option = \Option::whereTag($tag)->first();
+                if (is_null($option)) return $default;
+                
+                return ($option->is_translatable ? $option->data : $option->plain_data);
+            });
+        } catch (\Throwable $th) {
+            return $default;
+        }
     }
 }
 
