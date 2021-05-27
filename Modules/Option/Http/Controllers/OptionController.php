@@ -49,12 +49,13 @@ class OptionController extends Controller
     protected function update($data) {
         if (! checkGate('manage_options') ) abort(403);
 
-        $option = Option::find($data['option_id']);
-        \Cache::forget('Option::'.$option->tag);
-        $option->update([
+        $r = update_option(intval($data['option_id']), [
             'name'=> $data['name'],
             'data'=> $data['data'] ?? ''
         ]);
+
+        if (!$r)
+            return response()->json(['result'=> false, 'message'=> "The option not updated during an unknown error!"], 400);
 
         return response()->json(['result'=> true, 'message'=> __('Option updated successfully.')]);
     }
