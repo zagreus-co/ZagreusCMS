@@ -13,20 +13,9 @@ class CommentController extends Controller
     public function index(Request $request) {
         if (!checkGate('manage_comments')) abort(403);
 
-        if (class_exists('\SEO')) \SEO::setTitle('مدیریت نظرات');
-        $viewMode = 'card';
-        if (isset($_GET['view']))
-            $viewMode = $_GET['view'] == 'card' || $_GET['view'] == 'table' ? $_GET['view'] : $viewMode;
+        if (class_exists('\SEO')) \SEO::setTitle(__('Manage comments'));
 
-        $comments = Comment::query();
-
-        if ($viewMode == 'card') $comments = $comments->whereParentId(0);
-
-        if ( isset($_GET['undreads']) && $_GET['undreads'] != 'false' || !isset($_GET['undreads']) )
-            $comments = $comments->wherePublished(0);
-
-        $comments = $comments->latest()->paginate(10);
-        return view('comment::index', compact('comments', 'viewMode'));
+        return view('comment::index');
     }
     public function update(Request $request, Comment $comment) {
         if (!checkGate('manage_comments')) abort(403);

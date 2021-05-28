@@ -85,5 +85,9 @@
     "Permissions": "دسترسی ها",
     "Manage roles": "مدیریت گروه های کاربری",
     "Create role": "ایجاد گروه کاربری",
-    "edit role": "ویرایش گروه کاربری"
+    "edit role": "ویرایش گروه کاربری",
+    "Comments": "نظرات",
+    "Author": "نویسنده",
+    "Comment": "متن نظر",
+    "Submitted on": "ارسال شده در"
 }
