@@ -126,7 +126,7 @@ class PostController extends Controller
 
         foreach(locales() as $locale => $value) {
             $data[$locale] = $request->{$locale};
-            $data[$locale]['slug'] = generateSlug($request->filled("{$locale}.generate_slug") ? $request->{$locale}['title'] : $request->{$locale}['slug'], Post::class);
+            $data[$locale]['slug'] = generateSlug($request->filled("{$locale}.generate_slug") ? $request->{$locale}['title'] : $request->{$locale}['slug'], Post::class, $post->id);
         }
 
         $post->update($data);
