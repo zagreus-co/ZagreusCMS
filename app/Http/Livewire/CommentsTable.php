@@ -32,7 +32,7 @@ class CommentsTable extends LivewireDatatable
                 }
                 
                 return $commentable_type;
-            }),
+            })->label(__('Submitted on')),
 
             DateColumn::name('created_at')->defaultSort('desc')->label(__('creation time')),
 

@@ -206,12 +206,14 @@ class PostController extends Controller
             ->first();
         if (!$post) abort(404);
 
+        $comments = $post->comments()->whereParentId(0)->wherePublished(1)->latest()->get();
+
         \SEO::setTitle($post->title.' - '.get_option('site_short_name'))
             ->setDescription(mb_substr(strip_tags($post->content), 0, 151).' [...]');
         if ($post->keywords()->count() > 0)
             \SEOMeta::setKeywords($post->keywords->pluck('keyword')->toArray());
 
-        return themeView(is_null($post->template) ? 'post' : 'templates.'.$post->template, compact('post'));
+        return themeView(is_null($post->template) ? 'post' : 'templates.'.$post->template, compact('post', 'comments'));
     }
     public function openPostById(Post $post) {
         if (\Carbon\Carbon::parse($post->release_time) >= \Carbon\Carbon::now() || !$post->published) abort(404);

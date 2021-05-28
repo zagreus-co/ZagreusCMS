@@ -89,5 +89,7 @@
     "Comments": "نظرات",
     "Author": "نویسنده",
     "Comment": "متن نظر",
-    "Submitted on": "ارسال شده در"
+    "Submitted on": "ارسال شده در",
+    "There is no comment submitted yet, be the first one!": "هنوز هیچ نظری ثبت نشده است! میتوانید اولین باشید!",
+    "Submit your comment": "نظر خود را ثبت کنید"
 }

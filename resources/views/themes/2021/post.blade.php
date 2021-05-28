@@ -29,6 +29,18 @@
                         </div>
                     </div>
                 </div>
+                @if ($comments->count() == 0)
+                    <div class="rounded shadow-md p-3 text-white text-lg bg-blue-400 mb-3">{{__('There is no comment submitted yet, be the first one!')}}</div>
+                @else
+                    @themeInclude('partials.comments', compact('comments'))
+                @endif
+
+                <div class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 mb-3">
+                    <div class="p-6">
+                        <h4 class="h4 mt-3">{{__('Submit your comment')}}</h4>
+                    </div>
+                </div>
+
             </div>
             <div class="md:col-span-4"> @themeInclude("partials.sidebar") </div>
         </div>
