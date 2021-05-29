@@ -50,12 +50,12 @@ class CommentController extends Controller
         try {
             $commentable = (new $request->commentable_type)->findOrFail($request->commentable_id);
         } catch (\Throwable $th) {
-            return back()->withErrors(['خطایی در ثبت نظر پیش آمده است! [Wrong-Class]']);;
+            return back()->withErrors(['Something happens during submitting comment [Wrong-Class]']);;
         }
         
         if (!$commentable->can_comment || isset($commentable->published) && !$commentable->published) {
             return back()->withErrors([
-                'ثبت نظر برای این بخش امکان پذیر نمیباشد.'
+                __('You can not comment on this post!')
             ]);
         }
         
@@ -65,19 +65,17 @@ class CommentController extends Controller
             'guest_name'=> $request->guest_name ?? null,
             'guest_contact'=> $request->guest_contact ?? null,
             'comment'=> $request->comment,
-            'published'=> \Option::get('straight_publish_comments')->data,
+            'published'=> get_option('straight_publish_comments'),
         ]);
 
         $this->handleNotifications($request, $commentable);
 
-        alert()->success('نظر شما با موفقیت ثبت شد و پس از تایید مدیر نمایش داده می شود');
+        alert()->success(__('Your comment has been submited successfully!'));
         return back();
     }
 
     public function togglePublish(Comment $comment) {
         if (!checkGate('manage_comments')) abort(403);
-
-        // if (auth()->user()->hasPermission('manage_own_posts') && !auth()->user()->hasPermission('manage_all_posts') && $post->user_id != auth()->user()->id ) abort(403);
 
         $comment->update([
             'published'=> !$comment->published
@@ -98,15 +96,6 @@ class CommentController extends Controller
         } catch (\Throwable $th) {
             return response(['message'=> 'خطایی در ثبت نظر پیش آمده است! [Wrong-Comment-id]'], 500);;
         }
-
-        // $commentable->comments()->create([
-        //     'parent_id'=> $request->id,
-        //     'user_id'=> auth()->user()->id ?? null,
-        //     'guest_name'=> null,
-        //     'guest_contact'=> null,
-        //     'comment'=> "یک گذارش تخلف توسط کاربر (".auth()->user()->full_name.") بر روی این نظر ثبت شده است.",
-        //     'published'=> 0,
-        // ]);
 
         $this->createReportNotificatoin($comment);
 
