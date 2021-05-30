@@ -40,7 +40,7 @@
                         <h4 class="h4 mt-3">{{__('Submit your comment')}}</h4>
                         <hr>
                         @themeInclude('partials.errors-alert')
-                        <form action="{{ route('module.comment.submit') }}" method="post" class='mt-3'>
+                        <form action="{{ route('module.comment.submit') }}" method="post" class='mt-3' id='commentReplyForm'>
                             @csrf
                             <input type="hidden" name="commentable_id" value='{{ $post->id }}'>
                             <input type="hidden" name="commentable_type" value='{{ get_class($post) }}'>

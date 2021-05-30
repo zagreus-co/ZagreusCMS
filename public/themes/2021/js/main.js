@@ -6,3 +6,8 @@ let toggleHiddenElement = (element, toggleClass = 'block') => {
         element.classList.replace(toggleClass, 'hidden');
     }
 }
+
+let replyComment = (comment_id) => {
+    document.querySelector('#commentReplyForm').scrollIntoView({behavior: 'smooth'});
+    document.querySelector('#commentReplyForm input[name=parent_id]').value = comment_id
+}
