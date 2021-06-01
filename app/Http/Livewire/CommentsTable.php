@@ -20,8 +20,17 @@ class CommentsTable extends LivewireDatatable
                 return \App\Models\User::find($id)->full_name ?? $guest_name."<br><small>($guest_contact)</small>";
             })->label(__("Author")),
             
-            Column::callback('comment', function ($comment) {
-                return str_replace("\n", "<br>", $comment);
+            Column::callback(['id', 'comment'], function ($id, $comment) {
+                return "<div id='comment_{$id}'>
+                    <label>".str_replace("\n", "<br>", $comment)."</label>
+                    <div class='hidden edit-div'>
+                        <textarea class='form-control' rows='3'>$comment</textarea>
+                        <div class='mt-2 grid grid-cols-2 gap-3'>
+                            <button onclick='submitEdit(this, $id)' class='btn-primary inline p-2'><i class='nav-icon fa fa-pen'></i></button>
+                            <button onclick='editComment($id)' class='btn-danger inline p-2'>X</button>
+                        </div>
+                    </div>
+                </div>";
             })->label(__('Comment')),
 
             Column::callback(['commentable_id', 'commentable_type'], function($id, $commentable_type) {
@@ -37,7 +46,7 @@ class CommentsTable extends LivewireDatatable
             DateColumn::name('created_at')->defaultSort('desc')->label(__('creation time')),
 
             Column::callback(['id'], function ($id) {
-                $btn = '<a href="'.route('module.blog.posts.edit', $id).'" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></a>';
+                $btn = '<button onclick="editComment('.$id.')" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></button>';
                 $btn .= '<a href="'.route('module.blog.posts.openById', $id).'" target="_blank" class="btn-warning ml-2 inline p-2"><i class="nav-icon fa fa-eye"></i></a>';
             
                 return $btn;

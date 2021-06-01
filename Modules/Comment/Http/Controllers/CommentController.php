@@ -25,18 +25,12 @@ class CommentController extends Controller
         ]);
 
         $comment->update([
-            'comment'=> $request->comment
+            'comment'=> e($request->comment)
         ]);
-        alert()->success('نظر انتخاب شده با موفقیت ویرایش شد.');
-        return true;
+        
+        return ['result'=> true, 'comment'=> str_replace("\n", "<br>", $comment->comment)];
     }
-    public function destroy(Comment $comment) {
-        if (!checkGate('manage_comments')) abort(403);
-
-        $comment->delete();
-        alert()->success('نظر انتخاب شده با موفقیت حذف شد.');
-        return true;
-    }
+    
     public function submit(Request $request) {
         $request->validate([
             'parent_id'=> ['required', 'numeric'],
