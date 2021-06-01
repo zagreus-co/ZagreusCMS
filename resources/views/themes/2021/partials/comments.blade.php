@@ -8,7 +8,7 @@
         </h3>
     </div>
 
-    <p class="text-gray-600 text-lg" id='comment_{{ $comment->id }}'>{{ $comment->comment }}</p>
+    <p class="text-gray-600 text-lg" id='comment_{{ $comment->id }}'>{!! str_replace("\n", "<br>",$comment->comment) !!}</p>
     <button onclick='replyComment({{ $comment->id }})' class='bg-green-500 hover:bg-green-600 text-white rounded duration-300 p-2 px-3 mt-3'>{{ __('Reply') }}</button>
     @if ($comment->child()->wherePublished(1)->count() > 0)
         @themeInclude('partials.comments', ['comments'=> $comment->child()->wherePublished(1)->get(), 'answered'=> 'answered'])

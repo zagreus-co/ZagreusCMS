@@ -64,7 +64,7 @@ class CommentController extends Controller
             'user_id'=> auth()->user()->id ?? null,
             'guest_name'=> $request->guest_name ?? null,
             'guest_contact'=> $request->guest_contact ?? null,
-            'comment'=> $request->comment,
+            'comment'=> e($request->comment),
             'published'=> get_option('straight_publish_comments'),
         ]);
 
