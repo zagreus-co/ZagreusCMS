@@ -11,6 +11,7 @@
 |
 */
 
-Route::prefix('seo')->group(function() {
-    Route::get('/', 'SEOController@index');
-});
+Route::get('/sitemap_index.xml', 'SitemapController@index')->name('module.seo.sitemap.index');
+Route::get('/posts_sitemap.xml', 'SitemapController@posts')->name('module.seo.sitemap.posts');
+Route::get('/pages_sitemap.xml', 'SitemapController@pages')->name('module.seo.sitemap.pages');
+Route::get('/categories_sitemap.xml', 'SitemapController@categories')->name('module.seo.sitemap.categories');
