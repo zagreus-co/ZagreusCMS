@@ -16,8 +16,8 @@ class CommentsTable extends LivewireDatatable
     public function columns()
     {
         return [            
-            Column::callback(['user_id', 'guest_name'], function ($id, $guest_name) {
-                return \App\Models\User::find($id)->full_name ?? $guest_name;
+            Column::callback(['user_id', 'guest_name', 'guest_contact'], function ($id, $guest_name, $guest_contact) {
+                return \App\Models\User::find($id)->full_name ?? $guest_name."<br><small>($guest_contact)</small>";
             })->label(__("Author")),
             
             Column::callback('comment', function ($comment) {
