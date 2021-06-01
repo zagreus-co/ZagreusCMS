@@ -19,6 +19,7 @@
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "laravelium/sitemap": "^8.0",
         "livewire/livewire": "^2.4",
         "mediconesystems/livewire-datatables": "^0.4.3",
         "morilog/jalali": "^3.2",
