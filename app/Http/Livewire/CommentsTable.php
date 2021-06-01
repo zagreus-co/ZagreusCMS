@@ -45,9 +45,10 @@ class CommentsTable extends LivewireDatatable
 
             DateColumn::name('created_at')->defaultSort('desc')->label(__('creation time')),
 
-            Column::callback(['id'], function ($id) {
+            Column::callback(['id', 'published'], function ($id, $published) {
                 $btn = '<button onclick="editComment('.$id.')" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></button>';
-                $btn .= '<a href="'.route('module.blog.posts.openById', $id).'" target="_blank" class="btn-warning ml-2 inline p-2"><i class="nav-icon fa fa-eye"></i></a>';
+                $btn .= '<a href="'.route('module.comment.togglePublish', $id).'" class="btn-warning ml-2 inline p-2">
+                    <i class="nav-icon fa fa-'.(!$published ? 'eye' : 'eye-slash').'"></i></a>';
             
                 return $btn;
             })->label('*'),

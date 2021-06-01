@@ -19,7 +19,7 @@
     }
 
     let submitEdit = (self, id) => {
-        $(self).html('...');
+        $(self).css('opacity', '0.4');
         $.ajax({
             url: '{{ route("module.comment.index") }}/' + id,
             type: 'POST',
@@ -29,6 +29,7 @@
             }),
             dataType: 'json',
             success: function (data) {
+                $(self).css('opacity', '1');
                 $(`#comment_${id} label`).html(data.comment)
                 editComment(id);
             },
