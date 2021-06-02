@@ -13,14 +13,21 @@ class CreateAnalyticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('analytics', function (Blueprint $table) {
+        Schema::create('analytics__data', function (Blueprint $table) {
             $table->id();
             $table->string('user');
-            $table->integer('views');
+            $table->integer('views')->default(1);
             $table->string('url');
             $table->string('route');
-            $table->json('meta');
+            $table->string('ip');
+            $table->json('meta')->nullable();
             $table->timestamps();
+        });
+        
+        Schema::create('analytics__rules', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('data');
         });
     }
 
@@ -31,6 +38,7 @@ class CreateAnalyticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('analytics');
+        Schema::dropIfExists('analytics__data');
+        Schema::dropIfExists('analytics__rules');
     }
 }

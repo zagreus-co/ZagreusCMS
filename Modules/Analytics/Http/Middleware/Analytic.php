@@ -2,8 +2,12 @@
 
 namespace Modules\Analytics\Http\Middleware;
 
-use Closure;
+use Modules\Analytics\Entities\Analytic as AnalyticModel;
+use Modules\Analytics\Entities\Rule;
 use Illuminate\Http\Request;
+use Closure;
+use URL;
+use Route;
 
 class Analytic
 {
@@ -16,7 +20,27 @@ class Analytic
      */
     public function handle(Request $request, Closure $next)
     {
-        echo ("<pre>Test from middleware</pre>");
+        $user = $request->user()->id ?? session()->getId();
+
+        $analyticRow = AnalyticModel::whereIp($request->ip())
+            ->whereUrl(URL::current())
+            ->whereDate('created_at', \Carbon\Carbon::today())
+            ->orWhere('user', $user)
+            ->whereUrl(URL::current())
+            ->whereDate('created_at', \Carbon\Carbon::today())->first();
+
+        if ($analyticRow) {
+            $analyticRow->increment('views');
+        } else {
+            AnalyticModel::create([
+                'user'=> $user,
+                'url'=> URL::current(),
+                'route'=> Route::currentRouteName(),
+                'ip'=> $request->ip(),
+                'meta'=> null
+            ]);
+        }
+        
         return $next($request);
     }
 
