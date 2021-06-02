@@ -9,5 +9,8 @@
     ],
     "aliases": {},
     "files": [],
-    "requires": []
+    "requires": [],
+    "permissions": {
+        "manage_analytics": "Manage and view site analytics"
+    }
 }
