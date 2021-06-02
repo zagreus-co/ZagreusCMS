@@ -28,6 +28,8 @@ class AnalyticsServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
+        app()->make('router')->pushMiddlewareToGroup('web', \Modules\Analytics\Http\Middleware\Analytic::class);
     }
 
     /**
