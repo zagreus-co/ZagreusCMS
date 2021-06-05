@@ -132,3 +132,6 @@
 </div>
 
 @endsection
+@section('script')
+<script src='{{ asset("js/chart.min.js") }}'></script>
+@endsection
