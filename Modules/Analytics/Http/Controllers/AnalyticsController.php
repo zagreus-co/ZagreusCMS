@@ -26,6 +26,10 @@ class AnalyticsController extends Controller
             'todayViews'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->pluck('views')->sum(),
             'lastMonth'=> Analytic::whereMonth('created_at', \Carbon\Carbon::now()->subMonth()->month)->count(),
             'currentMonth'=> Analytic::whereMonth('created_at', \Carbon\Carbon::now()->month)->count(),
+            "mostViewdPages"=> Analytic::orderBy('views', 'desc')->get()
+                ->groupBy(function($row) {
+                    return $row->url;
+                })->slice(0, 8),
         ];
 
         return view('analytics::index' , ['analytics'=> $analytics, 'analytic'=> new Analytic() ]);

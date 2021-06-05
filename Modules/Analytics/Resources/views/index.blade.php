@@ -128,13 +128,34 @@
             <strong class="pt-2">{{ __('Weekly chart') }}</strong>
         </div>
 
-        <div class="card-body"> <canvas id="analyticChart" width="100%" height="50"></canvas> </div>
+        <div class="card-body"> <canvas id="analyticChart" width="100%" height="60"></canvas> </div>
 
     </div>
 
     <div class="card">
         <div class="card-header flex justify-between">
-            <strong class="pt-2">{{ __('Analytics') }}</strong>
+            <strong class="pt-2">{{ __('Top pages') }}</strong>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full table-auto border-collapse">
+                <thead class="">
+                    <tr class="bg-gray-800 text-white text-lg">
+                        <th class="px-16 py-2 font-5">{{__('Page')}}</th>
+                        <th class="px-16 py-2">{{__('Viewers')}}</th>
+                        <th class="px-16 py-2">{{__('Views')}}</th>
+                    </tr>
+                </thead>
+                <tbody class="text-lg">
+                    @foreach($analytics['mostViewdPages'] as $row)
+                    <tr class="bg-white border-4 border-gray-200">
+                        <td class="px-16 py-2">{{ str_replace(\URL::to('/'), '', $row[0]->url) == '' ? '/' : str_replace(\URL::to('/'), '', $row[0]->url) }}</td>
+                        <td class="px-16 py-2">{{ $row->count() }}</td>
+                        <td class="px-16 py-2">{{ $row->pluck('views')->sum() }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
     </div>
