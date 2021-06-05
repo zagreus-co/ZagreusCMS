@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('analytics')->group(function() {
-    Route::get('/', 'AnalyticsController@index');
+Route::prefix('panel/analytics')->name('module.analytics.')->middleware('auth')->group(function() {
+    Route::get('/', 'AnalyticsController@index')->name('index');
 });
