@@ -24,7 +24,7 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5">{{ $analytics['todayViewers'] }}</h1>
-                    <p>Today viewers</p>
+                    <p>{{__('Today viewers')}}</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -42,7 +42,7 @@
                 
                 <!-- top -->
                 <div class="flex flex-row justify-between items-center">
-                    <div class="h6 text-red-700 fad fa-eye"></div>
+                    <div class="h6 text-yellow-500 fad fa-eye"></div>
                     @php $difference = $analytics['todayViews'] - $analytics['yesterdayViews']; @endphp
                     <span class="rounded-full text-white badge bg-{{ $difference > 0 ? 'teal' : 'red' }}-400 text-xs">
                         {{ $difference }}
@@ -54,7 +54,7 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5">{{ $analytics['todayViews'] }}</h1>
-                    <p>Today views</p>
+                    <p>{{__('Today views')}}</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -72,7 +72,7 @@
                 
                 <!-- top -->
                 <div class="flex flex-row justify-between items-center">
-                    <div class="h6 text-yellow-600 fad fa-sitemap"></div>
+                    <div class="h6 text-red-600 fad fa-sitemap"></div>
                     @php $difference = $analytics['currentMonth'] - $analytics['lastMonth']; @endphp
                     <span class="rounded-full text-white badge bg-{{ $difference > 0 ? 'teal' : 'red' }}-400 text-xs">
                         {{ $difference }}
@@ -84,7 +84,7 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5">{{ $analytics['currentMonth'] }}</h1>
-                    <p>This month viewers</p>
+                    <p>{{__('This month viewers')}}</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -110,7 +110,7 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5">{{ $analytic->count() }}</h1>
-                    <p>Total viewers</p>
+                    <p>{{__('Total viewers')}}</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -122,7 +122,16 @@
 
 </div>
 
-<div class="grid grid-cols-1 gap-6 mt-6 xl:grid-cols-1">
+<div class="grid grid-cols-2 gap-6 mt-6 xl:grid-cols-1">
+    <div class="card">
+        <div class="card-header flex justify-between">
+            <strong class="pt-2">{{ __('Weekly chart') }}</strong>
+        </div>
+
+        <div class="card-body"> <canvas id="analyticChart" width="100%" height="50"></canvas> </div>
+
+    </div>
+
     <div class="card">
         <div class="card-header flex justify-between">
             <strong class="pt-2">{{ __('Analytics') }}</strong>
@@ -134,4 +143,63 @@
 @endsection
 @section('script')
 <script src='{{ asset("js/chart.min.js") }}'></script>
+
+<script>
+    var ctx = document.querySelector('#analyticChart');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                <?php
+                    for($d = 6; $d >= 0 ; $d--) {
+                        $analytics['weekDates'][] = \Carbon\Carbon::today()->subDay($d);
+                        echo '"'.__(\Carbon\Carbon::today()->subDay($d)->format('l')).'",';
+                    }
+                ?>
+            ],
+            datasets: [
+                {
+                    label: '{{__("Viewers")}}',
+                    data: [
+                        @foreach($analytics['weekDates'] as $day)
+                        "{{ $analytic->whereDate('created_at', $day)->count() }}",
+                        @endforeach
+                    ],
+                    backgroundColor: '#4c51bf',
+                    borderColor: '#4c51bf',
+                    borderWidth: 1
+                },
+                {
+                    label: '{{__("Views")}}',
+                    data: [
+                        @foreach($analytics['weekDates'] as $day)
+                        "{{ $analytic->whereDate('created_at', $day)->pluck('views')->sum() }}",
+                        @endforeach
+                    ],
+                    backgroundColor: '#ecc94b',
+                    borderColor: '#ecc94b',
+                    borderWidth: 1
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            elements: {
+                line: {
+                    tension: 0.4,
+                    borderJoinStyle: 'round'
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'nearest'
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        },
+    });
+</script>
 @endsection

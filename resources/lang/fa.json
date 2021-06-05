@@ -95,5 +95,19 @@
     "You can not comment on this post!": "امکان ثبت نظر بر روی این پست امکان پذیر نمیباشد",
     "Your comment has been submited successfully!": "نظر شما با موفقیت ثبت شد!",
     "Selected comment status has been changed successfully!": "وضعیت انتشار نظر انتخاب شده با موفقیت تغییر یافت.",
-    "Analytics": "آمار و اطلاعات"
+    "Analytics": "آمار و اطلاعات",
+    "Viewers": "بازدید کنندگان",
+    "Views": "بازدید ها",
+    "Today viewers": "بازدیدکنندگان امروز",
+    "Today views": "بازدید امروز",
+    "This month viewers": "بازدیدکنندگان این ماه",
+    "Total viewers": "مجموع کل بازدیدکنندگان",
+    "Weekly chart": "نمودار هفتگی",
+    "Sunday": "یکشنبه",
+    "Monday": "دو شنبه",
+    "Tuesday": "سه شنبه",
+    "Wednesday": "چهار شنبه",
+    "Thursday": "پنج شنبه",
+    "Friday": "جمعه",
+    "Saturday": "شنبه"
 }
