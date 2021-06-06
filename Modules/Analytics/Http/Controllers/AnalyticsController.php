@@ -59,4 +59,13 @@ class AnalyticsController extends Controller
         alert()->success(__("Analytic rule created "));
         return back();
     }
+
+    public function deleteRule(AnalyticRule $rule) {
+        if (! checkGate(['manage_analytics']) ) abort(403);
+
+        $rule->delete();
+
+        alert()->success(__('Analytic rule has been deleted successfully!'));
+        return true;
+    }
 }

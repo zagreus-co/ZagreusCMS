@@ -45,7 +45,7 @@
                         <td class="px-16 py-2">{{ $row->name }}</td>
                         <td class="px-16 py-2">{{ $row->data }}</td>
                         <td class="px-16 py-2">
-                            <button class="btn-danger p-2">X</button>
+                            <button onclick='fireDelete(this, "{{ route("module.analytics.rules.delete", $row->id) }}")' class="btn-danger p-2">X</button>
                         </td>
                     </tr>
                     @endforeach
