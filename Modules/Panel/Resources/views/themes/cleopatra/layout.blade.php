@@ -96,35 +96,36 @@
             <div class="px-4 py-2 flex flex-row justify-between items-center capitalize font-semibold text-sm">
               <h1>notifications</h1>
               <div class="bg-teal-100 border border-teal-200 text-teal-500 text-xs rounded px-1">
-                <strong>{{ auth()->user()->notifications()->whereSeen(0)->count() }}</strong>
+                <strong id='notification_count'>{{ auth()->user()->notifications()->whereSeen(0)->count() }}</strong>
               </div>
             </div>
             <hr>
             <!-- end top -->
 
             <!-- body -->
+            <div id="notification_container">
+              @foreach(auth()->user()->notifications()->whereVisible(1)->limit(6)->latest()->get() as $notification)
+              <a onclick='openNotification(this, {{$notification->id}} );' class="flex flex-row items-center justify-start px-4 py-4 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out" href="#">
 
-            @foreach(auth()->user()->notifications()->orderBy('seen', 'desc')->limit(6)->get() as $notification)
-            <a onclick='openNotification(this, {{$notification->id}} );' class="flex flex-row items-center justify-start px-4 py-4 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out" href="#">
-
-              @if (!is_null($notification->icon))
-              <div class="px-3 py-2 rounded mr-3 bg-gray-100 border border-gray-300">
-                <i class="{{ $notification->icon }} text-sm"></i>
-              </div>
-              @endif
-
-              <div class="flex-1 flex flex-rowbg-green-100">
-                <div class="flex-1">
-                  <h1 id='notification_{{$notification->id}}_title' class="text-sm font-semibold {{ !$notification->seen ? 'text-red-400' : ''  }}">{{ $notification->title }}</h1>
-                  <p class="text-xs text-gray-500">{{ \Str::words($notification->message, 8, ' ...') }}</p>
+                @if (!is_null($notification->icon))
+                <div class="px-3 py-2 rounded mr-3 bg-gray-100 border border-gray-300">
+                  <i class="{{ $notification->icon }} text-sm"></i>
                 </div>
-                <div class="text-right text-xs text-gray-500">
-                  <p>{{ $notification->created_at->ago() }}</p>
-                </div>
-              </div>
+                @endif
 
-            </a>
-            @endforeach
+                <div class="flex-1 flex flex-rowbg-green-100">
+                  <div class="flex-1">
+                    <h1 id='notification_{{$notification->id}}_title' class="text-sm font-semibold {{ !$notification->seen ? 'text-red-400' : ''  }}">{{ $notification->title }}</h1>
+                    <p class="text-xs text-gray-500">{{ \Str::words($notification->message, 8, ' ...') }}</p>
+                  </div>
+                  <div class="text-right text-xs text-gray-500">
+                    <p>{{ $notification->created_at->ago() }}</p>
+                  </div>
+                </div>
+
+              </a>
+              @endforeach
+            </div>
             <hr>
             <!-- end item -->
 
@@ -175,6 +176,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{panelAsset('js/scripts.js')}}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
+<script>let base_url = "{{ \URL::to('/') }}";</script>
 <script src="{{panelAsset('js/main.js')}}"></script>
 @include('sweet::alert')
 @yield('script')
