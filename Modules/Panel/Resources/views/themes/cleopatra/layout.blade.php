@@ -133,7 +133,7 @@
             <!-- bottom -->
             <hr>
             <div class="px-4 py-2 mt-2">
-              <a href="#" class="border border-gray-300 block text-center text-xs uppercase rounded p-1 hover:text-teal-500 transition-all ease-in-out duration-500">
+              <a href="{{ route('module.notification.index') }}" class="border border-gray-300 block text-center text-xs uppercase rounded p-1 hover:text-teal-500 transition-all ease-in-out duration-500">
                 {{ __("View all") }}
               </a>
             </div>
