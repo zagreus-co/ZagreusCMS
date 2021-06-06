@@ -57,7 +57,7 @@ class AnalyticsController extends Controller
         AnalyticRule::create($rule);
         \Cache::forget('analytics::disallowed_page');
 
-        alert()->success(__("Analytic rule created "));
+        alert()->success(__("Analytic rule has been created successfully!"));
         return back();
     }
 

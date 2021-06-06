@@ -114,5 +114,7 @@
     "Page": "صفحه",
     "View analytics": "مشاده آمار",
     "Analytic rules": "قوانین آمارگیری",
+    "Analytic rule has been created successfully!": "قانون آمارگیری با موفقیت ایجاد شد",
+    "Analytic rule has been deleted successfully!": "قانون تعریف شده با موفقیت حذف شد",
     "Disallowed pages for analytic": "صفحات غیرمجاز برای تجزیه و تحلیل"
 }
