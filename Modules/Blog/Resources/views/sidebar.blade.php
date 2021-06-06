@@ -1,4 +1,4 @@
-
+@if (checkGate('manage_blog') || checkGate('manage_categories'))
 <div x-data="{ isOpen: {{ isActive('module.blog.*', 'true', 'false') }} }" class='mb-3'>
     <a href="#" @click='isOpen = !isOpen' :class='{ "text-teal-600": isOpen }' class="capitalize hover:text-teal-600 font-medium text-md transition ease-in-out duration-200">
         <i class="fad fa-rss text-xs mr-2"></i>                
@@ -26,4 +26,5 @@
         @endcan
     </div>
 </div>
+@endif
 
