@@ -30,7 +30,7 @@ class Analytic
         });
 
         foreach($disallowed_page as $rule) {
-            if(strpos($rule->data, '*') !== false && strpos($page, str_replace('*', '', $rule->data)) !== false) {
+            if($rule->data == $page || strpos($rule->data, '*') !== false && strpos($page, str_replace('*', '', $rule->data)) !== false) {
                 return $next($request);
             }
         }
