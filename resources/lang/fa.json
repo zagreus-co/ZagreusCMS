@@ -78,8 +78,11 @@
     "User deleted successfully!": "کاربر مورد نظر با موفقیت حذف شد.",
     "Role": "نقش کاربری",
     "Submit reset request": "ثبت درخواست بازیابی",
-    "New password": "پسورد جدید",
+    "Current password": "رمزعبور فعلی",
+    "New password": "رمزعبور جدید",
     "Please enter your new password": "لطفا رمزعبور جدید خود را وارد نمایید",
+    "New password confirmation": "تکرار رمزعبور جدید",
+    "The current password you entered is not correct!": "رمزعبور فعلی وارد شده معتیر نمیباشد",
     "Update password": "بروزرسانی رمزعبور",
     "Role title": "عنوان گروه کاربری",
     "Permissions": "دسترسی ها",
@@ -117,5 +120,8 @@
     "Analytic rule has been created successfully!": "قانون آمارگیری با موفقیت ایجاد شد",
     "Analytic rule has been deleted successfully!": "قانون تعریف شده با موفقیت حذف شد",
     "Disallowed pages for analytic": "صفحات غیرمجاز برای تجزیه و تحلیل",
-    "View all": "مشاهده همه"
+    "View all": "مشاهده همه",
+    "Edit profile": "ویرایش پروفایل",
+    "Log out": "خروج از حساب",
+    "Your account password has been changed successfully!": "رمزعبور حساب شما با موفقیت تغییر یافت"
 }

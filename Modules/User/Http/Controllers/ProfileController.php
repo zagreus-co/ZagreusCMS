@@ -12,7 +12,7 @@ class ProfileController extends Controller
     
     public function index(Request $request) {
         if ($request->method() == 'POST') return $this->handleForm($request);
-        if (class_exists('\SEO')) \SEO::setTitle('پروفایل کاربری');
+        if (class_exists('\SEO')) \SEO::setTitle(__('Edit profile'));
         return view('user::profile');
     }
     
@@ -27,10 +27,10 @@ class ProfileController extends Controller
                 'password'=> Hash::make($request->password)
             ]);
 
-            alert()->success('رمز عبور شما با موفقیت ویرایش شد.');
+            alert()->success(__('Your account password has been changed successfully!'));
             return back();
         }
 
-        return back()->withErrors(['رمزعبور وارد شده معتبر نمیباشد.']);
+        return back()->withErrors(["current_password"=> __('The current password you entered is not correct!')]);
     }
 }

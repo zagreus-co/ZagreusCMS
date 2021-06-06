@@ -1,26 +1,28 @@
-@extends('panel::layouts.app', ['title'=> 'پروفایل کاربری'])
+@extends(panelLayout())
 
 @section('content')
 <div class="col-md-12">
+    @panelView('errors-alert')
+
     <div class="card">
-        <div class="card-header">ویرایش رمزعبور</div>
+        <div class="card-header">{{__('Update password')}}</div>
         <div class="card-body">
             <form action="" method="post">
                 @csrf
                 <div class="form-group">
-                    <label>رمزعبور فعلی</label>
+                    <label>{{__("Current password")}}</label>
                     <input type="password" name="current_password" class="form-control">
                 </div>
-                <div class="form-group">
-                    <label>رمزعبور جدید</label>
+                <div class="form-group mt-3">
+                    <label>{{__("New password")}}</label>
                     <input type="password" name="password" class="form-control">
                 </div>
-                <div class="form-group">
-                    <label>تکرار رمزعبور جدید</label>
+                <div class="form-group mt-3">
+                    <label>{{__('New password confirmation')}}</label>
                     <input type="password" name="password_confirmation" class="form-control">
                 </div>
 
-                <button class="btn btn-success">ثبت تغییرات</button>
+                <button class="btn-success mt-3">{{__('Update password')}}</button>
             </form>
         </div>
     </div>
