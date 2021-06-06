@@ -55,6 +55,7 @@ class AnalyticsController extends Controller
         ]);
 
         AnalyticRule::create($rule);
+        \Cache::forget('analytics::disallowed_page');
 
         alert()->success(__("Analytic rule created "));
         return back();
@@ -64,6 +65,7 @@ class AnalyticsController extends Controller
         if (! checkGate(['manage_analytics']) ) abort(403);
 
         $rule->delete();
+        \Cache::forget('analytics::disallowed_page');
 
         alert()->success(__('Analytic rule has been deleted successfully!'));
         return true;

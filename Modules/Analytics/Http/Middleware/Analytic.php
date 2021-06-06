@@ -25,7 +25,11 @@ class Analytic
         $url = URL::current();
         $page = str_replace(\URL::to('/'), '', $url) == '' ? '/' : str_replace(\URL::to('/'), '', $url);
 
-        foreach(Rule::whereName('disallow_page')->get() as $rule) {
+        $disallowed_page = \Cache::remember('analytics::disallowed_page', 86400, function () {
+            return Rule::whereName('disallow_page')->get();
+        });
+
+        foreach($disallowed_page as $rule) {
             if(strpos($rule->data, '*') !== false && strpos($page, str_replace('*', '', $rule->data)) !== false) {
                 return $next($request);
             }
