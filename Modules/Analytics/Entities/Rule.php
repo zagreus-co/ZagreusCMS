@@ -9,8 +9,11 @@ class Rule extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $table = 'analytics__rules';
+    protected $fillable = ['name', 'data'];
     
+    public $timestamps = false;
+
     protected static function newFactory()
     {
         return \Modules\Analytics\Database\factories\RuleFactory::new();

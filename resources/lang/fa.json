@@ -111,5 +111,8 @@
     "Friday": "جمعه",
     "Saturday": "شنبه",
     "Top pages": "صفحات برتر 7 روز گذشته",
-    "Page": "صفحه"
+    "Page": "صفحه",
+    "View analytics": "مشاده آمار",
+    "Analytic rules": "قوانین آمارگیری",
+    "Disallowed pages for analytic": "صفحات غیرمجاز برای تجزیه و تحلیل"
 }

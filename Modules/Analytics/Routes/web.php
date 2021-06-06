@@ -13,5 +13,5 @@
 
 Route::prefix('panel/analytics')->name('module.analytics.')->middleware('auth')->group(function() {
     Route::get('/', 'AnalyticsController@index')->name('index');
-    Route::get('/rules', 'AnalyticsController@rules')->name('rules');
+    Route::match(['get', 'post'], '/rules', 'AnalyticsController@rules')->name('rules');
 });

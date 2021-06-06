@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Analytics\Entities\Analytic;
+use Modules\Analytics\Entities\Rule as AnalyticRule;
+use Illuminate\Validation\Rule;
 
 class AnalyticsController extends Controller
 {
@@ -36,63 +38,25 @@ class AnalyticsController extends Controller
         return view('analytics::index' , ['analytics'=> $analytics, 'analytic'=> new Analytic() ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('analytics::create');
+    public function rules(Request $request) {
+        if (! checkGate(['manage_analytics']) ) abort(403);
+
+        if (class_exists('\SEO')) \SEO::setTitle(__('Analytic rules'));
+
+        if ($request->method() == 'POST') return $this->createRule($request);
+
+        return view('analytics::rules' , ['rule'=> new AnalyticRule() ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    protected function createRule(Request $request) {
+        $rule = $request->validate([
+            'name'=> ['required', Rule::in(['disallow_page']) ],
+            'data'=> ['required', 'string']
+        ]);
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('analytics::show');
-    }
+        AnalyticRule::create($rule);
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('analytics::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        alert()->success(__("Analytic rule created "));
+        return back();
     }
 }
