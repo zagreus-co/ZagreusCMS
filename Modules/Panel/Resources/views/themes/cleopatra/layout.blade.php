@@ -115,7 +115,7 @@
 
               <div class="flex-1 flex flex-rowbg-green-100">
                 <div class="flex-1">
-                  <h1 class="text-sm font-semibold {{ !$notification->seen ? 'text-red-400' : ''  }}">{{ $notification->title }}</h1>
+                  <h1 id='notification_{{$notification->id}}_title' class="text-sm font-semibold {{ !$notification->seen ? 'text-red-400' : ''  }}">{{ $notification->title }}</h1>
                   <p class="text-xs text-gray-500">{{ \Str::words($notification->message, 8, ' ...') }}</p>
                 </div>
                 <div class="text-right text-xs text-gray-500">

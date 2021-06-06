@@ -26,6 +26,7 @@ let openNotification = (self, id) => {
         dataType: 'json',
         success: function (data) {
             swal(data.message);
+            $(`#notification_${id}_title`).removeClass('text-red-400')
             $(self).css('opacity', '1');
         },
         error: function (data) {
