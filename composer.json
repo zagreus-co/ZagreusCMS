@@ -22,10 +22,8 @@
         "laravelium/sitemap": "^8.0",
         "livewire/livewire": "^2.4",
         "mediconesystems/livewire-datatables": "^0.4.3",
-        "morilog/jalali": "^3.2",
         "nwidart/laravel-modules": "^8.2",
-        "uxweb/sweet-alert": "^2.0",
-        "yajra/laravel-datatables-oracle": "^9.15"
+        "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -50,7 +48,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-	        "Modules\\": "Modules/"
+            "Modules\\": "Modules/"
         },
         "files": [
             "app/Helpers.php"
