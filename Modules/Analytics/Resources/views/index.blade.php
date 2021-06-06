@@ -3,8 +3,6 @@
 @section('content')
 
 <div class="grid grid-cols-4 gap-6 xl:grid-cols-1">
-
-
     <!-- card -->
     <div class="report-card">
         <div class="card">
