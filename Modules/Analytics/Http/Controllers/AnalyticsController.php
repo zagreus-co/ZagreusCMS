@@ -22,8 +22,8 @@ class AnalyticsController extends Controller
         if (class_exists('\SEO')) \SEO::setTitle(__('Analytics'));
 
         $analytics = [
-            'yesterdayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->count(),
-            'todayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->count(),
+            'yesterdayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->get()->groupBy(function($row) { return $row->ip; })->count(),
+            'todayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->get()->groupBy(function($row) { return $row->ip; })->count(),
             'yesterdayViews'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->pluck('views')->sum(),
             'todayViews'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->pluck('views')->sum(),
             'lastMonth'=> Analytic::whereMonth('created_at', \Carbon\Carbon::now()->subMonth()->month)->count(),

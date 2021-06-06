@@ -183,7 +183,7 @@
                     label: '{{__("Viewers")}}',
                     data: [
                         @foreach($analytics['weekDates'] as $day)
-                        "{{ $analytic->whereDate('created_at', $day)->count() }}",
+                        "{{ $analytic->whereDate('created_at', $day)->get()->groupBy(function($row) { return $row->ip; })->count() }}",
                         @endforeach
                     ],
                     backgroundColor: '#4c51bf',
