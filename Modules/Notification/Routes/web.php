@@ -12,5 +12,5 @@
 */
 
 Route::get('/panel/notifications', 'NotificationController@index')->middleware('auth')->name('module.notification.index');
-Route::post('/panel/notifications/seen/{notification}', 'NotificationController@seen')->middleware('auth')->name('module.notification.seen');
+Route::post('/panel/notifications/open/{notification}', 'NotificationController@open')->middleware('auth')->name('module.notification.open');
 Route::post('/panel/notifications/load', 'NotificationController@load')->middleware('auth')->name('module.notification.load');

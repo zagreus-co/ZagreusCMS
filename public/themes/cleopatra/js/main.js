@@ -18,6 +18,23 @@ let toggleSubMenu = (self, menu) => {
     icon.addClass('rotate-90');   
 }
 
+let openNotification = (self, id) => {
+    $(self).css('opacity', '0.4');
+    $.ajax({
+        type: "POST",
+        url: `/panel/notifications/open/${id}`,
+        dataType: 'json',
+        success: function (data) {
+            swal(data.message);
+            $(self).css('opacity', '1');
+        },
+        error: function (data) {
+            swal(data.responseJSON.message);
+            $(self).css('opacity', '1');
+        }
+    })
+}
+
 let fireDelete = (self, url) => {
     swal({
         title: "Are you sure to delete this row?",

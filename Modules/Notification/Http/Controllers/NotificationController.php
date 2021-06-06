@@ -22,7 +22,7 @@ class NotificationController extends Controller
         return view('notification::index');
     }
 
-    public function seen(Notification $notification) {
+    public function open(Notification $notification) {
         if ($notification->user_id != auth()->user()->id) {
             return response()->json([
                 'result'=> false,
