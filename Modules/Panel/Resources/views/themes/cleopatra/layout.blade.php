@@ -96,7 +96,7 @@
             <div class="px-4 py-2 flex flex-row justify-between items-center capitalize font-semibold text-sm">
               <h1>notifications</h1>
               <div class="bg-teal-100 border border-teal-200 text-teal-500 text-xs rounded px-1">
-                <strong>5</strong>
+                <strong>{{ auth()->user()->notifications()->whereSeen(0)->count() }}</strong>
               </div>
             </div>
             <hr>
@@ -104,24 +104,27 @@
 
             <!-- body -->
 
-            <!-- item -->
+            @foreach(auth()->user()->notifications()->whereSeen(0)->limit(6)->get() as $notification)
             <a class="flex flex-row items-center justify-start px-4 py-4 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out" href="#">
 
+              @if (!is_null($notification->icon))
               <div class="px-3 py-2 rounded mr-3 bg-gray-100 border border-gray-300">
-                <i class="fad fa-birthday-cake text-sm"></i>
+                <i class="{{ $notification->icon }} text-sm"></i>
               </div>
+              @endif
 
               <div class="flex-1 flex flex-rowbg-green-100">
                 <div class="flex-1">
-                  <h1 class="text-sm font-semibold">poll..</h1>
-                  <p class="text-xs text-gray-500">text here also</p>
+                  <h1 class="text-sm font-semibold">{{ $notification->title }}</h1>
+                  <p class="text-xs text-gray-500">{{ \Str::words($notification->message, 8, ' ...') }}</p>
                 </div>
                 <div class="text-right text-xs text-gray-500">
-                  <p>4 min ago</p>
+                  <p>{{ $notification->created_at->ago() }}</p>
                 </div>
               </div>
 
             </a>
+            @endforeach
             <hr>
             <!-- end item -->
 

@@ -17,6 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('icon')->default('fad fa-bell')->nullable();
             $table->string('title');
             $table->text('message');
             $table->boolean('seen')->default(0);
