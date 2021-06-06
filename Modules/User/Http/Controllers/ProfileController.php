@@ -22,7 +22,7 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
-        if (Hash::check($request->password, auth()->user()->password)) {
+        if (Hash::check($request->current_password, auth()->user()->password)) {
             auth()->user()->update([
                 'password'=> Hash::make($request->password)
             ]);
