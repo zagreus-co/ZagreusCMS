@@ -22,6 +22,16 @@ class Analytic
     {
         $user = $request->user()->id ?? session()->getId();
 
+        $url = URL::current();
+        $page = str_replace(\URL::to('/'), '', $url) == '' ? '/' : str_replace(\URL::to('/'), '', $url);
+
+        foreach(Rule::whereName('disallow_page')->get() as $rule) {
+            if(strpos($rule->data, '*') !== false && strpos($page, str_replace('*', '', $rule->data)) !== false) {
+                return $next($request);
+            }
+        }
+        
+        
         $analyticRow = AnalyticModel::whereIp($request->ip())
             ->whereUrl(URL::current())
             ->whereDate('created_at', \Carbon\Carbon::today())
@@ -34,7 +44,7 @@ class Analytic
         } else {
             AnalyticModel::create([
                 'user'=> $user,
-                'url'=> URL::current(),
+                'url'=> $url,
                 'route'=> Route::currentRouteName(),
                 'ip'=> $request->ip(),
                 'meta'=> null
