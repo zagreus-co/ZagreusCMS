@@ -49,7 +49,7 @@ class Analytic
             AnalyticModel::create([
                 'user'=> $user,
                 'url'=> $url,
-                'route'=> Route::currentRouteName(),
+                'route'=> Route::currentRouteName() ?? '-',
                 'ip'=> $request->ip(),
                 'meta'=> null
             ]);
