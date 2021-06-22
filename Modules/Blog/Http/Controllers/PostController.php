@@ -45,6 +45,7 @@ class PostController extends Controller
         $request->validate($this->rules());
         
         $data = [
+            'template'=> !is_null($request->template) && $request->template != 'null' ? $request->template : null,
             'category_id'=> $request->category_id,
             "can_comment"=> $request->filled('can_comment'),
             "published"=> $request->filled('published')
@@ -119,6 +120,7 @@ class PostController extends Controller
         $request->validate($this->rules());
         
         $data = [
+            'template'=> !is_null($request->template) && $request->template != 'null' ? $request->template : null,
             'category_id'=> $request->category_id,
             "can_comment"=> $request->filled('can_comment'),
             "published"=> $request->filled('published')

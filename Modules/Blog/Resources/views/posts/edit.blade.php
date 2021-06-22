@@ -63,6 +63,19 @@
                 </select>
             </div>
 
+            @php $themeTemplates = themeTemplates() @endphp
+            @if (!is_null($themeTemplates) && count($themeTemplates) > 0)
+            <div class="form-group mt-4">
+                <label>{{__('Template')}}</label>
+                <select name="template" class="form-control">
+                    <option value="null">{{__('None')}}</option>
+                    @foreach($themeTemplates as $filename => $name)
+                    <option value="{{ $filename }}" {{ $filename == $post->template ? 'selected' : ''}}>{{ $name ?? $filename }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
+
             <div class="form-group mt-3">
                 <div class="form-check">
                     <label class="form-check-label">
