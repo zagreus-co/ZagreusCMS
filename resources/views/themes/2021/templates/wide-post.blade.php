@@ -13,7 +13,7 @@
                     @endif
                     <div class="p-6">
                         <div>
-                            <span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $post->categories[0]->title ?? '-' }}</span>
+                            <span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $post->category->title ?? '-' }}</span>
                             <a href="{{ route('module.blog.posts.openBySlug', $post->slug) }}" class="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline">{{ $post->title }}</a>
                             <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{!! $post->content !!}</p>
                         </div>
