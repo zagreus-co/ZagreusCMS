@@ -25,4 +25,6 @@
             </div>
         </div>
     </section>
+    @themeInclude('partials.footer')
 </body>
+</html>
