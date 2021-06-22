@@ -35,3 +35,32 @@ if (!function_exists('panelAsset')) {
         return app('url')->asset('themes/'.Theme::panelTheme().'/'.$path, $secure);
     }
 }
+
+if (!function_exists('themeTemplates')) {
+    function themeTemplates() {
+        $path = '../resources/views/themes/'.Theme::currentName().'/templates';
+
+        try { $files = scandir($path); }
+        catch (\Throwable $th) { return null; }
+
+        $templates = [];
+
+        foreach ($files as $key => $file) {
+            if (is_dir($path.'/'.$file)) continue;
+
+            $firstLine = trim(fgets(fopen($path.'/'.$file, 'r')));
+
+            $templates[$file] = grabThemeKey('name', $firstLine);
+        }
+
+        return ($templates);
+    }
+}
+
+if (!function_exists('grabThemeKey')) {
+    function grabThemeKey($key, $string) {
+        preg_match('/<!--[\s\S](.*):[\s\S](.*)[\s\S]-->/', $string, $output_array);
+        
+        return count($output_array) == 3 && $output_array[1] == $key ? $output_array[2] : null;
+    }
+}

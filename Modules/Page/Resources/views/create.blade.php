@@ -48,6 +48,17 @@
     <div class="card">
         <div class="card-body">
 
+            @if (themeTemplates())
+            <div class="form-group mb-4">
+                <label>{{__('Template')}}</label>
+                <select name="template" class="form-control">
+                    @foreach(themeTemplates() as $filename => $name)
+                    <option value="{{ $filename }}">{{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
+
             <div class="form-group mb-4">
                 <label>{{__('Status')}}</label>
                 <select name="published" class="form-control">
