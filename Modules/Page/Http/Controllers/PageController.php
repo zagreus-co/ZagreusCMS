@@ -48,7 +48,7 @@ class PageController extends Controller
         $request->validate($this->rules());
 
         $data = [
-            'template'=> $request->template,
+            'template'=> !is_null($request->template) && $request->template != 'null' ? $request->template : null,
             'published'=> $request->published,
             'display_in_header'=> $request->filled('display_in_header'),
             'can_comment'=> $request->filled('can_comment')
@@ -88,7 +88,7 @@ class PageController extends Controller
         $request->validate($this->rules());
 
         $data = [
-            'template'=> $request->template,
+            'template'=> !is_null($request->template) && $request->template != 'null' ? $request->template : null,
             'published'=> $request->published,
             'display_in_header'=> $request->filled('display_in_header'),
             'can_comment'=> $request->filled('can_comment')

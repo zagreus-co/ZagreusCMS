@@ -55,6 +55,7 @@
             <div class="form-group mb-4">
                 <label>{{__('Template')}}</label>
                 <select name="template" class="form-control">
+                    <option value="null">{{__('None')}}</option>
                     @foreach($themeTemplates as $filename => $name)
                     <option value="{{ $filename }}" {{ $filename == $page->template ? 'selected' : ''}}>{{ $name ?? $filename }}</option>
                     @endforeach
