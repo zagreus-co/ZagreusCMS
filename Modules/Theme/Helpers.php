@@ -50,7 +50,7 @@ if (!function_exists('themeTemplates')) {
 
             $firstLine = trim(fgets(fopen($path.'/'.$file, 'r')));
 
-            $templates[$file] = grabThemeKey('name', $firstLine);
+            $templates[str_replace('.blade.php', '',$file)] = grabThemeKey('name', $firstLine);
         }
 
         return ($templates);

@@ -31,7 +31,7 @@ class PageController extends Controller
         if ($page->keywords()->count() > 0)
             \SEOMeta::setKeywords($page->keywords->pluck('keyword')->toArray());
 
-        return themeView(is_null($page->template) ? 'page' : $page->template, compact('page'));
+        return themeView(is_null($page->template) ? 'page' : 'templates.'.$page->template, compact('page'));
     }
 
     public function create()
@@ -48,6 +48,7 @@ class PageController extends Controller
         $request->validate($this->rules());
 
         $data = [
+            'template'=> $request->template,
             'published'=> $request->published,
             'display_in_header'=> $request->filled('display_in_header'),
             'can_comment'=> $request->filled('can_comment')
@@ -87,6 +88,7 @@ class PageController extends Controller
         $request->validate($this->rules());
 
         $data = [
+            'template'=> $request->template,
             'published'=> $request->published,
             'display_in_header'=> $request->filled('display_in_header'),
             'can_comment'=> $request->filled('can_comment')

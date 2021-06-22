@@ -49,6 +49,19 @@
 
     <div class="card">
         <div class="card-body">
+
+            @php ($themeTemplates = themeTemplates())
+            @if (!is_null($themeTemplates) && count($themeTemplates) > 0)
+            <div class="form-group mb-4">
+                <label>{{__('Template')}}</label>
+                <select name="template" class="form-control">
+                    @foreach($themeTemplates as $filename => $name)
+                    <option value="{{ $filename }}" {{ $filename == $page->template ? 'selected' : ''}}>{{ $name ?? $filename }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
+
             <div class="form-group">
                 <label>{{__('Status')}}</label>
                 <select name="published" class="form-control">

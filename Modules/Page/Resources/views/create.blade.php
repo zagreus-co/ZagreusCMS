@@ -48,12 +48,13 @@
     <div class="card">
         <div class="card-body">
 
-            @if (themeTemplates())
+            @php ($themeTemplates = themeTemplates())
+            @if (!is_null($themeTemplates) && count($themeTemplates) > 0)
             <div class="form-group mb-4">
                 <label>{{__('Template')}}</label>
                 <select name="template" class="form-control">
-                    @foreach(themeTemplates() as $filename => $name)
-                    <option value="{{ $filename }}">{{ $name }}</option>
+                    @foreach($themeTemplates as $filename => $name)
+                    <option value="{{ $filename }}">{{ $name ?? $filename }}</option>
                     @endforeach
                 </select>
             </div>
