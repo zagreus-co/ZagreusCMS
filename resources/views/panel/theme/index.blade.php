@@ -31,7 +31,7 @@
 <script>
     let selectTheme = (type, dir) => {
         $.ajax({
-            url: '{{ route("module.theme.selectTheme") }}',
+            url: '{{ route("panel.theme.selectTheme") }}',
             method: 'POST',
             dataType: 'json',
             data: JSON.stringify({type: type, dir:dir}),

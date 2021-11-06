@@ -39,9 +39,6 @@ class UserServiceProvider extends ServiceProvider
                 });
             }
         }
-        $this->commands([
-            \Modules\User\Console\PermissionSeeding::class,
-        ]);
     }
 
     /**

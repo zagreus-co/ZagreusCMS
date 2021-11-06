@@ -27,7 +27,7 @@
                         <input type="{{$option->type}}" name="data" id="option_{{$option->id}}_data" value='{{ $option->data }}' class='form-control bg-warning'>
                     @endif
         
-                    <button onclick='updateOption(this, {{ $option->id }})' class="btn-shadow btn-bs-secondary mb-4">{{ _('Update') }}</button>
+                    <button onclick='updateOption(this, {{ $option->id }})' class="btn-shadow btn-bs-secondary mb-4">{{ __('Update') }}</button>
                     <hr>
                 </form>
             @endforeach

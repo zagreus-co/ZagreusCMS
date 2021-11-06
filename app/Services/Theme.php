@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Theme\Services;
+namespace App\Services;
 
 class Theme {
     public function currentName() {

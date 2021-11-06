@@ -1,24 +1,19 @@
 <?php
 
-namespace Modules\Theme\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use File;
+use Response;
 
 class ThemeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
+    public function index() {
         if (! checkGate('manage_themes') ) abort(403);
 
-        if (class_exists('\SEO')) \SEO::setTitle(__('Manage themes'));
-
-        return view('theme::index', ['themes'=> $this->loadFrontThemes()]);
+        \SEO::setTitle(__('Manage themes'));
+        return view('panel.theme.index', ['themes'=> $this->loadFrontThemes()]);
     }
 
     public function selectTheme(Request $request) {
@@ -38,6 +33,22 @@ class ThemeController extends Controller
         return response()->json(['result'=> true, 'message'=> __('Your website theme has been updated successfully!')]);
     }
 
+    public function themeScreenshot($theme) {
+        $path = base_path("resources\\views\\themes\\{$theme}\\screenshot.png");
+
+        if(!File::exists($path)) {
+            return response()->json(['message' => 'Image not found.'], 404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
     protected function loadFrontThemes() {
         try {
             $dirs = scandir(base_path('resources\views\themes'));
@@ -51,7 +62,7 @@ class ThemeController extends Controller
                         'path'=> base_path('resources\views\themes\\'.$dir),
                     ];
                     $dirs[$key]['screenshot'] = file_exists($dirs[$key]['path'].'\screenshot.png')
-                        ? route('module.theme.image', $dir) : null;
+                        ? route('panel.theme.image', $dir) : null;
                     $dirs[$key]['data'] = file_exists($dirs[$key]['path'].'\theme.json')
                         ? json_decode(file_get_contents($dirs[$key]['path'].'\theme.json'), true) : null;
                 }
@@ -62,5 +73,4 @@ class ThemeController extends Controller
             return false;
         }
     }
-    
 }

@@ -29,14 +29,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
-
-        Blade::directive('themeInclude',function($view){
-            return '<?php echo themeView ('.$view.') ?>';
-        });
-
-        Blade::directive('panelView',function($view){
-            return '<?php echo panelView ('.$view.') ?>';
-        });
     }
 
     /**
@@ -47,9 +39,7 @@ class ThemeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->app->singleton('Theme', function() {
-            return new \Modules\Theme\Services\Theme();
-        });
+        
     }
 
     /**
