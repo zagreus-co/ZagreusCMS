@@ -15,7 +15,7 @@
     let createAttachmentDiv = (id, current = '') => {
         return `
         <div id='attachment_${id}_div' class='form-group bg-light p-2'>
-            <label>{{_('Attachment')}} ${id + 1}</label>
+            <label>{{__('Attachment')}} ${id + 1}</label>
             <div class="flex flex-row overflow-hidden">
                 <input type="file" class="form-control p-2 rounded-none	" name="inputs[]" multiple="multiple" id="attachment_${id}_input" onchange="fileUploadChange(this)">
                     
