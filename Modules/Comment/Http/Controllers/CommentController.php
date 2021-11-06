@@ -62,7 +62,7 @@ class CommentController extends Controller
             'published'=> get_option('straight_publish_comments'),
         ]);
 
-        $this->handleNotifications($request, $commentable);
+        // $this->handleNotifications($request, $commentable);
 
         alert()->success(__('Your comment has been submited successfully!'));
         return back();
