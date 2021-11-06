@@ -193,7 +193,7 @@
             },
             interaction: {
                 intersect: false,
-                mode: 'nearest'
+                mode: 'index'
             },
             plugins: {
                 legend: {
