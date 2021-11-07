@@ -34,7 +34,7 @@ class ThemeController extends Controller
     }
 
     public function themeScreenshot($theme) {
-        $path = base_path("resources\\views\\themes\\{$theme}\\screenshot.png");
+        $path = base_path("resources/views/themes/{$theme}/screenshot.png");
 
         if(!File::exists($path)) {
             return response()->json(['message' => 'Image not found.'], 404);
@@ -51,25 +51,26 @@ class ThemeController extends Controller
 
     protected function loadFrontThemes() {
         try {
-            $dirs = scandir(base_path('resources\views\themes'));
+            $dirs = scandir(base_path('resources/views/themes'));
             $themes = [];
 
             foreach($dirs as $key => $dir) {
-                if (!is_dir(base_path('resources\views\themes\\'.$dir)) || $key <= 1) { unset($dirs[$key]); }
+                if (!is_dir(base_path('resources/views/themes/'.$dir)) || $key <= 1) { unset($dirs[$key]); }
                 else {
                     $dirs[$key] = [
                         'dir'=> $dir,
-                        'path'=> base_path('resources\views\themes\\'.$dir),
+                        'path'=> base_path('resources/views/themes/'.$dir),
                     ];
-                    $dirs[$key]['screenshot'] = file_exists($dirs[$key]['path'].'\screenshot.png')
+                    $dirs[$key]['screenshot'] = file_exists($dirs[$key]['path'].'/screenshot.png')
                         ? route('panel.theme.image', $dir) : null;
-                    $dirs[$key]['data'] = file_exists($dirs[$key]['path'].'\theme.json')
-                        ? json_decode(file_get_contents($dirs[$key]['path'].'\theme.json'), true) : null;
+                    $dirs[$key]['data'] = file_exists($dirs[$key]['path'].'/theme.json')
+                        ? json_decode(file_get_contents($dirs[$key]['path'].'/theme.json'), true) : null;
                 }
             }
 
             return array_values($dirs);
         } catch (\Throwable $th) {
+            dd($th);
             return false;
         }
     }
