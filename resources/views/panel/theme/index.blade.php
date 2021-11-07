@@ -1,7 +1,7 @@
 @extends(panelLayout())
 
 @section('content')
-<div class="grid grid-cols-{{count($themes) > 1 ? 2 : 1}} md:grid-cols-1 gap-4">
+<div class="grid grid-cols-{{is_array($theme) && count($themes) > 1 ? 2 : 1}} md:grid-cols-1 gap-4">
     @foreach($themes as $theme)
     <div class="card mb-4">
         <div class="card-header flex justify-between">
