@@ -24,7 +24,7 @@ class ThemeController extends Controller
         ]);
 
         if ($request->type != 'front') abort(403);
-        if (!file_exists(base_path('resources\views\themes\\'.$request->dir.'\\theme.json')))
+        if (!file_exists(base_path('resources/views/themes/'.$request->dir.'/theme.json')))
             return response()->json(['result'=> false, 'message'=> 'Theme directory not found'], 400);
         
         if (update_option('front_theme', ['plain_data'=> $request->dir]) == false)
