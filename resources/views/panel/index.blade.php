@@ -120,7 +120,7 @@
     </div>
 </div>
 @endsection
-@section('script')
+@push('scripts')
 <script src='{{ asset("js/chart.min.js") }}'></script>
 
 <script>
@@ -203,4 +203,4 @@
         },
     });
 </script>
-@endsection
+@endpush

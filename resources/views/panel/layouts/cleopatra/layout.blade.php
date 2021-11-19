@@ -179,7 +179,7 @@
 <script>let base_url = "{{ \URL::to('/') }}";</script>
 <script src="{{panelAsset('js/main.js')}}"></script>
 @include('sweet::alert')
-@yield('script')
+@stack('scripts')
 @yield('components-script')
 <!-- end script -->
 
