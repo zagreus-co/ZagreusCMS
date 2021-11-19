@@ -17,7 +17,7 @@ Route::get('locale/{locale}',function($locale){
 // Panel routes
 Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function() {
     
-    // Theme routes
+    // Panel-Theme routes
     Route::get('/theme', 'Panel\ThemeController@index')->name('theme.index');
     Route::post('/theme/select', 'Panel\ThemeController@selectTheme')->name('theme.selectTheme');
     Route::get('/theme/{theme}/screenshot', 'Panel\ThemeController@themeScreenshot')->name('theme.image');
