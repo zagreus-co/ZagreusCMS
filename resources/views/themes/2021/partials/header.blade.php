@@ -29,7 +29,7 @@
                         {{__('Account')}}
                     </a>
                     @else
-                    <a href="{{ route('module.panel.index') }}" data-turbolinks="false" class="px-2 py-1 mx-2 text-md font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 hover:text-green-700 dark:hover:bg-gray-700 hover:no-underline">
+                    <a href="{{ route('panel.index') }}" data-turbolinks="false" class="px-2 py-1 mx-2 text-md font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 hover:text-green-700 dark:hover:bg-gray-700 hover:no-underline">
                         {{__('Dashboard')}}
                     </a>
                     @endguest

@@ -40,13 +40,13 @@ if (!function_exists('themeAsset')) {
 
 if (!function_exists('panelLayout')) {
     function panelLayout() {
-        return 'panel::themes.'.Theme::panelTheme().'.layout';
+        return 'panel.layouts.'.Theme::panelTheme().'.layout';
     }
 }
 
 if (!function_exists('panelView')) {
     function panelView($view, $variables = []) {
-        return viewIfExist('panel::themes.'.Theme::panelTheme().'.'.$view, $variables);
+        return viewIfExist('panel.layouts.'.Theme::panelTheme().'.'.$view, $variables);
     }
 }
 if (!function_exists('panelAsset')) {

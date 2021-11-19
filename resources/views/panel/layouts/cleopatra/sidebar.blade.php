@@ -12,7 +12,7 @@
 
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Client sidebar</p>
 
-        <a href="{{ route('module.panel.index') }}" class="mb-3 capitalize font-medium text-md {{ isActive('module.panel.index', 'text-teal-600', 'hover:text-teal-600') }} transition ease-in-out duration-200">
+        <a href="{{ route('panel.index') }}" class="mb-3 capitalize font-medium text-md {{ isActive('panel.index', 'text-teal-600', 'hover:text-teal-600') }} transition ease-in-out duration-200">
             <i class="fad fa-tachometer-alt text-xs mr-2"></i>                
             {{ __('Dashboard') }}
         </a>

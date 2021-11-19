@@ -1,10 +1,9 @@
 <?php
 
-namespace Modules\Panel\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Modules\Analytics\Entities\Analytic;
 
 class PanelController extends Controller
@@ -25,6 +24,6 @@ class PanelController extends Controller
             
         ];
 
-        return view('panel::index', compact('analytics'));
+        return view('panel.index', compact('analytics'));
     }
 }
