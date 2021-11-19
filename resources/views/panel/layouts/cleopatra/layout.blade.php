@@ -180,7 +180,6 @@
 <script src="{{panelAsset('js/main.js')}}"></script>
 @include('sweet::alert')
 @stack('scripts')
-@yield('components-script')
 <!-- end script -->
 
 </body>
