@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Option\Entities;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class OptionTranslation extends Model
 {
     use HasFactory;
     protected $table = 'option__option_translations';
     public $timestamps = false;
-    
+
     protected $fillable = [
         'name',
         'data',
@@ -20,9 +20,5 @@ class OptionTranslation extends Model
     protected $casts = [
         'default'=> 'object'
     ];
-
-    protected static function newFactory()
-    {
-        return \Modules\Option\Database\factories\OptionTranslationFactory::new();
-    }
+    
 }

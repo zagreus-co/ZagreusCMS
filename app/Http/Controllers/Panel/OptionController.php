@@ -1,11 +1,9 @@
 <?php
 
-namespace Modules\Option\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Modules\Option\Entities\Option;
 
 class OptionController extends Controller
 {
@@ -15,7 +13,7 @@ class OptionController extends Controller
         if (! checkGate('manage_options') ) abort(403);
 
         if (class_exists('\SEO')) \SEO::setTitle(__('Manage options'));
-        return view('option::index');
+        return view('panel.options.index');
     }
 
     public function handle(Request $request) {

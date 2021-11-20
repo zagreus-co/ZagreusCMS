@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Option\Entities;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 
 class Option extends Model
@@ -17,12 +17,6 @@ class Option extends Model
         'plain_data',
         'is_translatable'
     ];
-    
+
     public $translatedAttributes = ['name', 'data', 'default'];
-
-    protected static function newFactory()
-    {
-        return \Modules\Option\Database\factories\OptionFactory::new();
-    }
-
 }

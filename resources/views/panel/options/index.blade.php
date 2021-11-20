@@ -36,7 +36,7 @@
 </div>
 @endsection
 
-@section('script')
+@push('scripts')
 <script>
     let updateOption = (self, id) => {
         let formData = $(`#option_${id}_form`).serializeArray().reduce((obj,item) => {
@@ -46,7 +46,7 @@
         $(self).attr('disabled', true);
 
         $.ajax({
-            url: '{{ route("module.options.handle") }}',
+            url: '{{ route("panel.options.handle") }}',
             method: 'POST',
             dataType: 'json',
             data: JSON.stringify(formData),
@@ -62,4 +62,4 @@
     }
     
 </script>
-@endsection
+@endpush

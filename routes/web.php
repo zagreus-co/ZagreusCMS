@@ -45,4 +45,8 @@ Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function() {
     Route::get('/theme', 'Panel\ThemeController@index')->name('theme.index');
     Route::post('/theme/select', 'Panel\ThemeController@selectTheme')->name('theme.selectTheme');
     Route::get('/theme/{theme}/screenshot', 'Panel\ThemeController@themeScreenshot')->name('theme.image');
+
+    // Panel-Option routes
+    Route::get('/option', 'Panel\OptionController@index')->name('options.index');
+    Route::post('/handle', 'Panel\OptionController@handle')->name('options.handle');
 });

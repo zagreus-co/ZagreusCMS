@@ -19,6 +19,10 @@ class ZagreusServiceProvider extends ServiceProvider
         $this->app->singleton('Theme', function() {
             return new \App\Services\Theme();
         });
+
+        $this->app->singleton('Option', function() {
+            return new \App\Models\Option();
+        });
     }
 
     /**
