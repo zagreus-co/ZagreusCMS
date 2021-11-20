@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 
 class ZagreusServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,13 @@ class ZagreusServiceProvider extends ServiceProvider
         Blade::directive('panelView',function($view){
             return '<?php echo panelView ('.$view.') ?>';
         });
+
+        if (Schema::hasTable('permissions')) {
+            foreach(\App\Models\User\Permission::all() as $permission) {
+                Gate::define($permission->tag, function (\App\Models\User $user) use ($permission) {
+                    return $user->hasPermission($permission);
+                });
+            }
+        }
     }
 }

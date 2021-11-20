@@ -31,7 +31,7 @@ class User extends Authenticatable
     ];
 
     public function role() {
-        return $this->belongsTo(\Modules\User\Entities\Role::class);
+        return $this->belongsTo(User\Role::class);
     }
 
     public function hasPermission($permission) {
