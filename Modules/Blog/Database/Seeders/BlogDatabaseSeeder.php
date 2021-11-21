@@ -19,10 +19,10 @@ class BlogDatabaseSeeder extends Seeder
     public function run()
     {   
         Category::create([
-            'en'=> ['slug'=> 'uncategorized',
-            'title'=> 'Uncategorized'],
-            'fa'=> ['slug'=> 'دسته-بندی-نشده',
-            'title'=> 'دسته بندی نشده']
+            'en'=> ['slug'=> 'website',
+            'title'=> 'Website'],
+            'fa'=> ['slug'=> 'website',
+            'title'=> 'وبسایت']
         ]);
         Category::create([
             'en'=> ['slug'=> 'news',
