@@ -124,8 +124,13 @@ if (! function_exists('update_option')) {
         elseif (gettype($option) == 'string')
             $option = \Option::whereTag($option)->first();
         
-        if (is_null($option) || get_class($option) != 'App\Models\Option')
+        if (is_null($option) || get_class($option) != 'App\Models\Option') {
+            // if $option variable was string, it means it is actually holding the option tag
+            if (gettype($option) == 'string') {
+                \Option::create(array_merge($data, ['tag'=> $option]));
+            }
             return false;
+        }
 
         \Cache::forget('Option::'.$option->tag.'-'.app()->getLocale());
         $option->update($data);
