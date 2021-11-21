@@ -137,10 +137,11 @@ class PostController extends Controller
             $request->validate([
                 'keywords'=> ['array']
             ]);
+            $post->keywords()->delete();
             foreach ($request->keywords as $keyword) {
                 $post->keywords()->create(['keyword'=> $keyword]);
             }
-        }
+        } else { $post->keywords()->delete(); }
 
         if ($request->filled('attachments')) {
             $request->validate(['attachments'=> 'array']);
@@ -156,9 +157,9 @@ class PostController extends Controller
         } else { $post->medias()->whereTag('attachment')->delete(); }
 
         if ($request->filled('image_url')) {
-            $post->medias()->create([
+            $post->medias()->updateOrCreate([ 'tag'=> 'cover' ], 
+            [
                 'user_id'=> auth()->user()->id,
-                'tag'=> 'cover',
                 'filename'=> $request->image_url
             ]);
         }

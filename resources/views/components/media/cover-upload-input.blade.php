@@ -13,7 +13,7 @@
         </div>
     </div>
 </div>
-
+@push('scripts')
 <script>
     let coverUploadChange = (self) => {
         uploadCover(self, self.files[0]);
@@ -27,7 +27,7 @@
 
         formData.set('_token', $('meta[name="csrf-token"]').attr('content'));
         formData.set('file', file);
-        request.open('POST', '/panel/media/upload/cover');
+        request.open('POST', '{{ route("panel.media.admin_upload") }}');
         request.send(formData);
 
         request.onload = function() {
@@ -40,3 +40,4 @@
         }
     }
 </script>
+@endpush

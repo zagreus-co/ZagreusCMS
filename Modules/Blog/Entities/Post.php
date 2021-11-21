@@ -56,7 +56,7 @@ class Post extends Model
     }
 
     public function medias() {
-        return $this->morphMany(\Modules\Media\Entities\Media::class, 'mediaable');
+        return $this->morphMany(\App\Models\Media::class, 'mediaable');
     }
 
     public function scores() {

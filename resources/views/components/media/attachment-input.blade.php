@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header flex">
+    <div class="card-header flex justify-between">
         <label class='mt-2'>{{('Attachments')}}</label>
 
         <button type='button' class="btn ml-4" onclick='addNewAttachment()'>{{__('Add new')}}</button> 
@@ -9,6 +9,7 @@
         
     </div>
 </div>
+@push('scripts')
 <script>
     if (typeof inputId === undefined) { let inputId = ''; }
 
@@ -24,7 +25,7 @@
             <div id='attachment_files'>
                 ${current != '' ? 
                 `
-                <span class='badge badge-info ml-1'>${current}</span>
+                <span class='bg-blue-400 text-white py-1 px-3 rounded-md ml-1 mt-2'>${current}</span>
                 <input type='hidden' name='attachments[]' value='${current}'>
                 ` 
                 : ``}
@@ -53,22 +54,24 @@
     let submitAttachmentUpload = (self, file) => {
         let fileId = 's_' + Math.floor(Date.now() / 1000) + '-' + Math.floor(Math.random() * 1000000);
         let attachment_files = $(self).parent().parent().find("#attachment_files");
-        attachment_files.append(`<span id='${fileId}' class='badge badge-info ml-1'> <div class="spinner-border spinner-border-sm text-light" role="status"> <span class="sr-only">Loading...</span> </div></span>`);
+        attachment_files.append(`<span id='${fileId}' class='bg-blue-400 opacity-50 text-white py-1 px-3 rounded-md ml-1 mt-2'> Uploading ... </span>`);
 
         let formData = new FormData();
         let request = new XMLHttpRequest();
 
         formData.set('_token', $('meta[name="csrf-token"]').attr('content'));
         formData.set('file', file);
-        request.open('POST', '/panel/media/upload/attachments');
+        request.open('POST', '{{ route("panel.media.admin_upload") }}');
         request.send(formData);
 
         request.onload = function() {
             if (request.status == 200) {
                 $("#" + fileId).html(file.name);
+                $("#" + fileId).toggleClass('opacity-50');
                 attachment_files.append(`<input type='hidden' name='attachments[]' value='${request.responseText}'>`);
             }
             else { $("#" + fileId).html(`Error@${request.status} : ${file.name}`); }
         }
     }
 </script>
+@endpush

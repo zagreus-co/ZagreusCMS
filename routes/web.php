@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+// Global routes
 Route::get('/', function () {
     \SEO::setTitle(get_option('site_short_name').' - '.get_option('site_tag_line'))
         ->setDescription(get_option('site_description'));
@@ -13,6 +14,8 @@ Route::get('locale/{locale}',function($locale){
     \Session::put('locale',$locale);
     return redirect()->back();   
 })->name('locale');
+
+Route::get('/media/open/{filename}', 'MediaController@open')->where('filename', '.*')->name('media.open');
 
 // Guest only routes
 Route::middleware('guest')->group( function() {
@@ -34,7 +37,7 @@ Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function() {
     
     Route::get('/', 'Panel\PanelController@index')->name('index');
     
-    // Panel-User Routes
+    // Panel-User routes
     Route::resource('/users/roles', 'Panel\User\RolesController');
     Route::resource('/users', 'Panel\User\UserController');
     Route::get('/users/{user}/login', 'Panel\User\UserController@loginUsingId')->name('users.loginUsingId');
@@ -49,4 +52,8 @@ Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function() {
     // Panel-Option routes
     Route::get('/option', 'Panel\OptionController@index')->name('options.index');
     Route::post('/handle', 'Panel\OptionController@handle')->name('options.handle');
+
+    // Panel-Media routes
+    Route::get('/media', 'MediaController@index')->name('media');
+    Route::post('/media/admin_upload', 'MediaController@adminUpload')->name('media.admin_upload');
 });

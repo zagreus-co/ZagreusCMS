@@ -46,7 +46,7 @@
 
     </div>
 
-    <x-attachment-input />
+    <x-media.attachment-input />
 </div>
 <div class="col-span-4 md:col-span-12">
 
@@ -99,15 +99,15 @@
         </div>
     </div>
 
-    <x-upload-input />
+    <x-media.cover-upload-input />
     <x-keywords parent='card' child='card-body' inputClass='form-control'/>
 </div>
 </form>
 
 @endsection
 
-@section('script')
+@push('scripts')
 <script src="https://cdn.tiny.cloud/1/jsivzzwvsphsomapw3muccbxcuiq0iuc85r87ujaj5zd4lv0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>tinymce.init({ selector:'textarea.tinymce', plugins: 'code',height : "480"});</script>
 <x-keywords-script />
-@endsection
+@endpush

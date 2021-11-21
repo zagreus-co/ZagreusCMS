@@ -47,7 +47,7 @@
 
     </div>
 
-    <x-attachment-input />
+    <x-media.attachment-input current='{!!$post->medias()->whereTag("attachment")->select("filename")->get()->pluck("filename")->toJson()!!}' />
 </div>
 <div class="col-span-4 md:col-span-12">
 
@@ -106,7 +106,7 @@
             $image = $post->medias()->whereTag('cover')->first()->filename;
     @endphp
     
-    <x-upload-input current='{{ $image }}' />
+    <x-media.cover-upload-input current='{{ $image }}' />
     <x-keywords parent='card' child='card-body' inputClass='form-control'  current='{!! json_encode($post->keywords->pluck("keyword")->toArray()) !!}'/>
 
 </div>
@@ -114,8 +114,8 @@
 
 @endsection
 
-@section('script')
+@push('scripts')
 <script src="https://cdn.tiny.cloud/1/jsivzzwvsphsomapw3muccbxcuiq0iuc85r87ujaj5zd4lv0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>tinymce.init({ selector:'textarea.tinymce', plugins: 'code',height : "480"});</script>
 <x-keywords-script />
-@endsection
+@endpush

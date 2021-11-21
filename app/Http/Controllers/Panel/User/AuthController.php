@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         auth()->loginUsingId($user->id);
         alert()->success('ثبت نام در سامانه با موفقیت انجام شد!');
-        return redirect( route('module.panel.index') );
+        return redirect( route('panel.index') );
     }
 
     public function login(Request $request) {
@@ -66,7 +66,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             auth()->loginUsingId($user->id, $request->filled('remember'));
 
-            return redirect( route('module.panel.index') );
+            return redirect( route('panel.index') );
         }
         
         return $this->responseFaild();
