@@ -119,7 +119,7 @@ return [
      * whitelist - Deny anything(access - 0 - deny), that not allowed by the ACL rules list
      */
     'aclStrategy' => 'whitelist',
-    'aclRepository' => Modules\Media\Repositories\UsersACLRepository ::class,
+    // 'aclRepository' => Modules\Media\Repositories\UsersACLRepository ::class,
 
     /**
      * ACL Rules cache
