@@ -60,6 +60,15 @@ class PageController extends Controller
 
         $page = Page::create($data);
 
+        if ($request->filled('keywords')) {
+            $request->validate([
+                'keywords'=> ['array']
+            ]);
+            foreach ($request->keywords as $keyword) {
+                $page->keywords()->create(['keyword'=> $keyword]);
+            }
+        }
+
         alert()->success(__("Page created successfully!"));
         return redirect( route('module.page.index') );
     }
@@ -90,6 +99,16 @@ class PageController extends Controller
         }
 
         $page->update($data);
+
+        if ($request->filled('keywords')) {
+            $request->validate([
+                'keywords'=> ['array']
+            ]);
+            $post->keywords()->delete();
+            foreach ($request->keywords as $keyword) {
+                $page->keywords()->create(['keyword'=> $keyword]);
+            }
+        } else { $post->keywords()->delete(); }
 
         alert()->success(__("Page edited successfully!"));
         return back();
