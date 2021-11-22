@@ -31,6 +31,14 @@ class PageServiceProvider extends ServiceProvider
 
         \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.page.sitemap'), 
             (new \Modules\Page\Entities\Page())->latest()->first()->created_at ?? null ) );
+
+        add_panel_menu_item(
+            menu_item_gate: 'manage_pages',
+            menu_item_route: 'module.page.index', 
+            menu_item_icon:'fas fa-pager', 
+            menu_item_text: __('Manage pages'),
+            priority: 4
+        );
     }
 
     /**

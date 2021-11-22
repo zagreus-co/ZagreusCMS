@@ -28,6 +28,14 @@ class CommentServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
+        add_panel_menu_item(
+            menu_item_gate: 'manage_comments',
+            menu_item_route: 'module.comment.index', 
+            menu_item_icon:'fad fa-comment', 
+            menu_item_text: __('Manage comments'),
+            priority: 3
+        );
     }
 
     /**

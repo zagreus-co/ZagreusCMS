@@ -32,6 +32,7 @@ class AnalyticsServiceProvider extends ServiceProvider
         app()->make('router')->pushMiddlewareToGroup('web', \Modules\Analytics\Http\Middleware\Analytic::class);
         
         add_panel_menu_item(
+            menu_item_gate: 'manage_analytics',
             menu_item_route: 'module.analytics.*', 
             menu_item_icon:'fad fa-analytics', 
             menu_item_text: __('Analytics'),
