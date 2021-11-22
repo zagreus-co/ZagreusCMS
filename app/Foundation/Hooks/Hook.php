@@ -103,7 +103,8 @@ abstract class Hook {
      */
     public function getListeners($hook = null)
     {
-        if (!is_null($hook) && isset($this->listeners[$hook])) {
+        if (!is_null($hook)) {
+            if (!isset($this->listeners[$hook])) return [];
             ksort($this->listeners[$hook]);
             return $this->listeners[$hook];
         }
