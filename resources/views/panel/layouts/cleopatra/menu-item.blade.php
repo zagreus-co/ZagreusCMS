@@ -1,3 +1,4 @@
+@if (is_null($menu_item_gate) || !is_null($menu_item_gate) && checkGate($menu_item_gate))
 <div
     @if(strpos($menu_item_route, '*') !== false) x-data="{ isOpen: {{ isActive('module.analytics.*', 'true', 'false') }} }" @endif
     class='mb-3'>
@@ -22,3 +23,4 @@
         </div>
     @endif
 </div>
+@endif

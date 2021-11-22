@@ -16,7 +16,7 @@ class PanelController extends Controller
     {
         if (class_exists('\SEO')) \SEO::setTitle(__('Dashboard'));
 
-        if (auth()->user()->role_id == 0) return view('panel::client-dashboard');
+        // if (auth()->user()->role_id == 0) return view('panel::client-dashboard');
 
         $analytics = [
             'yesterdayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->get()->groupBy(function($row) { return $row->ip; })->count(),
