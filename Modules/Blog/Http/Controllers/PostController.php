@@ -158,7 +158,7 @@ class PostController extends Controller
                 'user_id'=> auth()->user()->id,
                 'filename'=> $request->image_url
             ]);
-        }
+        } else { $post->medias()->whereTag('cover')->delete(); }
 
         alert()->success(__('Post edited successfully!'));
         return redirect( route('module.blog.posts.index') );
