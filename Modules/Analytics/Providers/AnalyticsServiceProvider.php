@@ -30,6 +30,26 @@ class AnalyticsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
 
         app()->make('router')->pushMiddlewareToGroup('web', \Modules\Analytics\Http\Middleware\Analytic::class);
+        
+        add_panel_menu_item(
+            menu_item_route: 'module.analytics.*', 
+            menu_item_icon:'fad fa-analytics', 
+            menu_item_text: __('Analytics'),
+            menu_item_extra: [
+                'dropdowns'=> [
+                    [
+                        "menu_item_route"=> 'module.analytics.index', 
+                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_text"=>  __('View analytics')
+                    ],
+                    [
+                        "menu_item_route"=> 'module.analytics.rules', 
+                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_text"=>  __('Analytic rules')
+                    ]
+                ],
+            ]
+        );
     }
 
     /**
