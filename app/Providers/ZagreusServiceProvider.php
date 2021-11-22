@@ -75,28 +75,28 @@ class ZagreusServiceProvider extends ServiceProvider
             menu_item_route: 'panel.users.index', 
             menu_item_icon:'fad fa-users', 
             menu_item_text: __('Users'),
-            priority: 1
+            priority: 2
         );
 
         add_panel_menu_item(
             menu_item_route: 'panel.theme.index', 
             menu_item_icon:'fas fa-palette', 
             menu_item_text: __('Themes'),
-            priority: 1
+            priority: 4
         );
 
         add_panel_menu_item(
             menu_item_route: 'panel.options.index', 
             menu_item_icon:'fad fa-toolbox', 
             menu_item_text: __('Options'),
-            priority: 1
+            priority: 7
         );
 
         add_panel_menu_item(
             menu_item_route: 'panel.media.index', 
             menu_item_icon:'fad fa-folder-open', 
             menu_item_text: __('Medias'),
-            priority: 1
+            priority: 10
         );
     }
 }
