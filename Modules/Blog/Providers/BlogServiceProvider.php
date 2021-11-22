@@ -32,6 +32,33 @@ class BlogServiceProvider extends ServiceProvider
         \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.blog.posts.sitemap'), 
             (new \Modules\Blog\Entities\Post())->latest()->first()->created_at ?? null ) );
         \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.blog.categories.sitemap')) );
+    
+        add_panel_menu_item(
+            priority: 2,
+            menu_item_gate: 'manage_blog',
+            menu_item_route: 'module.blog.*', 
+            menu_item_icon:'fad fa-rss', 
+            menu_item_text: __('Manage blog'),
+            menu_item_extra: [
+                'dropdowns'=> [
+                    [
+                        "menu_item_route"=> 'module.blog.posts.create', 
+                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_text"=>  __('Create post')
+                    ],
+                    [
+                        "menu_item_route"=> 'module.blog.posts.index', 
+                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_text"=>  __('Manage posts')
+                    ],
+                    [
+                        "menu_item_route"=> 'module.blog.categories.index', 
+                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_text"=>  __('Manage categories')
+                    ]
+                ],
+            ]
+        );
     }
 
     /**
