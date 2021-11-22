@@ -2,7 +2,7 @@
 @section('content')
 
 @foreach(auth()->user()->notifications()->whereVisible(1)->limit(6)->latest()->get() as $notification)
-    <a onclick="openNotification(this, 1 );" class="mb-3 flex flex-row items-center justify-start px-4 py-4 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out shadow-md" href="#">
+    <a onclick="openNotification(this, 1 );" class="mb-3 flex flex-row items-center justify-start px-4 py-4 capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out shadow-md" href="#">
         <div class="px-3 py-2 rounded mr-3 bg-gray-100 border border-gray-300">
             <i class="{{ $notification->icon }} text-sm"></i>
         </div>
