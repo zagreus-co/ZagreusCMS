@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Entities\Category;
 use Morilog\Jalali\Jalalian;
+use \Modules\Keyword\Entities\Keyword;
 
 class PostController extends Controller
 {
@@ -62,10 +63,8 @@ class PostController extends Controller
             $request->validate([
                 'keywords'=> ['array']
             ]);
-            foreach ($request->keywords as $keyword) {
-                $post->keywords()->create(['keyword'=> $keyword]);
-            }
-        }
+            (new Keyword())->createKeyword($request->keywords, $post->id, get_class($post));
+        } else { $post->keywords()->delete(); }
 
         if ($request->filled('attachments')) {
             $request->validate(['attachments'=> 'array']);
@@ -137,10 +136,7 @@ class PostController extends Controller
             $request->validate([
                 'keywords'=> ['array']
             ]);
-            $post->keywords()->delete();
-            foreach ($request->keywords as $keyword) {
-                $post->keywords()->create(['keyword'=> $keyword]);
-            }
+            (new Keyword())->createKeyword($request->keywords, $post->id, get_class($post));
         } else { $post->keywords()->delete(); }
 
         if ($request->filled('attachments')) {
