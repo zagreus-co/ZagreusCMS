@@ -28,6 +28,10 @@ class BlogServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
+        \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.blog.posts.sitemap'), 
+            (new \Modules\Blog\Entities\Post())->latest()->first()->created_at ?? null ) );
+        \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.blog.categories.sitemap')) );
     }
 
     /**

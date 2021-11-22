@@ -28,6 +28,9 @@ class PageServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
+        \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.page.sitemap'), 
+            (new \Modules\Page\Entities\Page())->latest()->first()->created_at ?? null ) );
     }
 
     /**

@@ -21,3 +21,4 @@ Route::prefix('panel/pages')->name('module.page.')->middleware('auth')->group(fu
 });
 
 Route::get('page/{slug}', 'PageController@show')->name('module.page.show');
+Route::get('/pages_sitemap.xml', 'PageController@sitemap')->name('module.page.sitemap');

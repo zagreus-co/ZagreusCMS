@@ -129,6 +129,19 @@ class CategoryController extends Controller
         return themeView('catoryable', ['datas'=> $category->posts()->wherePublished(1)->orderBy('id', 'desc')->get()]);
     }
 
+    public function sitemap() {
+        $sitemap = \App::make('sitemap');
+        $sitemap->setCache('zagreus.categories_sitemap', 60);
+
+        if (!$sitemap->isCached()) {
+            foreach (Category::get() as $category) {
+                $sitemap->add(route("module.blog.categories.view", $category->slug), null, 0.75, 'daily');
+            }
+        }
+
+        return $sitemap->render('xml');
+    }
+
     protected function rules() {
         return [
             config('app.locale').'.title'=> ['required', 'min:2'],

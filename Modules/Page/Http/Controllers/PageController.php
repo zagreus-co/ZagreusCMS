@@ -106,6 +106,19 @@ class PageController extends Controller
         return back();
     }
 
+    public function sitemap() {
+        $sitemap = \App::make('sitemap');
+        $sitemap->setCache('zagreus.pages_sitemap', 60);
+
+        if (!$sitemap->isCached()) {
+            foreach (Page::limit(100)->latest()->wherePublished(1)->get() as $page) {
+                $sitemap->add(route("module.page.show", $page->slug), $page->created_at, 0.5, 'monthly');
+            }
+        }
+
+        return $sitemap->render('xml');
+    }
+
     protected function rules() {
         return [
             config('app.locale').'.title'=> ['required', 'min:2'],

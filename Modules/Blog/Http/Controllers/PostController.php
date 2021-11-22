@@ -219,6 +219,21 @@ class PostController extends Controller
         return redirect( route('module.blog.posts.openBySlug', $post->slug) );
     }
 
+    public function sitemap() {
+        $sitemap = \App::make('sitemap');
+        $sitemap->setCache('zagreus.posts_sitemap', 5);
+
+        if (!$sitemap->isCached()) {
+            foreach (Post::limit(100)->latest()->wherePublished(1)->get() as $post) {
+                $sitemap->add(route("module.blog.posts.openBySlug", $post->slug), $post->created_at, 0.6, 'monthly', [
+                    ['url'=> is_null($post->cover) ? themeAsset('images/404-cover-image.jpg') : asset($post->cover), "title"=> $post->title]
+                ]);
+            }
+        }
+
+        return $sitemap->render('xml');
+    }
+
     protected function rules() {
         return [
             config('app.locale').".title" => ['required', 'string'],
