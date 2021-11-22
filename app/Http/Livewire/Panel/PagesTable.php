@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Panel;
 
 use Modules\Page\Entities\Page;
 use Mediconesystems\LivewireDatatables\Column;
