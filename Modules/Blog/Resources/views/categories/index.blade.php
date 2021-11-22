@@ -11,7 +11,7 @@
         </div>
 
         
-        <livewire:categories-table />
+        <livewire:panel.categories-table />
         
 
     </div>

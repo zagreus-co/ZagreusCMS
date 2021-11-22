@@ -9,7 +9,7 @@
             <a href='{{ route("module.page.create") }}' class="btn p-2 px-3 btn-success">{{__('Create')}}</a>
         </div>
 
-        <livewire:pages-table />
+        <livewire:panel.pages-table />
 
     </div>
 </div>

@@ -6,7 +6,7 @@
             <strong class="pt-2">{{ __('Manage comments') }}</strong>
         </div>
 
-        <livewire:comments-table />
+        <livewire:panel.comments-table />
     </div>
 </div>
 @endsection

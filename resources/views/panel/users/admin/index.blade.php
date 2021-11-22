@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <livewire:users-table />
+        <livewire:panel.users-table />
 
     </div>
 </div>
