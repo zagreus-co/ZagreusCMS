@@ -72,6 +72,7 @@ class ZagreusServiceProvider extends ServiceProvider
         );
 
         add_panel_menu_item(
+            menu_item_gate: 'manage_users',
             menu_item_route: 'panel.users.index', 
             menu_item_icon:'fad fa-users', 
             menu_item_text: __('Users'),
@@ -79,6 +80,7 @@ class ZagreusServiceProvider extends ServiceProvider
         );
 
         add_panel_menu_item(
+            menu_item_gate: 'manage_themes',
             menu_item_route: 'panel.theme.index', 
             menu_item_icon:'fas fa-palette', 
             menu_item_text: __('Themes'),
@@ -86,6 +88,7 @@ class ZagreusServiceProvider extends ServiceProvider
         );
 
         add_panel_menu_item(
+            menu_item_gate: 'manage_options',
             menu_item_route: 'panel.options.index', 
             menu_item_icon:'fad fa-toolbox', 
             menu_item_text: __('Options'),
@@ -93,6 +96,7 @@ class ZagreusServiceProvider extends ServiceProvider
         );
 
         add_panel_menu_item(
+            menu_item_gate: 'manage_media',
             menu_item_route: 'panel.media.index', 
             menu_item_icon:'fad fa-folder-open', 
             menu_item_text: __('Medias'),
