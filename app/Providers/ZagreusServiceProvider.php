@@ -23,6 +23,10 @@ class ZagreusServiceProvider extends ServiceProvider
         $this->app->singleton('Option', function() {
             return new \App\Models\Option();
         });
+
+        $this->app->singleton('Hooks', function() {
+            return new \App\Foundation\Hooks\Hooks();
+        });
     }
 
     /**
@@ -38,6 +42,14 @@ class ZagreusServiceProvider extends ServiceProvider
 
         Blade::directive('panelView',function($view){
             return '<?php echo panelView ('.$view.') ?>';
+        });
+
+        Blade::directive('action',function($expression){
+            return "<?php echo app('Hooks')->action({$expression}) ?>";
+        });
+
+        Blade::directive('filter',function($expression){
+            return "<?php echo app('Hooks')->filter({$expression}) ?>";
         });
 
         if (Schema::hasTable('permissions')) {

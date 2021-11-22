@@ -233,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Theme'=> \App\Facades\Theme::class,
         'Option'=> \App\Facades\Option::class,
+        'Hooks'=> \App\Foundation\Hooks\HooksFacade::class,
 
     ],
 
