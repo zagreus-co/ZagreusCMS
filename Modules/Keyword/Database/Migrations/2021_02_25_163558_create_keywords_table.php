@@ -14,11 +14,9 @@ class CreateKeywordsTable extends Migration
     public function up()
     {
         Schema::create('keywords', function (Blueprint $table) {
-            $table->id();
             $table->string('keyword');
             $table->unsignedBigInteger('keywordable_id');
             $table->string('keywordable_type');
-            $table->timestamps();
         });
     }
 

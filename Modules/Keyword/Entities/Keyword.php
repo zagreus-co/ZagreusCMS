@@ -10,7 +10,8 @@ class Keyword extends Model
     use HasFactory;
 
     protected $fillable = ['keyword'];
-    
+    public $timestamps = false;
+
     protected static function newFactory()
     {
         return \Modules\Keyword\Database\factories\KeywordFactory::new();
