@@ -104,10 +104,11 @@ class PageController extends Controller
             $request->validate([
                 'keywords'=> ['array']
             ]);
+            $post->keywords()->delete();
             foreach ($request->keywords as $keyword) {
                 $page->keywords()->create(['keyword'=> $keyword]);
             }
-        }
+        } else { $post->keywords()->delete(); }
 
         alert()->success(__("Page edited successfully!"));
         return back();
