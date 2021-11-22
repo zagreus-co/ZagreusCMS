@@ -55,6 +55,6 @@ Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function() {
     Route::post('/handle', 'Panel\OptionController@handle')->name('options.handle');
 
     // Panel-Media routes
-    Route::get('/media', 'MediaController@index')->name('media');
+    Route::get('/media', 'MediaController@index')->name('media.index');
     Route::post('/media/admin_upload', 'MediaController@adminUpload')->name('media.admin_upload');
 });

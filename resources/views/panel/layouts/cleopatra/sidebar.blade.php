@@ -11,17 +11,8 @@
         <!-- end sidebar toggle -->
 
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">Client sidebar</p>
-
-        <a href="{{ route('panel.index') }}" class="mb-3 capitalize font-medium text-md {{ isActive('panel.index', 'text-teal-600', 'hover:text-teal-600') }} transition ease-in-out duration-200">
-            <i class="fad fa-tachometer-alt text-xs mr-2"></i>                
-            {{ __('Dashboard') }}
-        </a>
-
-        @foreach ( Module::getOrdered() as $name => $module )
-            @if (view()->exists( $module->getLowerName()."::sidebar" ))
-                @include( $module->getLowerName()."::sidebar" )
-            @endif
-        @endforeach
+        
+        @action('panel.menu_items')
     </div>
     <!-- end sidebar content -->
 </div>

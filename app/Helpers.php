@@ -19,6 +19,20 @@ if(! function_exists('isActive') ) {
 }
 
 // Panel-Theme helpers
+
+if (!function_exists('add_panel_menu_item')) {
+    function add_panel_menu_item(string $menu_item_route, string $menu_item_icon, string $menu_item_text, int $priority = 10, array $menu_item_extra = []) {
+        \Hooks::addAction('panel.menu_items', function() use($menu_item_route, $menu_item_icon, $menu_item_text, $menu_item_extra) {
+            echo panelView('menu-item', [
+                'menu_item_route'=> $menu_item_route,
+                'menu_item_icon'=> $menu_item_icon,
+                'menu_item_text'=> $menu_item_text,
+                'menu_item_extra'=> $menu_item_extra
+            ]);
+        }, $priority);
+    }
+}
+
 if (!function_exists('viewIfExist')) {
     function viewIfExist($view_name, $variables = [], $error_view = 'errors.theme404') {
         if ( view()->exists($view_name) ) {
