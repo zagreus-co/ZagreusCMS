@@ -22,7 +22,7 @@
 ### 🧩 Requirements
 These are the only requirements you need to get ZagreusCMS up and running smoothly.
 ```
-- php v7.4 or higher
+- php v8.0 or higher
 - node v10.16.0 or higher
 - npm 6.9.0 or higher
 - git 2.17.1 or higher
@@ -59,10 +59,10 @@ $ php artisan zagreus:load-permissions
 	* we highly recomend to change this user email and password!
 
 ### 📃 To do list
-We use [Trello](https://trello.com/b/zsIRoFej/zagreuscms) to track our to-do list and things we have to do!
+We use [ClickUp](https://sharing.clickup.com/b/h/6-139938747-2/ee87f250edeb98e) to track our to-do list and things we have to do!
 
-make sure your check our [to-do list in trello](https://trello.com/b/zsIRoFej/zagreuscms) to, and find a way to contribute!
+make sure your check our [to-do list in ClickUp](https://sharing.clickup.com/b/h/6-139938747-2/ee87f250edeb98e) to, and find a way to contribute!
 
 ------------
 
-##### Please note that ZagreusCMS is not built to be your primary Laravel CMS! it's a basic CMS that's built on the basic requirements so you can modify it in a way you want and build your Laravel projects!
+##### Please note that ZagreusCMS is not built to be your primary Laravel CMS! it's a basic CMS boilerplate so you can modify and develop it in the way you want and build your Laravel projects!
