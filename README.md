@@ -49,7 +49,7 @@ $ npm run dev
 $ php artisan key:generate
 
 # Load migrations and seed database
-$ php artisan migrate
+$ php artisan migrate --seed
 $ php artisan module:seed
 $ php artisan zagreus:load-permissions
 ```
