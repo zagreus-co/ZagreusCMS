@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
-use Modules\User\Entities\Role;
-use Modules\User\Entities\Permission;
+use App\Models\User\Role;
+use App\Models\User\Permission;
 
 class PermissionSeeding extends Command
 {
