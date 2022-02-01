@@ -32,7 +32,11 @@ class BlogServiceProvider extends ServiceProvider
         \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.blog.posts.sitemap'), 
             (new \Modules\Blog\Entities\Post())->latest()->first()->created_at ?? null ) );
         \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.blog.categories.sitemap')) );
-    
+        
+        \Hooks::addAction('panel.top_report_cards', function() { 
+            echo view('blog::widgets.report-card'); 
+        }, 1);
+
         add_panel_menu_item(
             priority: 2,
             menu_item_gate: 'manage_blog',

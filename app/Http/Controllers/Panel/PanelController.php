@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Modules\Analytics\Entities\Analytic;
 
 class PanelController extends Controller
 {
@@ -18,12 +17,6 @@ class PanelController extends Controller
 
         // if (auth()->user()->role_id == 0) return view('panel::client-dashboard');
 
-        $analytics = [
-            'yesterdayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->get()->groupBy(function($row) { return $row->ip; })->count(),
-            'todayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->get()->groupBy(function($row) { return $row->ip; })->count(),
-            
-        ];
-
-        return view('panel.index', compact('analytics'));
+        return view('panel.index');
     }
 }

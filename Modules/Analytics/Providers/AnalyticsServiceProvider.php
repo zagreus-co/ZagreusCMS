@@ -4,6 +4,7 @@ namespace Modules\Analytics\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Analytics\Entities\Analytic;
 
 class AnalyticsServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,15 @@ class AnalyticsServiceProvider extends ServiceProvider
 
         app()->make('router')->pushMiddlewareToGroup('web', \Modules\Analytics\Http\Middleware\Analytic::class);
         
+        \Hooks::addAction('panel.top_report_cards', function() {
+            $analytics = [
+                'yesterdayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->get()->groupBy(function($row) { return $row->ip; })->count(),
+                'todayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->get()->groupBy(function($row) { return $row->ip; })->count(),
+                
+            ];
+            echo view('analytics::widgets.report-card', compact('analytics')); 
+        }, 2);
+
         add_panel_menu_item(
             menu_item_gate: 'manage_analytics',
             menu_item_route: 'module.analytics.*', 
