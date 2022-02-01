@@ -27,18 +27,11 @@
     </div>
     <!-- end card -->
 
-    @action('panel.top_report_cards')
+    @action('panel.widgets.report_cards')
 </div>
 
-<div class="grid grid-cols-1 gap-6 mt-6 xl:grid-cols-1">
-    <div class="card">
-        <div class="card-header flex justify-between">
-            <strong class="pt-2">{{ __('Weekly chart') }}</strong>
-        </div>
-
-        <div class="card-body"> <canvas id="analyticChart" width="100%" height="50"></canvas> </div>
-
-    </div>
+<div class="mt-6">
+    @action('panel.widgets.main')
 </div>
 @endsection
 @push('scripts')

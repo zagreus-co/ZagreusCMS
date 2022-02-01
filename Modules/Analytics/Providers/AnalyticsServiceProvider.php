@@ -32,7 +32,7 @@ class AnalyticsServiceProvider extends ServiceProvider
 
         app()->make('router')->pushMiddlewareToGroup('web', \Modules\Analytics\Http\Middleware\Analytic::class);
         
-        \Hooks::addAction('panel.top_report_cards', function() {
+        \Hooks::addAction('panel.widgets.report_cards', function() {
             $analytics = [
                 'yesterdayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::yesterday())->get()->groupBy(function($row) { return $row->ip; })->count(),
                 'todayViewers'=> Analytic::whereDate('created_at', \Carbon\Carbon::today())->get()->groupBy(function($row) { return $row->ip; })->count(),
@@ -40,6 +40,10 @@ class AnalyticsServiceProvider extends ServiceProvider
             ];
             echo view('analytics::widgets.report-card', compact('analytics')); 
         }, 2);
+
+        \Hooks::addAction('panel.widgets.report_cards', function() {
+            echo view('analytics::widgets.dashboard-chart'); 
+        });
 
         add_panel_menu_item(
             menu_item_gate: 'manage_analytics',
