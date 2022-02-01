@@ -1,6 +1,3 @@
-
-
-
 <footer class="flex flex-col items-center justify-between px-6 py-2 bg-white dark:bg-gray-800 sm:flex-row mt-3">
     <a class="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">{{ get_option('site_short_name') }}</a>
     
@@ -26,7 +23,7 @@
             </svg>
         </a>
 
-        <a href="#" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Github">
+        <a href="https://github.com/zagreus-co/ZagreusCMS" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Github">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
