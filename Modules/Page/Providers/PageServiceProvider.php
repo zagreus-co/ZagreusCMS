@@ -32,7 +32,7 @@ class PageServiceProvider extends ServiceProvider
         \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.page.sitemap'), 
             (new \Modules\Page\Entities\Page())->latest()->first()->created_at ?? null ) );
 
-        \Hooks::addAction('panel.top_report_cards', function() { 
+        \Hooks::addAction('panel.widgets.report_cards', function() { 
             echo view('page::widgets.report-card'); 
         }, 2);
 

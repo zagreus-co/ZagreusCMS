@@ -41,7 +41,7 @@ class AnalyticsServiceProvider extends ServiceProvider
             echo view('analytics::widgets.report-card', compact('analytics')); 
         }, 2);
 
-        \Hooks::addAction('panel.widgets.report_cards', function() {
+        \Hooks::addAction('panel.widgets.main', function() {
             echo view('analytics::widgets.dashboard-chart'); 
         });
 
