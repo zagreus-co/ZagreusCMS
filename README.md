@@ -3,7 +3,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/github/license/zagreus-co/ZagreusCMS">
-<img src="https://img.shields.io/badge/php-7.4-green.svg">
+<img src="https://img.shields.io/badge/php-8.0-green.svg">
 <img src="https://img.shields.io/github/stars/zagreus-co/ZagreusCMS.svg">
 <img src="https://img.shields.io/github/release/zagreus-co/ZagreusCMS.svg">
 <img src="https://img.shields.io/github/issues/zagreus-co/ZagreusCMS.svg">
