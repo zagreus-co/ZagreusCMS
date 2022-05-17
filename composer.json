@@ -2,36 +2,31 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "keywords": [ "framework", "laravel" ],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "maatwebsite/excel": "^3.1.35",
-        "alexusmai/laravel-file-manager": "^2.5",
-        "artesaos/seotools": "^0.20",
+        "alexusmai/laravel-file-manager": "^3.0.1",
+        "artesaos/seotools": "^0.22",
         "astrotomic/laravel-translatable": "^11.9",
-        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.75",
+        "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "laravelium/sitemap": "^8.0",
-        "livewire/livewire": "^2.8",
-        "mediconesystems/livewire-datatables": "^0.6.8",
-        "nwidart/laravel-modules": "^8.2",
-        "uxweb/sweet-alert": "^2.0"
+        "livewire/livewire": "^2.10",
+        "mediconesystems/livewire-datatables": "^0.9.4",
+        "nwidart/laravel-modules": "^9.0",
+        "realrashid/sweet-alert": "^5.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
+        "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10"
     },
     "config": {

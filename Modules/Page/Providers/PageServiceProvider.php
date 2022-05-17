@@ -29,9 +29,6 @@ class PageServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
 
-        \Hooks::addFilter('sitemap.index', fn($sitemap) => $sitemap->addSitemap(route('module.page.sitemap'), 
-            (new \Modules\Page\Entities\Page())->latest()->first()->created_at ?? null ) );
-
         \Hooks::addAction('panel.widgets.report_cards', function() { 
             echo view('page::widgets.report-card'); 
         }, 2);
