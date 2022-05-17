@@ -24,6 +24,3 @@ Route::get('/p/{post}', 'PostController@openPostById')->name('module.blog.posts.
 Route::get('/post/{slug}', 'PostController@openPostBySlug')->name('module.blog.posts.openBySlug');
 
 Route::get('category/{slug}', 'CategoryController@view')->name('module.blog.categories.view');
-
-Route::get('/posts_sitemap.xml', 'PostController@sitemap')->name('module.blog.posts.sitemap');
-Route::get('/categories_sitemap.xml', 'CategoryController@sitemap')->name('module.blog.categories.sitemap');

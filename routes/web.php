@@ -16,7 +16,6 @@ Route::get('locale/{locale}',function($locale){
 })->name('locale');
 
 Route::get('/media/open/{filename}', 'MediaController@open')->where('filename', '.*')->name('media.open');
-Route::get('/sitemap_index.xml', 'SitemapController@index')->name('sitemap.index');
 
 // Guest only routes
 Route::middleware('guest')->group( function() {
