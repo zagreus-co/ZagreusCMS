@@ -1,9 +1,9 @@
 <h1 align="center"> ZagreusCMS </h1>
-<p align="center">Modular, Multilingual, and easy-to-use CMS that built under Laravel 8. </p>
+<p align="center">Modular, Multilingual, and easy-to-use CMS that built under Laravel 9. </p>
 
 <p align="center">
 <img src="https://img.shields.io/github/license/zagreus-co/ZagreusCMS">
-<img src="https://img.shields.io/badge/php-7.4-green.svg">
+<img src="https://img.shields.io/badge/php-8.0.1-green.svg">
 <img src="https://img.shields.io/github/stars/zagreus-co/ZagreusCMS.svg">
 <img src="https://img.shields.io/github/release/zagreus-co/ZagreusCMS.svg">
 <img src="https://img.shields.io/github/issues/zagreus-co/ZagreusCMS.svg">
@@ -13,16 +13,16 @@
 * Analytic
 * Multilingual blog
 * Commenting
-* Sitemap and SEO
 * Keyword
 * In-page notification
 * Key-value option management
+* Meta tag Generator for better SEO
 * Theming for both admin area and index
 
 ### 🧩 Requirements
 These are the only requirements you need to get ZagreusCMS up and running smoothly.
 ```
-- php v8.0 or higher
+- php v8.0.1 or higher
 - node v10.16.0 or higher
 - npm 6.9.0 or higher
 - git 2.17.1 or higher
@@ -36,8 +36,8 @@ These are the only requirements you need to get ZagreusCMS up and running smooth
 ```bash
 $ git clone https://github.com/zagreus-co/ZagreusCMS.git
 ```
-2. Create database on your machine
-3. Rename `.env.example` to `.env` and put your database information* from line 11 to 16
+2. Create a database on your machine
+3. Rename `.env.example` to `.env` and put your database information* from lines 11 to 16
 4.  run the following commands
 ```bash
 # Download and install dependencies
@@ -56,12 +56,12 @@ $ php artisan zagreus:load-permissions
 5. Enjoy :)
 	
     the basic sudo user credentials: `test@zagreus.company:123456`
-	* we highly recomend to change this user email and password!
+	* We highly recommend changing this user email and password!
 
 ### 📃 To do list
 We use [ClickUp](https://sharing.clickup.com/b/h/6-139938747-2/ee87f250edeb98e) to track our to-do list and things we have to do!
 
-make sure your check our [to-do list in ClickUp](https://sharing.clickup.com/b/h/6-139938747-2/ee87f250edeb98e) to, and find a way to contribute!
+Make sure you check our [to-do list in ClickUp](https://sharing.clickup.com/b/h/6-139938747-2/ee87f250edeb98e) and find a way to contribute!
 
 ------------
 
