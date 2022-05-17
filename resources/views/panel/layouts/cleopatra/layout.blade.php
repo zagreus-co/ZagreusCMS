@@ -178,7 +178,7 @@
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script>let base_url = "{{ \URL::to('/') }}";</script>
 <script src="{{panelAsset('js/main.js')}}"></script>
-@include('sweet::alert')
+@include('sweetalert::alert')
 @stack('scripts')
 <!-- end script -->
 
