@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  php:
+    build: ./docker/php
+    image: zagreus/cms
+    container_name: zagreus-cms
+    restart: always
+    working_dir: /app
+    command: [ "bash", "/app/docker/initialize.sh" ]
+    ports:
+      - ${PHP_EXPOSED_PORT:-80}:80
+    volumes:
+      - ./:/app/
+    depends_on:
+      - database
+      - redis
+    networks:
+      - internal
+
+  database:
+    image: mariadb
+    container_name: database
+    restart: always
+    environment:
+      - MARIADB_RANDOM_ROOT_PASSWORD=yes
+      - MARIADB_DATABASE=${DB_DATABASE:-app}
+      - MARIADB_USER=${DB_USERNAME:-zagures}
+      - MARIADB_PASSWORD=${DB_PASSWORD:-password}
+    networks:
+      - internal
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - internal
+    environment:
+      - PMA_HOST=database
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-password}
+      - PMA_ARBITRARY=1
+      - UPLOAD_LIMIT=2G
+  redis:
+    image: redis:7.0.0-bullseye
+    container_name: redis
+    restart: always
+    networks:
+      - internal
+networks:
+  internal:
+      driver: bridge
