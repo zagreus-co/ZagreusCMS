@@ -42,7 +42,7 @@ return [
         ],
         'public_uploads' => [
             'driver' => 'local',
-            'root'   => public_path() . '/uploads',
+            'root'   => base_path('public_html') . '/uploads',
         ],
         'public' => [
             'driver' => 'local',
@@ -75,7 +75,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        base_path('public_html/storage') => storage_path('app/public'),
     ],
 
 ];
