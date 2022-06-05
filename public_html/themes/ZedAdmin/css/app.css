@@ -727,6 +727,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
+}.text-\[10px\]{
+  font-size: 10px;
 }.font-medium{
   font-weight: 500;
 }.font-semibold{

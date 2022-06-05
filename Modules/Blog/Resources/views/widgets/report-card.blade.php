@@ -2,7 +2,7 @@
     <div class="card-header">
         <h5>{{__('Total posts')}}</h5>
         <span class="icon-area">
-            👥
+            🔊
         </span>
     </div>
     <div class="card-body">
