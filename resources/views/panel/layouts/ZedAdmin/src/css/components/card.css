@@ -1,0 +1,47 @@
+.card {
+    @apply block bg-white py-3 px-4 shadow-sm border border-gray-50 transition duration-200;
+
+    &:not([class*="rounded-"]) {
+        @apply rounded-md;
+    }
+
+    .card-header {
+        @apply flex items-center;
+        
+        h5 {
+            @apply text-lg text-gray-600;
+        }
+    }
+
+    .card-block { @apply block; }
+
+    .card-body {
+        @apply mt-1;
+    }
+    .card-footer {
+        @apply mt-1;
+    }
+
+    .icon-area {
+        @apply border p-1 border-gray-200 rounded-full ml-auto;
+    }
+}
+.flex-card {
+    @apply flex;
+}
+.card-bg-gray {
+    background-color: #fafcfe;
+}
+.card-bg-theme {
+    @apply bg-theme-gray;
+}
+
+/* RTL Support: */
+body[dir=rtl] {
+    .card {
+        .icon-area {
+            margin-left: unset;
+            @apply mr-auto;
+        }
+    }
+}

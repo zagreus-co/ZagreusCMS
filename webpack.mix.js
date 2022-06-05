@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix').setPublicPath('public_html');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,10 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/turbolinks.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
+mix.js('resources/js/app.js', 'public_html/js')
+    .js('resources/js/turbolinks.js', 'public_html/js')
+    .postCss('resources/css/app.css', 'public_html/css', [
         require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+    ])
+    .postCss('resources/views/panel/layouts/ZedAdmin/src/css/app.css', 'public_html/themes/ZedAdmin/css', [
+        require('postcss-import'),
+        require('tailwindcss/nesting'),
         require('tailwindcss'),
         require('autoprefixer'),
     ]);

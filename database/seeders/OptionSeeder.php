@@ -31,7 +31,7 @@ class OptionSeeder extends Seeder
                 'tag'=> 'panel_theme',
                 'type'=> 'hidden',
                 'is_translatable'=> false,
-                'plain_data'=> 'cleopatra',
+                'plain_data'=> 'ZedAdmin',
             ],
             [
                 'tag'=> 'site_short_name',

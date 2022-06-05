@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/turbolinks.js": "/js/turbolinks.js",
+    "/themes/ZedAdmin/css/app.css": "/themes/ZedAdmin/css/app.css",
     "/css/app.css": "/css/app.css"
 }
