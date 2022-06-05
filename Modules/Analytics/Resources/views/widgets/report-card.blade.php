@@ -1,26 +1,18 @@
-<div class="report-card">
-    <div class="card">
-        <div class="card-body flex flex-col">
-            
-            <!-- top -->
-            <div class="flex flex-row justify-between items-center">
-                <div class="h6 text-green-500 fad fa-chart-line"></div>
-                @php $difference = $analytics['todayViewers'] - $analytics['yesterdayViewers']; @endphp
-                <span class="rounded-full text-white badge bg-{{ $difference > 0 ? 'teal' : 'red' }}-400 text-xs">
-                    {{ $difference }}
-                    <i class="fal fa-chevron-{{ $difference > 0 ? 'up' : 'down' }} ml-1"></i>
-                </span>
-            </div>
-            <!-- end top -->
-
-            <!-- bottom -->
-            <div class="mt-8">
-                <h1 class="h5">{{ $analytics['todayViewers'] }}</h1>
-                <p>{{__('Today viewers')}}</p>
-            </div>
-            <!-- end bottom -->
-
-        </div>
+@php $difference = $analytics['todayViewers'] - $analytics['yesterdayViewers']; @endphp
+<div class="card hover:shadow">
+    <div class="card-header">
+        <h5>{{__('Today viewers')}}</h5>
+        <span class="icon-area">
+            👥
+        </span>
     </div>
-    <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+    <div class="card-body">
+        <h6 class="font-bold inline-block">
+            {{ number_format($analytics['todayViewers']) }}
+            <span class="badge badge-{{ $difference > 0 ? 'success' : 'danger' }}-400 text-xs">
+                {{ $difference }}
+                <i class="fal fa-chevron-{{ $difference > 0 ? 'up' : 'down' }} ml-1"></i>
+            </span>
+        </h6>
+    </div>
 </div>

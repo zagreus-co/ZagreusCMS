@@ -1,29 +1,18 @@
 @extends(panelLayout())
 
 @section('content')
-<div class="grid grid-cols-4 gap-6 xl:grid-cols-1">
+<div class="grid gap-4 grid-cols-1 md:grid-cols-4">
     <!-- card -->
-    <div class="report-card">
-        <div class="card">
-            <div class="card-body flex flex-col">
-                
-                <!-- top -->
-                <div class="flex flex-row justify-between items-center">
-                    <div class="h6 text-indigo-700 fad fa-users"></div>
-                    
-                </div>
-                <!-- end top -->
-
-                <!-- bottom -->
-                <div class="mt-8">
-                    <h1 class="h5">{{ \App\Models\User::whereDate('created_at', \Carbon\Carbon::today())->count() }}</h1>
-                    <p>{{__('Today registration')}}</p>
-                </div>                
-                <!-- end bottom -->
-    
-            </div>
+    <div class="card hover:shadow">
+        <div class="card-header">
+            <h5>{{__('Today registration')}}</h5>
+            <span class="icon-area">
+                👥
+            </span>
         </div>
-        <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+        <div class="card-body">
+            <h6 class="font-bold inline-block">{{ number_format(\App\Models\User::whereDate('created_at', \Carbon\Carbon::today())->count()) }}</h6>
+        </div>
     </div>
     <!-- end card -->
 
