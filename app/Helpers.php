@@ -66,7 +66,7 @@ if (!function_exists('panelView')) {
 }
 if (!function_exists('panelAsset')) {
     function panelAsset($path, $secure = false) {
-        return app('url')->asset('themes/'.strtolower(Theme::panelTheme()).'/'.$path, $secure);
+        return app('url')->asset('themes/'.Theme::panelTheme().'/'.$path, $secure);
     }
 }
 
