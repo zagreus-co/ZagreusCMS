@@ -77,7 +77,7 @@
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/select2.min.js') }}"></script>
         <script src="{{ panelAsset('js/dashboard.js').'?v='.get_option('cache_id') }}"></script>
-        @include('sweet::alert')
+        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
         @stack('scripts')
 
     </body>
