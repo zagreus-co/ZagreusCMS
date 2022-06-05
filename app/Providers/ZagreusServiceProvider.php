@@ -66,7 +66,7 @@ class ZagreusServiceProvider extends ServiceProvider
     public function register_panel_menus() {
         add_panel_menu_item(
             menu_item_route: 'panel.index', 
-            menu_item_icon:'fad fa-tachometer-alt', 
+            menu_item_icon:'planet', 
             menu_item_text: __('Dashboard'),
             priority: 1
         );
@@ -74,7 +74,7 @@ class ZagreusServiceProvider extends ServiceProvider
         add_panel_menu_item(
             menu_item_gate: 'manage_users',
             menu_item_route: 'panel.users.index', 
-            menu_item_icon:'fad fa-users', 
+            menu_item_icon:'people', 
             menu_item_text: __('Users'),
             priority: 2
         );
@@ -82,7 +82,7 @@ class ZagreusServiceProvider extends ServiceProvider
         add_panel_menu_item(
             menu_item_gate: 'manage_themes',
             menu_item_route: 'panel.theme.index', 
-            menu_item_icon:'fas fa-palette', 
+            menu_item_icon:'color-palette', 
             menu_item_text: __('Themes'),
             priority: 4
         );
@@ -90,7 +90,7 @@ class ZagreusServiceProvider extends ServiceProvider
         add_panel_menu_item(
             menu_item_gate: 'manage_options',
             menu_item_route: 'panel.options.index', 
-            menu_item_icon:'fad fa-toolbox', 
+            menu_item_icon:'settings-outline', 
             menu_item_text: __('Options'),
             priority: 7
         );
@@ -98,7 +98,7 @@ class ZagreusServiceProvider extends ServiceProvider
         add_panel_menu_item(
             menu_item_gate: 'manage_media',
             menu_item_route: 'panel.media.index', 
-            menu_item_icon:'fad fa-folder-open', 
+            menu_item_icon:'folder-open', 
             menu_item_text: __('Medias'),
             priority: 10
         );

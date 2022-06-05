@@ -32,7 +32,7 @@ class CommentServiceProvider extends ServiceProvider
         add_panel_menu_item(
             menu_item_gate: 'manage_comments',
             menu_item_route: 'module.comment.index', 
-            menu_item_icon:'fad fa-comment', 
+            menu_item_icon:'chatbox-ellipses-outline', 
             menu_item_text: __('Manage comments'),
             priority: 3
         );

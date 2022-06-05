@@ -36,7 +36,7 @@ class PageServiceProvider extends ServiceProvider
         add_panel_menu_item(
             menu_item_gate: 'manage_pages',
             menu_item_route: 'module.page.index', 
-            menu_item_icon:'fas fa-pager', 
+            menu_item_icon:'cube-outline', 
             menu_item_text: __('Manage pages'),
             priority: 4
         );

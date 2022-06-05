@@ -37,23 +37,23 @@ class BlogServiceProvider extends ServiceProvider
             priority: 2,
             menu_item_gate: 'manage_blog',
             menu_item_route: 'module.blog.*', 
-            menu_item_icon:'fad fa-rss', 
+            menu_item_icon:'logo-rss', 
             menu_item_text: __('Manage blog'),
             menu_item_extra: [
                 'dropdowns'=> [
                     [
                         "menu_item_route"=> 'module.blog.posts.create', 
-                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_icon"=> __('return-down-forward'), 
                         "menu_item_text"=>  __('Create post')
                     ],
                     [
                         "menu_item_route"=> 'module.blog.posts.index', 
-                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_icon"=> __('return-down-forward'), 
                         "menu_item_text"=>  __('Manage posts')
                     ],
                     [
                         "menu_item_route"=> 'module.blog.categories.index', 
-                        "menu_item_icon"=> 'fad fa-angle-right', 
+                        "menu_item_icon"=> __('return-down-forward'), 
                         "menu_item_text"=>  __('Manage categories')
                     ]
                 ],
