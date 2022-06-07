@@ -5,7 +5,7 @@
     @panelView('errors-alert')
 
     <div class="card">
-        <div class="card-header">{{__('Update password')}}</div>
+        <div class="card-header font-bold border-b mb-3 pb-3">{{__('Update password')}}</div>
         <div class="card-body">
             <form action="" method="post">
                 @csrf
@@ -22,7 +22,7 @@
                     <input type="password" name="password_confirmation" class="form-control">
                 </div>
 
-                <button class="btn-success mt-3">{{__('Update password')}}</button>
+                <button class="btn btn-success mt-3">{{__('Update password')}}</button>
             </form>
         </div>
     </div>

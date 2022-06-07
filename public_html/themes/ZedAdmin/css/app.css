@@ -964,6 +964,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 2rem;
 }.pr-1{
   padding-right: 0.25rem;
+}.pb-3{
+  padding-bottom: 0.75rem;
 }.text-left{
   text-align: left;
 }.text-center{
