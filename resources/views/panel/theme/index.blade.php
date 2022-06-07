@@ -1,20 +1,20 @@
 @extends(panelLayout())
 
 @section('content')
-<div class="grid grid-cols-{{is_array($themes) && count($themes) > 1 ? 2 : 1}} md:grid-cols-1 gap-4">
+<div class="grid grid-cols-1 {{is_array($themes) && count($themes) > 1 ? 'md:grid-cols-2' : ''}} gap-4">
     @foreach($themes as $theme)
     <div class="card mb-4">
-        <div class="card-header flex justify-between">
-            <label class='mt-2'>
+        <div class="card-header flex items-center justify-between">
+            <strong class=''>
                 {{ $theme['data']['name'] ?? '-' }}
                 <small>(V-{{ $theme['data']['version'] ?? '-' }})</small>
-            </label>
+            </strong>
 
-            <button class="btn-primary p-1 px-4" onclick='selectTheme("front", "{{ $theme["dir"] }}")'>{{ __('Select') }}</button>
+            <button class="btn btn-sm btn-primary p-1 px-4" onclick='selectTheme("front", "{{ $theme["dir"] }}")'>{{ __('Select') }}</button>
         </div>
         <div class="card-body">
             <div class="flex justify-center">
-            <img src="{{ $theme['screenshot'] ?? asset('img/upload-cover.png') }}" class='shadow mb-5' alt="Theme screenshot">
+                <img src="{{ $theme['screenshot'] ?? asset('img/upload-cover.png') }}" class='shadow mb-5' alt="Theme screenshot">
             </div>
             <strong>{{__('Description')}}: </strong> {{ $theme['data']['description'] ?? '-' }}
             <br>
@@ -27,7 +27,7 @@
 </div>
 @endsection
 
-@section('script')
+@push('scripts')
 <script>
     let selectTheme = (type, dir) => {
         $.ajax({
@@ -45,4 +45,4 @@
         })
     }
 </script>
-@endsection
+@endpush
