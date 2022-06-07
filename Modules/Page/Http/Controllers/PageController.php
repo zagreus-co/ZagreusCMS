@@ -99,8 +99,6 @@ class PageController extends Controller
     {
         if (! checkGate(['manage_pages']) ) abort(403);
 
-        $page->keywords()->delete();
-        $page->comments()->delete();
         $page->delete();
         alert()->success(__("Page deleted successfully!"));
         return back();
