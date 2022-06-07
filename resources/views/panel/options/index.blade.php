@@ -11,12 +11,11 @@
                     <input type="hidden" name="name" value='{{ $option->name }}'>
                     <strong>{{ $option->name }}</strong> <small>({{ $option->tag }})</small>
                     @if ($option->type == 'text' || $option->type == 'number')
-                        <input type="{{ $option->type }}" name="data" id="option_{{$option->id}}_data" value='{{ $option->data }}' class='w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring mt-2 mb-2'>
+                        <input type="{{ $option->type }}" name="data" id="option_{{$option->id}}_data" value='{{ $option->data }}' class='form-control'>
                     @elseif ($option->type == 'textarea')
-                        <textarea name="data" id="option_{{$option->id}}_data" rows="6" class="w-full text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring p-3 mt-2 mb-2">{{ $option->data }}</textarea>
+                        <textarea name="data" id="option_{{$option->id}}_data" rows="6" class="form-control">{{ $option->data }}</textarea>
                     @elseif ($option->type == 'select' && isset($option->default->values))
-
-                        <select name="data" id="option_{{$option->id}}_data" class="w-full  px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring mb-2 mt-2">
+                        <select name="data" id="option_{{$option->id}}_data" class="form-control">
                             @foreach($option->default->values as $key => $value)
                                 <option value="{{ gettype($option->default->values) == 'object' ? $key : $value }}" {{ gettype($option->default->values) == 'object' ? ($key == $option->data ? 'selected' : '') : ($value == $option->data ? 'selected' : '') }}>
                                     {{ $value }}
@@ -24,10 +23,10 @@
                             @endforeach
                         </select>
                     @else
-                        <input type="{{$option->type}}" name="data" id="option_{{$option->id}}_data" value='{{ $option->data }}' class='form-control bg-warning'>
+                        <input type="{{$option->type}}" name="data" id="option_{{$option->id}}_data" value='{{ $option->data }}' class='form-control'>
                     @endif
         
-                    <button onclick='updateOption(this, {{ $option->id }})' class="btn-shadow btn-bs-secondary mb-4">{{ __('Update') }}</button>
+                    <button onclick='updateOption(this, {{ $option->id }})' class="btn btn-sm btn-secondary my-3">{{ __('Update') }}</button>
                     <hr>
                 </form>
             @endforeach
