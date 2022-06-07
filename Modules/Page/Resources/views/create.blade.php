@@ -1,15 +1,20 @@
 @extends(panelLayout())
 
 @section('content')
-<form action="{{ route('module.page.store') }}" method="post" class='grid grid-cols-12 md:grid-cols-1 gap-4'>
+<div class="flex items-center justify-between mb-1">
+    <h5 class="font-bold">{{ __('Create new page') }}</h5>
+    <a href='{{ route("module.page.index") }}' class='btn btn-sm btn-secondary'>{{__('Back')}}</a>
+</div>
+
+<form action="{{ route('module.page.store') }}" method="post" class='grid grid-cols-1 md:grid-cols-12 gap-4'>
 @csrf
 <div class="col-span-12"> @panelView('errors-alert') </div>
 
-<div class="col-span-8 md:col-span-12">
+<div class="col-span-12 md:col-span-8">
     <div class="card" x-data="{tab: '{{config('app.locale')}}'}">
-        <div class="p-2 bg-gray-200 flex flex-nowrap overflow-x-auto">
+        <div class="p-2 bg-gray-200 rounded flex flex-nowrap items-center overflow-x-auto space-x-1 {{ app()->getLocale() == 'fa' ? 'space-x-reverse' : '' }}">
             @foreach(locales() as $locale => $value)
-                <button :class="{ 'bg-blue-400': tab == '{{$locale}}' }" @click.prevent="tab = '{{$locale}}'" class="btn btn-info inline mr-2" type='button'>{{$value}}</button>
+                <button :class="tab == '{{$locale}}' ? 'btn-dark' : 'btn-secondary'" @click.prevent="tab = '{{$locale}}'" class="btn btn-sm" type='button'>{{$value}}</button>
             @endforeach
         </div>
         @php $defaultLocale = app()->getLocale(); @endphp
@@ -36,15 +41,14 @@
             
             <div class="form-group mt-3">
                 <label for="content" class="mb-3">{{__('Content')}}</label>
-                <textarea type="text" name='{{$locale}}[content]'>{{ old($locale.".content") }}</textarea>
+                <textarea type="text" class="tinymce" name='{{$locale}}[content]'>{{ old($locale.".content") }}</textarea>
             </div>
         </div>
         @endforeach
         @php \App::setLocale($defaultLocale); @endphp
     </div>
 </div>
-<div class="col-span-4 md:col-span-12">
-
+<div class="col-span-12 md:col-span-4">
     <div class="card">
         <div class="card-body">
 
@@ -85,14 +89,22 @@
         </div>
 
         <div class="card-footer">
-            <button type='submit' class="btn-success">{{__('Create')}}</button>
+            <button type='submit' class="btn btn-success">{{__('Create')}}</button>
         </div>
 </div>
 </div>
 </form>
 @endsection
 
-@section('script')
+@push('scripts')
 <script src="https://cdn.tiny.cloud/1/jsivzzwvsphsomapw3muccbxcuiq0iuc85r87ujaj5zd4lv0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>tinymce.init({ selector:'textarea', plugins: 'code',height : "480"});</script>
-@endsection
+<script>
+    tinymce.init({ 
+        selector:'textarea.tinymce', 
+        plugins: 'preview importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+        height : "480",
+        relative_urls: false
+    });
+</script>
+@endpush

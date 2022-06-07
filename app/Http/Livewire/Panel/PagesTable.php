@@ -19,10 +19,14 @@ class PagesTable extends LivewireDatatable
                 return Page::find($id)->title;
             })->label(__("Title")),
 
+            Column::callback(['id', 'template'], function ($id) {
+                return Page::find($id)->slug;
+            })->label(__("Slug")),
+
             DateColumn::name('updated_at')->label(__('last update')),
 
             Column::callback(['id'], function ($id) {
-                $btn = '<a href="'.route('module.page.edit', $id).'" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></a>';
+                $btn = '<a href="'.route('module.page.edit', $id).'" class="btn btns-m btn-primary">'.__('Edit').'</a>';
                 return $btn;
             })->label('*'),
 
