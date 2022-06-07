@@ -36,18 +36,12 @@ class UserController extends Controller
 
         $request->validate($this->rules());
 
-        if ($request->filled('number')) {
-            $request->validate([
-                'number'=> ['required', 'numeric', 'unique:users']
-            ]);
-        }
-
         User::create([
             'full_name' => $request->full_name,
             'number'=> $request->number,
             'email' => $request->email,
             'role_id'=> $request->role_id,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password ?? \Str::random(12)),
         ]);
 
         alert()->success(__("User created successfully!"));
@@ -72,23 +66,7 @@ class UserController extends Controller
     {
         if (! checkGate('manage_users') ) abort(403);
 
-        $request->validate([
-            'full_name'=> ['required', 'string', 'min:3'],
-            'email'=> ['required', 'email', Rule::unique('users')->ignore($user, 'email')],
-            'role_id'=> ['required', 'numeric'],
-        ]);
-
-        if ($request->filled('number')) {
-            $request->validate([
-                'number'=> ['required', 'numeric', Rule::unique('users')->ignore($user, 'number')]
-            ]);
-        }
-
-        if ($request->filled('password')) {
-            $request->validate([
-                'password' => ['string', 'min:6', 'confirmed'],
-            ]);
-        }
+        $request->validate($this->rules($user));
 
         $user->update([
             'full_name' => $request->full_name,
@@ -99,7 +77,7 @@ class UserController extends Controller
         ]);
 
         alert()->success(__("User edited successfully!"));
-        return redirect( route('panel.users.index') );
+        return back();
     }
 
 
@@ -120,12 +98,13 @@ class UserController extends Controller
         return redirect(route('index'));
     }
 
-    protected function rules() {
+    protected function rules($user = null) {
         return [
             'full_name'=> ['required', 'string', 'min:3'],
-            'email'=> ['required', 'email', 'unique:users'],
+            'email'=> ['required', 'email', Rule::unique('users')->ignore($user, 'email')],
+            'number'=> ['nullable', 'numeric', Rule::unique('users')->ignore($user, 'number')],
             'role_id'=> ['required', 'numeric'],
-            'password' => ['required', 'string', 'min:6'],
+            'password' => ['nullable', 'string', 'min:6'],
         ];
     }
 }

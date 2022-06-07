@@ -56,11 +56,11 @@
 
 <div class="grid grid-cols-1 gap-6 mt-6 xl:grid-cols-1">
     <div class="card">
-        <div class="card-header flex justify-between">
+        <div class="card-header flex justify-between mb-2">
             <strong class="pt-2">{{ __('Manage users') }}</strong>
             <div class='flex flex-nowrap'>
-                <a href='{{ route("panel.roles.index") }}' class="p-2 px-3 mr-2 btn-bs-secondary">{{__('Manage roles')}}</a>
-                <a href='{{ route("panel.users.create") }}' class="p-2 px-3 btn-success">{{__('Create user')}}</a>
+                <a href='{{ route("panel.roles.index") }}' class="p-2 px-3 mr-2 btn btn-sm btn-secondary">{{__('Manage roles')}}</a>
+                <a href='{{ route("panel.users.create") }}' class="p-2 px-3 btn btn-sm btn-success">{{__('Create user')}}</a>
             </div>
         </div>
 

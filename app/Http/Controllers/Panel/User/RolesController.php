@@ -14,7 +14,9 @@ class RolesController extends Controller
         if (!checkGate('manage_roles')) abort(403);
 
         if (class_exists('\SEO')) \SEO::setTitle(__('Manage roles'));
-        return view('panel.users.admin.roles.index');
+
+        $roles = Role::with('permissions')->latest()->get();
+        return view('panel.users.admin.roles.index', compact('roles'));
     }
 
     /**

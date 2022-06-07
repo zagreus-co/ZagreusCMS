@@ -16,7 +16,7 @@ class UsersTable extends LivewireDatatable
     public function columns()
     {
         return [ 
-            NumberColumn::name('id')->label('#'),
+            NumberColumn::name('id')->label('#')->defaultSort('desc'),
 
             Column::name('full_name')->label(__('Full name')),
             
@@ -27,12 +27,13 @@ class UsersTable extends LivewireDatatable
             Column::name('email')->label(__('Email')),
             Column::name('number')->label(__('Number'))->hide(),
             
-            DateColumn::name('updated_at')->label(__('last update')),
+            DateColumn::name('created_at')->label(__('Creation time'))->hide(),
 
             Column::callback(['id'], function ($id) {
-                $btn = '<a href="'.route('panel.users.edit', $id).'" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></a>';
-                $btn .= '<a href="'.route('panel.users.loginUsingId', $id).'" class="btn-warning inline p-2 ml-2"><i class="nav-icon fa fa-sign-in-alt"></i></a>';
-                return $btn;
+                $btn = '<div class="flex items-center flex-wrap space-x-1">';
+                $btn .= '<a href="'.route('panel.users.edit', $id).'" class="btn btn-sm btn-primary">'.__('Edit').'</i></a>';
+                $btn .= '<a href="'.route('panel.users.loginUsingId', $id).'" class="btn btn-sm btn-warning">'.__('Login as user').'</a>';
+                return $btn.'</div>';
             })->label('*'),
 
             Column::delete()

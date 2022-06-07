@@ -1,12 +1,17 @@
 @extends(panelLayout())
 
 @section('content')
-<form action="{{ route('panel.users.update', $user->id) }}" method="post" class='grid grid-cols-12 md:grid-cols-1 gap-4'>
+<div class="flex items-center justify-between mb-1">
+    <h5 class="font-bold">{{ __('Edit user')." #".$user->id }}</h5>
+    <a href='{{ route("panel.users.index") }}' class='btn btn-sm btn-secondary'>{{__('Back')}}</a>
+</div>
+
+<form action="{{ route('panel.users.update', $user->id) }}" method="post" class='grid grid-cols-1 md:grid-cols-12 gap-4'>
 @csrf
 @method('PATCH')
 <div class="col-span-12"> @panelView('errors-alert') </div>
 
-<div class="col-span-8 md:col-span-12">
+<div class="col-span-12 md:col-span-8">
     <div class="card" >
         <div class="card-body">
 
@@ -34,10 +39,10 @@
         
     </div>
 </div>
-<div class="col-span-4 md:col-span-12">
+<div class="col-span-12 md:col-span-4">
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-body">
             <div class="form-group">
                 <label for="permissions">{{__('Role')}}</label>
                 <select name="role_id" id='role_select' class="form-control">
@@ -48,8 +53,8 @@
                 </select>
             </div>
         </div>
-        <div class="card-footer">
-            <button type='submit' class="btn-primary w-full">{{__('Update')}}</button>
+        <div class="block mt-3">
+            <button type='submit' class="btn btn-primary w-full">{{__('Update')}}</button>
         </div>
     </div>
 </div>

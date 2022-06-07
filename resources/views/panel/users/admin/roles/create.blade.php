@@ -1,6 +1,11 @@
 @extends(panelLayout())
 
 @section('content')
+    <div class="flex items-center justify-between mb-3">
+        <h5 class="font-bold">{{ __('Create new role') }}</h5>
+        <a href='{{ route("panel.roles.index") }}' class='btn btn-sm btn-secondary'>{{__('Back')}}</a>
+    </div>
+    
     <div class="card">
         <div class="card-body">
             <form action="{{ route('panel.roles.store') }}" method="post">
@@ -19,14 +24,12 @@
                     </select>
                 </div>
 
-                <button class="btn-success mt-3">{{__("Create")}}</button>
+                <button class="btn btn-success mt-3">{{__("Create")}}</button>
             </form>
         </div>
     </div>
 @endsection
 
-@section('script')
-<script>
-    $('#permissions_select').select2();
-</script>
-@endsection
+@push('scripts')
+<script> $('#permissions_select').select2(); </script>
+@endpush
