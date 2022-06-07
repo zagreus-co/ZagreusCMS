@@ -35,7 +35,7 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="remember">
+                                <input class="form-check-input" type="checkbox" name='remember' id="remember">
                                 <label class="form-check-label" for="remember">
                                     {{__('Remember me')}}
                                 </label>
