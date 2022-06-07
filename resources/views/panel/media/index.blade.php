@@ -4,7 +4,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <button class="btn-success ml-auto" type="button" id="button-image">View medias</button>
+            <button class="btn btn-sm btn-success ml-auto" type="button" id="button-image">View medias</button>
         </div>
         <div class="card-body">
             
@@ -18,7 +18,7 @@
         document.getElementById('button-image').addEventListener('click', (event) => {
             event.preventDefault();
 
-            window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
+            window.open('{{ route('index') }}/file-manager/fm-button', 'fm', 'width=1400,height=800');
         });
     });
 </script>
