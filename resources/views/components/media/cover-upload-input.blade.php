@@ -8,9 +8,9 @@
     <input type="hidden" name="image_url" value='{{ $current }}'>
 
     <div class="card-footer">
-        <div class="inline-block">
-            <button type="button" id='coverUploadBtn' class="btn inline-block" onclick='document.querySelector("#image_input").click()'>{{__('Select file')}}</button>
-            <button type="button" id='coverDeleteBtn' class="btn-danger inline-block {{ $current == '' ? 'opacity-25' : '' }}">{{__('Delete cover')}}</button>
+        <div class="flex items-center flex-wrap space-y-1 space-x-1 {{ app()->getLocale() == 'fa' ? 'space-x-reverse' : '' }}">
+            <button type="button" id='coverUploadBtn' class="btn btn-sm btn-light" onclick='document.querySelector("#image_input").click()'>{{__('Select file')}}</button>
+            <button type="button" id='coverDeleteBtn' class="btn btn-sm btn-danger {{ $current == '' ? 'opacity-25' : '' }}">{{__('Delete cover')}}</button>
         </div>
     </div>
 </div>

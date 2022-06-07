@@ -1,15 +1,15 @@
 @extends(panelLayout())
 
 @section('content')
-<form action="{{ route('module.blog.categories.store') }}" method="post" class='grid grid-cols-12 md:grid-cols-1 gap-4'>
+<form action="{{ route('module.blog.categories.store') }}" method="post" class="grid grid-cols-1 md:grid-cols-12 gap-4">
 @csrf
 <div class="col-span-12"> @panelView('errors-alert') </div>
 
-<div class="col-span-8 md:col-span-12">
+<div class="col-span-12 md:col-span-8">
     <div class="card" x-data="{tab: '{{config('app.locale')}}'}">
-        <div class="p-2 bg-gray-200 flex flex-nowrap overflow-x-auto">
+        <div class="p-2 bg-gray-200 rounded flex flex-nowrap items-center overflow-x-auto space-x-1 {{ app()->getLocale() == 'fa' ? 'space-x-reverse' : '' }}">
             @foreach(locales() as $locale => $value)
-                <button :class="{ 'bg-blue-400': tab == '{{$locale}}' }" @click.prevent="tab = '{{$locale}}'" class="btn btn-info inline mr-2" type='button'>{{$value}}</button>
+                <button :class="tab == '{{$locale}}' ? 'btn-dark' : 'btn-secondary'" @click.prevent="tab = '{{$locale}}'" class="btn btn-sm" type='button'>{{$value}}</button>
             @endforeach
         </div>
         @php $defaultLocale = app()->getLocale(); @endphp
@@ -40,7 +40,7 @@
         @php \App::setLocale($defaultLocale); @endphp
     </div>
 </div>
-<div class="col-span-4 md:col-span-12">
+<div class="col-span-12 md:col-span-4">
 
     <div class="card">
         <div class="card-body">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="card-footer">
-            <button type='submit' class="btn-success">{{__('Create')}}</button>
+            <button type='submit' class="btn btn-success">{{__('Create')}}</button>
         </div>
 </div>
 </div>

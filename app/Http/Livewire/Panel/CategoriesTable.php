@@ -27,7 +27,7 @@ class CategoriesTable extends LivewireDatatable
             // DateColumn::name('updated_at')->label(__('last update')),
 
             Column::callback(['id'], function ($id) {
-                $btn = '<a href="'.route('module.blog.categories.edit', $id).'" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></a>';
+                $btn = '<a href="'.route('module.blog.categories.edit', $id).'" class="btn btn-sm btn-secondary inline p-2">'.__('Edit').'</a>';
                 return $btn;
             })->label('*'),
 

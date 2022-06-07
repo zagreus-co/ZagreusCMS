@@ -2,7 +2,7 @@
     <div class="card-header flex justify-between">
         <label class='mt-2'>{{('Attachments')}}</label>
 
-        <button type='button' class="btn ml-4" onclick='addNewAttachment()'>{{__('Add new')}}</button> 
+        <button type='button' class="btn btn-sm btn-light" onclick='addNewAttachment()'>{{__('Add new')}}</button> 
     </div>
 
     <div class="card-body" id='attachment_area' index='0'>
@@ -15,12 +15,12 @@
 
     let createAttachmentDiv = (id, current = '') => {
         return `
-        <div id='attachment_${id}_div' class='form-group bg-light p-2'>
+        <div id='attachment_${id}_div' class='form-group bg-gray-50 p-2'>
             <label>{{__('Attachment')}} ${id + 1}</label>
-            <div class="flex flex-row overflow-hidden">
-                <input type="file" class="form-control p-2 rounded-none	" name="inputs[]" multiple="multiple" id="attachment_${id}_input" onchange="fileUploadChange(this)">
+            <div class="flex flex-row items-center overflow-hidden">
+                <input type="file" class="bg-white form-control p-1 rounded-none" name="inputs[]" multiple="multiple" id="attachment_${id}_input" onchange="fileUploadChange(this)">
                     
-                <button class="btn btn-danger mt-2 rounded-none	" onclick='$("#attachment_${id}_div").remove()' type="button" >X</button>
+                <button class="btn btn-danger py-2 px-4 rounded-none" onclick='$("#attachment_${id}_div").remove()' type="button" >X</button>
             </div>
             <div id='attachment_files'>
                 ${current != '' ? 

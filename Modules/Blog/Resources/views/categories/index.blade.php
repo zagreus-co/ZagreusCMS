@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header flex justify-between">
             <strong class="pt-2">{{ __('Manage categories') }}</strong>
-            <a href='{{ route("module.blog.categories.create") }}' class="btn p-2 px-3 btn-success">{{__('Create')}}</a>
+            <a href='{{ route("module.blog.categories.create") }}' class="btn btn-sm btn-success">{{__('Create')}}</a>
         </div>
 
         

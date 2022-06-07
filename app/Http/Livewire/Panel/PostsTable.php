@@ -28,10 +28,11 @@ class PostsTable extends LivewireDatatable
             DateColumn::name('created_at')->defaultSort('desc')->label(__('creation time')),
 
             Column::callback(['id'], function ($id) {
-                $btn = '<a href="'.route('module.blog.posts.edit', $id).'" class="btn-bs-secondary inline p-2"><i class="nav-icon fa fa-pen"></i></a>';
-                $btn .= '<a href="'.route('module.blog.posts.openById', $id).'" target="_blank" class="btn-warning ml-2 inline p-2"><i class="nav-icon fa fa-eye"></i></a>';
+                $btn = '<div class="flex items-center flex-wrap space-x-1">';
+                $btn .= '<a href="'.route('module.blog.posts.edit', $id).'" class="btn btn-sm btn-secondary">'.__('Edit').'</i></a>';
+                $btn .= '<a href="'.route('module.blog.posts.openById', $id).'" target="_blank" class="btn btn-sm btn-warning">'.__('View post').'</a>';
             
-                return $btn;
+                return $btn.'</div>';
             })->label('*'),
 
             Column::delete()
