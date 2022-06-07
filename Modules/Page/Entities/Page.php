@@ -18,6 +18,21 @@ class Page extends Model
         return \Modules\Page\Database\factories\PageFactory::new();
     }
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($blog) {
+            $blog->medias()->delete();
+            $page->keywords()->delete();
+            $page->comments()->delete();
+            $page->scores()->delete();
+        });
+    }
+
     public function comments() {
         return $this->morphMany(\Modules\Comment\Entities\Comment::class, 'commentable');
     }
