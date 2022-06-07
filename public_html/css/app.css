@@ -1124,6 +1124,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-b-0 {
   border-bottom-width: 0px;
 }
+.border-b-2 {
+  border-bottom-width: 2px;
+}
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
@@ -1170,6 +1173,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-gray-800 {
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+.border-gray-50 {
+  --tw-border-opacity: 1;
+  border-color: rgb(249 250 251 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -2488,6 +2495,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 @media (min-width: 1280px) {
 
+  .xl\:col-span-8 {
+    grid-column: span 8 / span 8;
+  }
+
+  .xl\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
+  .xl\:col-span-7 {
+    grid-column: span 7 / span 7;
+  }
+
+  .xl\:col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+
+  .xl\:col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+
   .xl\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -2506,6 +2533,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
 @media (min-width: 1536px) {
