@@ -152,3 +152,37 @@ if (! function_exists('update_option')) {
         return true;
     }
 }
+
+if (! function_exists("santizieString") ) {
+    function santizieString($str) {
+        $letters = [
+            '–', '—', '"', '"', '"', '\'', '\'', '\'',
+            '«', '»', '&', '÷', '>',    '<', '$', '/'
+        ];
+    
+        $str = str_replace($letters, " ", $str);
+        $str = str_replace("&", "and", $str);
+        $str = str_replace("?", "", $str);
+        $str = strtolower(str_replace(" ", "-", $str));
+    
+        return ($str);
+    }
+}
+
+if (! function_exists("generateSlug") ) {
+    function generateSlug($value, $model = null, $current = null, $translatable = true, $column = 'slug') {
+        $value = santizieString($value == '' ? time() : $value);
+        
+        if (!is_null($model)) {
+            $model = (new $model)->query();
+            if ($translatable) $model->whereTranslation($column, $value);
+            else $model->where($column, $value);
+
+            if (!is_null($current)) $model->where('id', '!=', $current);
+
+            if ( $model->count() > 0 ) $value .= '-'.time();
+        }
+
+        return $value;
+    }
+}
