@@ -12,7 +12,7 @@ class ProfileController extends Controller
     public function index(Request $request) {
         if ($request->method() == 'POST') return $this->handleForm($request);
         if (class_exists('\SEO')) \SEO::setTitle(__('Edit profile'));
-        return view('user::profile');
+        return view('panel.users.profile');
     }
     
     protected function handleForm(Request $request) {
