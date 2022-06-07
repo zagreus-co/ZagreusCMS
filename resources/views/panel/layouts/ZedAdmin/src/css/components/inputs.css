@@ -4,26 +4,26 @@
     &:not([class*="rounded-"]) {
         @apply rounded;
     }
-    
+
     &:not([class*="w-"]) {
         @apply w-full;
     }
-}
 
-.form-control.form-control-sm {
-    @apply py-1 px-2
-}
-
-.form-control.form-control-lg {
-    @apply py-3 px-4
-}
-
-.form-control:not(.form-control-lg):not(.form-control-sm) {
-    @apply py-2 px-3;
-}
-
-.form-control:disabled, .form-control[readonly] {
-    @apply bg-gray-100;
+    &.form-control-sm {
+        @apply py-1 px-2
+    }
+    
+    &.form-control-lg {
+        @apply py-3 px-4
+    }
+    
+    &:not(.form-control-lg):not(.form-control-sm):not([class*="p-"]):not([class*="px-"]):not([class*="py-"]) {
+        @apply py-2 px-3;
+    }
+    
+    &:disabled, &[readonly] {
+        @apply bg-gray-100;
+    }
 }
 
 /* checkboxes & radios */

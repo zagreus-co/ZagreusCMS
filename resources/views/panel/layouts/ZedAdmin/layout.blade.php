@@ -26,7 +26,7 @@
                     <button @click='open = !open' :class="open ? 'bg-gray-100' : '' "  class='text-xl rounded px-2 hover:bg-gray-100 transition duration-200'>
                         <ion-icon class='mt-2' name="person-outline"></ion-icon>
                     </button>
-                    <div x-show="open" @click.outside="open = false" class="dropdown-content -left-6 sm:-left-8 md:left-1 text-right" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-y-0 transform" x-transition:enter-end="opacity-100 scale-y-100 transform" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;">
+                    <div x-show="open" @click.outside="open = false" class="dropdown-content -right-6 sm:-right-8 md:right-1 text-left" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-y-0 transform" x-transition:enter-end="opacity-100 scale-y-100 transform" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;">
                         
                         <div class='p-3 text-sm text-gray-500 border-b border-gray-100'>
                             {{__('Logged in as')}}
@@ -34,17 +34,17 @@
                         </div>
 
                         <a class='flex items-center w-full p-3 hover:bg-theme-secondary transition duration-200' href="{{ route('index') }}">
-                            <ion-icon class='ml-2' name="compass-outline"></ion-icon>
+                            <ion-icon class='mr-2' name="compass-outline"></ion-icon>
                             {{__('Visit website')}}
                         </a>
 
                         <a class='flex items-center w-full p-3 hover:bg-theme-secondary transition duration-200' href="{{ route('panel.profile') }}">
-                            <ion-icon class='ml-2' name="create-outline"></ion-icon>
+                            <ion-icon class='mr-2' name="create-outline"></ion-icon>
                             {{__('Edit profile')}}
                         </a>
 
                         <a class='flex items-center w-full p-3 text-red-500 hover:bg-red-50 transition duration-200 border-t border-gray-100' href="{{ route('panel.logout') }}">
-                            <ion-icon class='ml-2' name="log-out-outline"></ion-icon>
+                            <ion-icon class='mr-2' name="log-out-outline"></ion-icon>
                             {{__('Logout')}}
                         </a>
 
