@@ -4,6 +4,7 @@ namespace Modules\Analytics\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Analytics\Entities\Rule;
 
 class AnalyticsDatabaseSeeder extends Seeder
 {
@@ -16,6 +17,15 @@ class AnalyticsDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        Rule::create([
+            'name'=> 'disallow_page',
+            'data'=> '/panel/*'
+        ]);
+        Rule::create([
+            'name'=> 'disallow_page',
+            'data'=> '/livewire/*'
+        ]);
+        
         // $this->call("OthersTableSeeder");
     }
 }
