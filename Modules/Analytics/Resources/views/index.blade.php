@@ -12,7 +12,7 @@
                 <div class="flex flex-row justify-between items-center">
                     @php $difference = $analytics['todayViewers'] - $analytics['yesterdayViewers']; @endphp
                     <div>👥</div>
-                    <span class="rounded-full text-white badge bg-{{ $difference > 0 ? 'teal' : 'red' }}-400 text-xs">
+                    <span class="rounded-full text-white badge {{ $difference > 0 ? 'badge-success' : 'badge-danger' }} text-xs">
                         {{ $difference }}
                         <ion-icon name="{{ $difference > 0 ? 'trending-up-outline' : 'trending-down-outline' }}"></ion-icon>
                     </span>
@@ -41,7 +41,7 @@
                 <div class="flex flex-row justify-between items-center">
                     @php $difference = $analytics['todayViews'] - $analytics['yesterdayViews']; @endphp
                     <div>{{ $difference > 0 ? '📈' : '📉' }}</div>
-                    <span class="rounded-full text-white badge bg-{{ $difference > 0 ? 'teal' : 'red' }}-400 text-xs">
+                    <span class="rounded-full text-white badge {{ $difference > 0 ? 'badge-success' : 'badge-danger' }} text-xs">
                         {{ $difference }}
                         <ion-icon name="{{ $difference > 0 ? 'trending-up-outline' : 'trending-down-outline' }}"></ion-icon>
                     </span>
@@ -70,7 +70,7 @@
                 <div class="flex flex-row justify-between items-center">
                     @php $difference = $analytics['currentMonth'] - $analytics['lastMonth']; @endphp
                     <div>📊</div>
-                    <span class="rounded-full text-white badge bg-{{ $difference > 0 ? 'teal' : 'red' }}-400 text-xs">
+                    <span class="rounded-full text-white badge {{ $difference > 0 ? 'badge-success' : 'badge-danger' }} text-xs">
                         {{ $difference }}
                         <ion-icon name="{{ $difference > 0 ? 'trending-up-outline' : 'trending-down-outline' }}"></ion-icon>
                     </span>
