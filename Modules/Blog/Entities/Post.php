@@ -5,10 +5,11 @@ namespace Modules\Blog\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Translatable;
+use Modules\Keyword\Keywordable;
 
 class Post extends Model
 {
-    use HasFactory, Translatable;
+    use HasFactory, Translatable, Keywordable;
 
     protected $table = 'blog__posts';
     protected $fillable = [
@@ -34,7 +35,6 @@ class Post extends Model
     {
         static::deleted(function ($post) {
             $post->medias()->delete();
-            $post->keywords()->delete();
             $post->comments()->delete();
         });
     }
@@ -49,10 +49,6 @@ class Post extends Model
 
     public function comments() {
         return $this->morphMany(\Modules\Comment\Entities\Comment::class, 'commentable');
-    }
-
-    public function keywords() {
-        return $this->morphMany(\Modules\Keyword\Entities\Keyword::class, 'keywordable');
     }
 
     public function medias() {

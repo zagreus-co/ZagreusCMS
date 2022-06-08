@@ -5,10 +5,11 @@ namespace Modules\Page\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Translatable;
+use Modules\Keyword\Keywordable;
 
 class Page extends Model
 {
-    use HasFactory, Translatable;
+    use HasFactory, Translatable, Keywordable;
     protected $table = 'page__pages';
     public $translatedAttributes = ['slug', 'title', 'content'];
     protected $fillable = ['can_comment', 'display_in_header', 'published', 'template'];
@@ -27,7 +28,6 @@ class Page extends Model
     {
         static::deleted(function ($blog) {
             $blog->medias()->delete();
-            $page->keywords()->delete();
             $page->comments()->delete();
             $page->scores()->delete();
         });
@@ -35,10 +35,6 @@ class Page extends Model
 
     public function comments() {
         return $this->morphMany(\Modules\Comment\Entities\Comment::class, 'commentable');
-    }
-
-    public function keywords() {
-        return $this->morphMany(\Modules\Keyword\Entities\Keyword::class, 'keywordable');
     }
     
     public function medias() {
