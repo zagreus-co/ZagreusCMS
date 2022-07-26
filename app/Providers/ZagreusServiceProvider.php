@@ -52,14 +52,6 @@ class ZagreusServiceProvider extends ServiceProvider
             return "<?php echo app('Hooks')->filter({$expression}) ?>";
         });
 
-        if (Schema::hasTable('permissions')) {
-            foreach(\App\Models\User\Permission::all() as $permission) {
-                Gate::define($permission->tag, function (\App\Models\User $user) use ($permission) {
-                    return $user->hasPermission($permission);
-                });
-            }
-        }
-
         $this->register_panel_menus();
     }
 
