@@ -66,7 +66,7 @@ class Post extends Model
     }
 
     public function getCoverAttribute() {
-        return $this->medias()->whereTag('cover')->first()->filename ?? null;
+        return $this->medias->where('tag', 'cover')->last()->filename ?? null;
     }
 
     public function getAttachmentsAttribute() {
