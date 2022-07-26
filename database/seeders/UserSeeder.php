@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
             ['role_id'=> 1],
             [
                 'email'=> 'test@zagreus.company',
-                'username'=> 'zagreus',
                 'full_name'=> 'Zagreus Admin',
                 'password'=> Hash::make('123456789'),
             ]
