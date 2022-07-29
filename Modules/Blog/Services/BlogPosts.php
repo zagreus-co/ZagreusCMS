@@ -26,7 +26,8 @@ class BlogPosts {
                 ->wherePublished(1)
                 ->with([
                     'category'=> fn($category) => $category->withTranslation(),
-                    'medias'
+                    'medias',
+                    'user'
                 ])
                 ->withTranslation()
                 ->orderBy('id', 'desc')
