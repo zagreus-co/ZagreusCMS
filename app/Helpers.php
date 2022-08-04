@@ -48,7 +48,7 @@ if (!function_exists('themeView')) {
     }
 }
 if (!function_exists('themeAsset')) {
-    function themeAsset($path, $secure = false) {
+    function themeAsset($path, $secure = null) {
         return app('url')->asset('themes/'.Theme::currentName().'/'.$path, $secure);
     }
 }
@@ -65,7 +65,7 @@ if (!function_exists('panelView')) {
     }
 }
 if (!function_exists('panelAsset')) {
-    function panelAsset($path, $secure = false) {
+    function panelAsset($path, $secure = null) {
         return app('url')->asset('themes/'.Theme::panelTheme().'/'.$path, $secure);
     }
 }
