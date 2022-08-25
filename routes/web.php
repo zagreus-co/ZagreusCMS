@@ -22,8 +22,9 @@ Route::middleware('guest')->group( function() {
     Route::match(['get', 'post'], 'login', 'Panel\User\AuthController@login')->name('login');
 
     if (get_option('allow_register'))
-        Route::match(['get', 'post'], 'register', 'Panel\User\AuthController@register')->name('register');
-    
+        Route::get('register', 'Panel\User\AuthController@register')->name('register');
+        Route::post('register', 'Panel\User\AuthController@doRegister')->name('register.post');
+
     Route::get('/forget-password/{type?}', 'Panel\User\AuthController@forgetPassword')->name('password.request.email');
     Route::post('/forget-password/{type?}', 'Panel\User\AuthController@sendPasswordLink')->name('password.reset');
     
