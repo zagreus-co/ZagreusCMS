@@ -44,12 +44,15 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         if (Schema::hasTable('permissions')) {
-            $permissions = Cache::remember('allPermissions',300,function (){
-                return Permission::all();
-            });
+            $permissions = Cache::remember(
+                'allPermissions', 
+                14400, 
+                fn() => Permission::select(['id', 'tag'])->get()->pluck('tag')->toArray()
+            );
+
             foreach($permissions as $permission) {
-                Gate::define($permission->tag, function (User $user) use ($permission) {
-                    return in_array($permission->tag, app('userPermissions'));
+                Gate::define($permission, function () use ($permission) {
+                    return in_array($permission, app('userPermissions'));
                 });
             }
         }
