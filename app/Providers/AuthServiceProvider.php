@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Models\User\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 
@@ -31,17 +34,21 @@ class AuthServiceProvider extends ServiceProvider
 
             if (is_null($user)) return [];
 
+            // if user has no role , return empty array
             return $user->role()
-                ->with('permissions')
-                ->first()
-                ->permissions
-                ->pluck('tag')
-                ->toArray();
+                    ->with('permissions')
+                    ->first()
+                    ?->permissions
+                    ->pluck('tag')
+                    ->toArray() ?? [];
         });
 
         if (Schema::hasTable('permissions')) {
-            foreach(\App\Models\User\Permission::all() as $permission) {
-                Gate::define($permission->tag, function (\App\Models\User $user) use ($permission) {
+            $permissions = Cache::remember('allPermissions',300,function (){
+                return Permission::all();
+            });
+            foreach($permissions as $permission) {
+                Gate::define($permission->tag, function (User $user) use ($permission) {
                     return in_array($permission->tag, app('userPermissions'));
                 });
             }
