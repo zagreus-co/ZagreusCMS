@@ -6,8 +6,9 @@ use Modules\Analytics\Entities\Analytic as AnalyticModel;
 use Modules\Analytics\Entities\Rule;
 use Illuminate\Http\Request;
 use Closure;
-use URL;
-use Route;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\URL;
 
 class Analytic
 {
@@ -23,9 +24,9 @@ class Analytic
         $user = $request->user()->id ?? session()->getId();
 
         $url = URL::current();
-        $page = str_replace(\URL::to('/'), '', $url) == '' ? '/' : str_replace(\URL::to('/'), '', $url);
+        $page = str_replace(URL::to('/'), '', $url) == '' ? '/' : str_replace(URL::to('/'), '', $url);
 
-        $disallowed_page = \Cache::remember('analytics::disallowed_page', now()->addDays(2), function () {
+        $disallowed_page = Cache::remember('analytics::disallowed_page', now()->addDays(2), function () {
             return Rule::whereName('disallow_page')->get();
         });
 
