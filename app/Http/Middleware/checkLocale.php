@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Session;
-use App;
-use Config;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
 
 class checkLocale
 {
@@ -20,7 +20,7 @@ class checkLocale
     public function handle(Request $request, Closure $next)
     {
         if ( !Session::has('locale') )
-            Session::put('locale',Config::get('app.locale'));
+            Session::put('locale', Config::get('app.locale'));
         
         if (isset($_GET['lang']) && array_key_exists($_GET['lang'], Config::get('app.available_locales')))
             Session::put('locale', $_GET['lang']); 
