@@ -6,8 +6,8 @@ use Modules\Analytics\Entities\Analytic as AnalyticModel;
 use Modules\Analytics\Entities\Rule;
 use Illuminate\Http\Request;
 use Closure;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
 class Analytic
