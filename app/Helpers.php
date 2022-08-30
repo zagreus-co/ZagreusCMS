@@ -1,6 +1,10 @@
 <?php
 
+use App\Facades\Option;
+use App\Facades\Theme;
 use App\Foundation\Hooks\HooksFacade as Hooks;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
@@ -114,12 +118,12 @@ if (!function_exists('checkGate')) {
     function checkGate($gate) {
         if (gettype($gate) == 'array') {
             foreach($gate as $value) {
-                if (\Gate::allows($value)) return true;
+                if (Gate::allows($value)) return true;
             }
             return false;
         }
 
-        if (gettype($gate) == 'string') return \Gate::allows($gate);
+        if (gettype($gate) == 'string') return Gate::allows($gate);
         
         echo 'error@Helpers::checkGate : Wrong gate type';
         return false;
@@ -130,8 +134,8 @@ if (!function_exists('checkGate')) {
 if (! function_exists('get_option')) {
     function get_option($tag, $default = null) {
         try {
-            return \Cache::remember('Option::'.$tag.'-'.app()->getLocale(), 14400, function () use ($tag, $default) {
-                $option = \Option::whereTag($tag)->first();
+            return Cache::remember('Option::'.$tag.'-'.app()->getLocale(), 14400, function () use ($tag, $default) {
+                $option = Option::whereTag($tag)->first();
                 if (is_null($option)) return $default;
                 
                 return ($option->is_translatable ? $option->data : $option->plain_data);
@@ -145,19 +149,19 @@ if (! function_exists('get_option')) {
 if (! function_exists('update_option')) {
     function update_option($option, $data) {
         if (gettype($option) == 'integer')
-            $option = \Option::find($option);
+            $option = Option::find($option);
         elseif (gettype($option) == 'string')
-            $option = \Option::whereTag($option)->first();
+            $option = Option::whereTag($option)->first();
         
         if (is_null($option) || get_class($option) != 'App\Models\Option') {
             // if $option variable was string, it means it is actually holding the option tag
             if (gettype($option) == 'string') {
-                \Option::create(array_merge($data, ['tag'=> $option]));
+                Option::create(array_merge($data, ['tag'=> $option]));
             }
             return false;
         }
 
-        \Cache::forget('Option::'.$option->tag.'-'.app()->getLocale());
+        Cache::forget('Option::'.$option->tag.'-'.app()->getLocale());
         $option->update($data);
         return true;
     }
