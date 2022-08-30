@@ -1,5 +1,8 @@
 <?php
+
+use App\Foundation\Hooks\HooksFacade as Hooks;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 // Global Helpers
 if ( !function_exists('locales') ) { function locales() { return config('app.available_locales'); } }
@@ -18,11 +21,18 @@ if(! function_exists('isActive') ) {
     }
 }
 
+// Route helpers
+if(! function_exists('isCurrentUrl') ) {
+    function isCurrentUrl(string $current_url, string $active_class_name = 'active', string $default = '') {
+        return URL::current() == $current_url ? $active_class_name : $default;
+    }
+}
+
 // Panel-Theme helpers
 
 if (!function_exists('add_panel_menu_item')) {
     function add_panel_menu_item(string $menu_item_route, string $menu_item_icon, string $menu_item_text, string|null $menu_item_gate = null, int $priority = 10, array $menu_item_extra = []) {
-        \Hooks::addAction('panel.menu_items', function() use($menu_item_gate, $menu_item_route, $menu_item_icon, $menu_item_text, $menu_item_extra) {
+        Hooks::addAction('panel.menu_items', function() use($menu_item_gate, $menu_item_route, $menu_item_icon, $menu_item_text, $menu_item_extra) {
             echo panelView('menu-item', [
                 'menu_item_gate'=> $menu_item_gate,
                 'menu_item_route'=> $menu_item_route,
