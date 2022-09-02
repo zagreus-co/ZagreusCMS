@@ -6,3 +6,10 @@ if (! function_exists("blogPosts") ) {
             ->latestPosts($limit);
     }
 }
+
+if (! function_exists("sanitizeContent") ) {
+    function sanitizeContent($content, $limit = 160) {
+        $replace_list = ["&nbsp;"=> " ", "&lt;"=> '<', '&gt;'=> '>', '&amp;'=> '&', '&euro;'=> '€', '&pound;'=> '£', '&quot;'=> '“', '&apos;'=> '‘'];
+        return str_replace(array_keys($replace_list), $replace_list, mb_substr( strip_tags($content), 0, $limit) );
+    }
+}
