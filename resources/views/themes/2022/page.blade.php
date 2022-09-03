@@ -20,7 +20,7 @@
             @endif
         </header>
 
-        <p class="mt-6">{!! $page->content !!}</p>
+        <div class="mt-6">{!! $page->content !!}</div>
 
     </article>
     @themeInclude('partials.footer')

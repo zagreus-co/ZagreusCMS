@@ -27,7 +27,7 @@
             @endif
         </header>
 
-        <p class="mt-6">{!! $post->content !!}</p>
+        <div class="mt-6">{!! $post->content !!}</div>
 
     </article>
 
