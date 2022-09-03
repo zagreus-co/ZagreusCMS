@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @themeInclude('partials.head')
-<body>
+<body class="bg-gray-50">
     @themeInclude('partials.header')
 
     <section class="px-20 mt-10">
