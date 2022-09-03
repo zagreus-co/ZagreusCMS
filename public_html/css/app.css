@@ -685,6 +685,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-12 {
   margin-top: 3rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .block {
   display: block;
 }
@@ -795,6 +798,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-48 {
   width: 12rem;
+}
+.w-3\/5 {
+  width: 60%;
+}
+.w-1\/5 {
+  width: 20%;
 }
 .min-w-full {
   min-width: 100%;
@@ -1208,6 +1217,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-zinc-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
+}
+.bg-emerald-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 185 129 / var(--tw-bg-opacity));
 }
 .bg-opacity-20 {
   --tw-bg-opacity: 0.2;
@@ -1815,6 +1828,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-gray-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+.hover\:bg-emerald-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
 }
 .hover\:bg-opacity-20:hover {
   --tw-bg-opacity: 0.2;

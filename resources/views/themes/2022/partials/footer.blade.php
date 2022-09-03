@@ -1,4 +1,4 @@
-<footer class="flex flex-col items-center justify-between px-6 py-2 bg-zinc-700 sm:flex-row mt-10">
+<footer class="flex flex-col items-center justify-between px-20 py-2 bg-zinc-700 sm:flex-row mt-10">
     <a href="{{ route('index') }}" class="text-xl font-bold text-white hover:text-gray-300">{{ get_option('site_short_name') }}</a>
     
     <p class="py-2 text-white sm:py-0">{{__('All rights reserved')}}</p>
