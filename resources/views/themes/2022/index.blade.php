@@ -17,10 +17,12 @@
             </div>
             <div>
                 <time class="text-gray-500 text-sm" datetime="{{ $posts[0]->created_at->format('Y-m-d') }}">{{ $posts[0]->created_at->format('F j, Y') }}</time>
+                <span>|</span>
+                <a href="{{ route('module.blog.categories.view', $posts[0]->category->slug) }}" class="text-sm font-medium text-fuchsia-600 hover:text-fuchsia-500 uppercase transition duration-200">{{ $posts[0]->category->title ?? '' }}</a>
                 <h3 class="text-4xl font-bold mt-1">{{ $posts[0]->title }}</h3>
                 <p>
                     {{ sanitizeContent($posts[0]->content, 950) . '...' }}
-                    <a href="{{ route('module.blog.posts.openBySlug', $posts[0]->slug) }}" class="text-fuchsia-600 hover:text-fuchsia-500">[Read more]</a>
+                    <a href="{{ route('module.blog.posts.openBySlug', $posts[0]->slug) }}" class="text-fuchsia-600 hover:text-fuchsia-500 transition duration-200">[Read more]</a>
                 </p>
             </div>
         </article>
@@ -34,10 +36,12 @@
                     </div>
                     <div>
                         <time class="text-gray-500 text-sm" datetime="{{ $post->created_at->format('Y-m-d') }}">{{ $post->created_at->format('F j, Y') }}</time>
+                        <span>|</span>
+                        <a href="{{ route('module.blog.categories.view', $post->category->slug) }}" class="text-sm font-medium text-fuchsia-600 hover:text-fuchsia-500 uppercase transition duration-200">{{ $post->category->title ?? '' }}</a>
                         <h3 class="text-4xl font-bold mt-1">{{ $post->title }}</h3>
                         <p>
                             {{ sanitizeContent($post->content) . '...' }}
-                            <a href="{{ route('module.blog.posts.openBySlug', $post->slug) }}" class="text-fuchsia-600 hover:text-fuchsia-500">[Read more]</a>
+                            <a href="{{ route('module.blog.posts.openBySlug', $post->slug) }}" class="text-fuchsia-600 hover:text-fuchsia-500 transition duration-200">[Read more]</a>
                         </p>
                     </div>
                 </article>
