@@ -30,6 +30,7 @@ class BlogDatabaseSeeder extends Seeder
             'fa'=> ['slug'=> 'اخبار',
             'title'=> 'اخبار']
         ]);
-        Post::factory()->count(5)->create();
+        
+        Post::factory()->count(7)->create();
     }
 }
