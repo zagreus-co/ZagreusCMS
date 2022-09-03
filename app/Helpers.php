@@ -107,7 +107,7 @@ if (!function_exists('themeTemplates')) {
 
 if (!function_exists('grabThemeKey')) {
     function grabThemeKey($key, $string) {
-        preg_match('/<!--[\s\S](.*):[\s\S](.*)[\s\S]-->/', $string, $output_array);
+        preg_match('/{{--[\s\S](.*):[\s\S](.*)[\s\S]--}}/', $string, $output_array);
         
         return count($output_array) == 3 && $output_array[1] == $key ? $output_array[2] : null;
     }
