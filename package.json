@@ -23,7 +23,6 @@
         "tailwindcss": "^3.0"
     },
     "dependencies": {
-        "alpine-turbo-drive-adapter": "^2.0.0",
         "turbolinks": "^5.2.0"
     }
 }
