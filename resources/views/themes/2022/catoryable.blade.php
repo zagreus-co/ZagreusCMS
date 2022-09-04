@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" @if (app()->getLocale() == 'fa') dir="rtl" @endif >
 @themeInclude('partials.head')
 <body class="bg-gray-100">
     @themeInclude('partials.header')
@@ -20,7 +20,7 @@
                                 <p class="mt-2 text-sm text-gray-600">{{ sanitizeContent($data->content, 185) . '[...]' }}</p>
                             </div>
 
-                            <div class="mt-4 flex justify-between">
+                            <div class="mt-4 flex items-center justify-between">
                                 <div class="flex items-center">
                                     <div class="flex items-center">
                                         <img class="object-cover h-10 rounded-full" src="https://zagreus.company/assets/images/ZagreusDevs-logo.svg" alt="Avatar">
@@ -34,7 +34,7 @@
                                     if ($data->categoryable_type == 'Modules\Page\Entities\Page')
                                         $route = 'module.page.show'
                                 @endphp
-                                <a href="{{ route($route, $data->slug) }}" class="text-fuchsia-600 hover:text-fuchsia-500">Read more</a>
+                                <a href="{{ route($route, $data->slug) }}" class="text-fuchsia-600 hover:text-fuchsia-500">{{ __('Read more') }}</a>
 
                             </div>
                         </div>

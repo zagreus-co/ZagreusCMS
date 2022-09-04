@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" @if (app()->getLocale() == 'fa') dir="rtl" @endif >
 @themeInclude('partials.head')
 <body class="bg-gray-50">
     @themeInclude('partials.header')

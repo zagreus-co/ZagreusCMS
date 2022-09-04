@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" @if (app()->getLocale() == 'fa') dir="rtl" @endif >
 @themeInclude('partials.head')
 <body class="bg-gray-50">
     @themeInclude('partials.header')
@@ -11,13 +11,13 @@
                 <div class="ml-2">
                     <a href="#" class="font-semibold text-gray-700 block">{{ $post->user->full_name }}</a>
                     <small class="text-gray-500">
-                        {{ $post->created_at->format('F j, Y') }}
-                        <span> - {{ round(str_word_count(strip_tags($post->content)) / 165) }} min read</span>
+                        <time datetime="{{ $post->created_at->format('Y-m-d') }}">{{ $post->created_at->ago() }}</time>
+                        <span> - {{ round(str_word_count(strip_tags($post->content)) / 165) }} {{ __('min read') }}</span>
                     </small>
                 </div>
             </div>
 
-            <a href="{{ route('index') }}" class="px-3 py-1 hover:text-fuchsia-500 transition duration-200">Back to Home</a>
+            <a href="{{ route('index') }}" class="px-3 py-1 hover:text-fuchsia-500 transition duration-200">{{ __('Back to Home') }}</a>
         </section>
 
         <header class="mt-5">
