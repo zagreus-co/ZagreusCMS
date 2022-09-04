@@ -6,7 +6,7 @@
 
     <section class="px-20 mt-10">
         <header class='mb-6'>
-            <h2 class=" text-8xl font-bold">The Blog</h2>
+            <h2 class=" text-8xl font-bold">{{ __('The Blog') }}</h2>
         </header>
 
         @php ($posts = blogPosts())
