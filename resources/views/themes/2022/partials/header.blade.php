@@ -43,4 +43,32 @@
         </div>
 
     </div>
+
+    <div class="md:hidden relative" x-data="{ open: false }" @click.outside = "open = false">
+        <button x-on:click="open = !open"
+                class="flex items-center space-x-2 focus:outline-none px-2 py-4">            
+            <div class="w-6 flex items-center justify-center relative">
+                <span x-bind:class="open ? 'translate-y-0 rotate-45' : '-translate-y-2'"
+                        class="transform transition w-full h-px bg-black absolute"></span>
+                
+                <span x-bind:class="open ? 'opacity-0 translate-x-3' : 'opacity-100'"
+                        class="transform transition w-full h-px bg-black absolute"></span>
+                
+                <span x-bind:class="open ? 'translate-y-0 -rotate-45' : 'translate-y-2'"
+                    class="transform transition w-full h-px bg-black absolute"></span>
+            </div>
+        </button>
+
+        <ul x-show='open' class=' w-60 absolute right-0 bg-white py-2 px-4 rounded-sm shadow text-center space-y-2'>
+            <li>
+                <a href="{{ route('index') }}" class="px-3 py-1 block w-full {{ isCurrentUrl(route('index'), 'text-fuchsia-500') }} hover:text-fuchsia-500 hover:border-fuchsia-500 transition duration-200">{{ __('Home') }}</a>
+            </li>
+
+            @foreach (activePages() as $page)
+                <li>
+                    <a href="{{ route('module.page.show', $page->slug) }}" class="px-3 py-1 block w-full {{ isCurrentUrl(route('module.page.show', $page->slug), 'text-fuchsia-500') }} hover:text-fuchsia-500 hover:border-fuchsia-500 transition duration-200">{{ $page->title }}</a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 </nav>
