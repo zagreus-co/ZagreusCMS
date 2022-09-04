@@ -4,16 +4,16 @@
 <body class="bg-gray-50">
     @themeInclude('partials.header')
 
-    <section class="px-20 mt-10">
+    <section class="px-6 md:px-14 lg:px-20 mt-10">
         <header class='mb-6'>
             <h2 class=" text-8xl font-bold">{{ __('The Blog') }}</h2>
         </header>
 
         @php ($posts = blogPosts())
 
-        <article class='grid grid-cols-2 gap-4'>
-            <div>
-                <img class='w-full h-[22rem] rounded-md' src="{{ $posts[0]->cover ?? '' }}" alt="{{ $posts[0]->title }}">
+        <article class='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <div class="my-auto">
+                <img class='w-full md:h-[25rem] lg:h-[22rem] rounded-md' src="{{ $posts[0]->cover ?? '' }}" alt="{{ $posts[0]->title }}">
             </div>
             <div>
                 <time class="text-gray-500 text-sm" datetime="{{ $posts[0]->created_at->format('Y-m-d') }}">{{ $posts[0]->created_at->format('F j, Y') }}</time>
@@ -27,7 +27,7 @@
             </div>
         </article>
 
-        <section class="grid grid-cols-3 gap-4 mt-12">
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
             @foreach($posts as $post)
                 @if ($loop->iteration == 1) @continue @endif
                 <article class='grid grid-cols-1 gap-2'>

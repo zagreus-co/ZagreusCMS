@@ -3,7 +3,7 @@
 @themeInclude('partials.head')
 <body class="bg-gray-50">
     @themeInclude('partials.header')
-    <article class='px-20 mt-4'>
+    <article class='px-6 md:px-14 lg:px-20 mt-4'>
         <section class="flex items-center justify-between">
             <small class="text-gray-500">
                 {{ $page->created_at->format('F j, Y') }}

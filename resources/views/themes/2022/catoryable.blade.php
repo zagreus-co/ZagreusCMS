@@ -4,7 +4,7 @@
 <body class="bg-gray-100">
     @themeInclude('partials.header')
     
-    <section class="px-20 mt-10">
+    <section class="px-6 md:px-14 lg:px-20 mt-10">
         <div class='grid md:grid-cols-12 sm:grid-cols-1 gap-5'>
             <div class="md:col-span-8">
                     @foreach( $datas as $data )

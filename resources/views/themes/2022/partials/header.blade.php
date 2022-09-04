@@ -1,11 +1,11 @@
-<nav class='flex items-center justify-between px-20 py-4'>
+<nav class='flex items-center justify-between px-6 md:px-14 lg:px-20 py-4'>
     <div>
         <a href="{{ route('index') }}">
             <h1 class="text-2xl font-bold text-fuchsia-500 hover:text-fuchsia-600 transition duration-200">{{ get_option('site_short_name') }}</h1>
         </a>
     </div>
 
-    <div class="flex items-center">
+    <div class="hidden md:flex items-center">
         <a href="{{ route('index') }}" class="px-3 py-1 border-b {{ isCurrentUrl(route('index'), 'text-fuchsia-500 border-fuchsia-500') }} hover:text-fuchsia-500 hover:border-fuchsia-500 transition duration-200">{{ __('Home') }}</a>
         
         {{-- Pages list --}}

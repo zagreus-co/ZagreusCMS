@@ -3,7 +3,7 @@
 @themeInclude('partials.head')
 <body class="bg-gray-50">
     @themeInclude('partials.header')
-    <article class='px-20 mt-4'>
+    <article class='px-6 md:px-14 lg:px-20 mt-4'>
         <section class="flex items-center justify-between">
             <div class="flex items-center">
                 <img class="object-cover h-10 rounded-full" src="https://zagreus.company/assets/images/ZagreusDevs-logo.svg" alt="Avatar">
@@ -31,7 +31,7 @@
 
     </article>
 
-    <section class='px-20 mt-4'>
+    <section class='px-6 md:px-14 lg:px-20 mt-4'>
         @if ($comments->count() == 0)
             <div class="rounded shadow-md p-3 text-white text-lg bg-blue-400 mb-3">{{__('There is no comment submitted yet, be the first one!')}}</div>
         @else
