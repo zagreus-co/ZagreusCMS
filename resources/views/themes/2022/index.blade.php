@@ -13,7 +13,7 @@
 
         <article class='grid grid-cols-2 gap-4'>
             <div>
-                <img class='w-full rounded-md' src="{{ $posts[0]->cover ?? '' }}" alt="{{ $posts[0]->title }}">
+                <img class='w-full h-[22rem] rounded-md' src="{{ $posts[0]->cover ?? '' }}" alt="{{ $posts[0]->title }}">
             </div>
             <div>
                 <time class="text-gray-500 text-sm" datetime="{{ $posts[0]->created_at->format('Y-m-d') }}">{{ $posts[0]->created_at->format('F j, Y') }}</time>
