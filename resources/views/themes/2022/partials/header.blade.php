@@ -33,7 +33,7 @@
             </button>
 
             <!-- Dropdown menu -->
-            <div x-show='isOpen' x-transition class="absolute right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl">
+            <div x-show='isOpen' x-transition class="absolute {{ app()->getLocale() == 'fa' ? 'left-0' : 'right-0' }} z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl">
                 @foreach(locales() as $locale => $value)
                 <a href="?lang={{$locale}}" data-turbolinks="false" class="block px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform hover:bg-emerald-700 hover:text-white">
                     {{$value}}
