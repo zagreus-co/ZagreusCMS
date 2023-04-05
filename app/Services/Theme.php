@@ -1,11 +1,15 @@
 <?php
+
 namespace App\Services;
 
-class Theme {
-    public function currentName() {
+class Theme
+{
+    public function currentName()
+    {
         return get_option('front_theme');
     }
-    public function panelTheme() {
+    public function panelTheme()
+    {
         return get_option('panel_theme');
     }
 }

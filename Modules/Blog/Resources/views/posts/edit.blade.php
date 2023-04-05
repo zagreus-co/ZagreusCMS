@@ -52,7 +52,6 @@
 
     </div>
 
-    <x-media.attachment-input current='{!!$post->medias()->whereTag("attachment")->select("filename")->get()->pluck("filename")->toJson()!!}' />
 </div>
 <div class="col-span-12 md:col-span-4">
 
@@ -104,16 +103,6 @@
             <button type='submit' class="btn btn-primary">{{__('Update')}}</button>
         </div>
     </div>
-
-    @php
-        $image = '';
-        if ($post->medias()->whereTag('cover')->first())
-            $image = $post->medias()->whereTag('cover')->first()->filename;
-    @endphp
-    
-    <x-media.cover-upload-input current='{{ $image }}' />
-    <x-keywords parent='card' child='card-body' inputClass='form-control'  current='{!! json_encode($post->keywords->pluck("keyword")->toArray()) !!}'/>
-
 </div>
 </form>
 

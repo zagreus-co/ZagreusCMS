@@ -6,6 +6,7 @@
     <div class="card hover:shadow">
         <div class="card-header">
             <h5>{{__('Today registration')}}</h5>
+            
             <span class="icon-area">
                 👥
             </span>

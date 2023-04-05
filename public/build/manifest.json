@@ -1,0 +1,34 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-90d206fd.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-60f5163b.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/views/panel/layouts/ZedAdmin/src/css/app.css": {
+    "file": "assets/app-e8cb63a8.css",
+    "isEntry": true,
+    "src": "resources/views/panel/layouts/ZedAdmin/src/css/app.css"
+  },
+  "resources/views/panel/layouts/ZedAdmin/src/css/fonts/samim/Samim-Bold-FD.ttf": {
+    "file": "assets/Samim-Bold-FD-705b048a.ttf",
+    "src": "resources/views/panel/layouts/ZedAdmin/src/css/fonts/samim/Samim-Bold-FD.ttf"
+  },
+  "resources/views/panel/layouts/ZedAdmin/src/css/fonts/samim/Samim-FD.ttf": {
+    "file": "assets/Samim-FD-ce86c54e.ttf",
+    "src": "resources/views/panel/layouts/ZedAdmin/src/css/fonts/samim/Samim-FD.ttf"
+  },
+  "resources/views/panel/layouts/ZedAdmin/src/css/fonts/samim/Samim-Medium-FD.ttf": {
+    "file": "assets/Samim-Medium-FD-41ec7e10.ttf",
+    "src": "resources/views/panel/layouts/ZedAdmin/src/css/fonts/samim/Samim-Medium-FD.ttf"
+  },
+  "resources/views/panel/layouts/ZedAdmin/src/js/dashboard.js": {
+    "file": "assets/dashboard-6f111e59.js",
+    "isEntry": true,
+    "src": "resources/views/panel/layouts/ZedAdmin/src/js/dashboard.js"
+  }
+}

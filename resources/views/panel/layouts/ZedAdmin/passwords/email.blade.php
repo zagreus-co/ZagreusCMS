@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#5c68ff" />
         {!! SEO::Generate() !!}
-        <link rel="stylesheet" href="{{panelAsset('css/app.css')}}" />
+        @vite('resources/views/panel/layouts/ZedAdmin/src/css/app.css')
     </head>
     <body dir="{{ app()->getLocale() == 'fa' ? 'rtl' : 'ltr' }}">
 

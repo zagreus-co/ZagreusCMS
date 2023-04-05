@@ -1,7 +1,7 @@
 <?php
 
-use Nwidart\Modules\Commands;
 use Nwidart\Modules\Activators\FileActivator;
+use Nwidart\Modules\Commands;
 
 return [
 
@@ -27,7 +27,7 @@ return [
 
     'stubs' => [
         'enabled' => false,
-        'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
+        'path' => base_path('vendor/nwidart/laravel-modules/src/Commands/stubs'),
         'files' => [
             'routes/web' => 'Routes/web.php',
             'routes/api' => 'Routes/api.php',
@@ -37,13 +37,13 @@ return [
             'composer' => 'composer.json',
             'assets/js/app' => 'Resources/assets/js/app.js',
             'assets/sass/app' => 'Resources/assets/sass/app.scss',
-            'webpack' => 'webpack.mix.js',
+            'vite' => 'vite.config.js',
             'package' => 'package.json',
         ],
         'replacements' => [
             'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
             'routes/api' => ['LOWER_NAME'],
-            'webpack' => ['LOWER_NAME'],
+            'vite' => ['LOWER_NAME'],
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'views/index' => ['LOWER_NAME'],
             'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
@@ -127,7 +127,7 @@ return [
             'notifications' => ['path' => 'Notifications', 'generate' => false],
             'resource' => ['path' => 'Transformers', 'generate' => false],
             'component-view' => ['path' => 'Resources/views/components', 'generate' => false],
-            'component-class' => ['path' => 'View/Component', 'generate' => false],
+            'component-class' => ['path' => 'View/Components', 'generate' => false],
         ],
     ],
 
@@ -166,6 +166,7 @@ return [
         Commands\RequestMakeCommand::class,
         Commands\RuleMakeCommand::class,
         Commands\MigrateCommand::class,
+        Commands\MigrateFreshCommand::class,
         Commands\MigrateRefreshCommand::class,
         Commands\MigrateResetCommand::class,
         Commands\MigrateRollbackCommand::class,
@@ -218,9 +219,8 @@ return [
             'name' => 'Nicolas Widart',
             'email' => 'n.widart@gmail.com',
         ],
+        'composer-output' => false,
     ],
-
-    'composer-output' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -232,6 +232,7 @@ return [
     */
     'cache' => [
         'enabled' => false,
+        'driver' => 'file',
         'key' => 'laravel-modules',
         'lifetime' => 60,
     ],

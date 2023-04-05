@@ -13,6 +13,7 @@ class Post extends Model
 
     protected $table = 'blog__posts';
     protected $fillable = [
+        'cover',
         'category_id',
         'published',
         'can_comment',
@@ -20,12 +21,11 @@ class Post extends Model
     ];
     public $translatedAttributes = ['slug', 'title', 'content'];
 
-    
     protected static function newFactory()
     {
         return \Modules\Blog\Database\factories\PostFactory::new();
     }
-
+    
     /**
      * The "booted" method of the model.
      *
@@ -34,7 +34,6 @@ class Post extends Model
     protected static function booted()
     {
         static::deleted(function ($post) {
-            $post->medias()->delete();
             $post->comments()->delete();
         });
     }
@@ -49,27 +48,5 @@ class Post extends Model
 
     public function comments() {
         return $this->morphMany(\Modules\Comment\Entities\Comment::class, 'commentable');
-    }
-
-    public function medias() {
-        return $this->morphMany(\App\Models\Media::class, 'mediaable');
-    }
-
-    public function scores() {
-        return $this->morphMany(\Modules\Score\Entities\Score::class, 'scoreable');
-    }
-    public function getPositiveScoresAttribute() {
-        return $this->scores()->whereScore(1)->get()->pluck('score')->sum();
-    }
-    public function getNegativeScoresAttribute() {
-        return $this->scores()->whereScore(-1)->get()->pluck('score')->sum();
-    }
-
-    public function getCoverAttribute() {
-        return $this->medias->where('tag', 'cover')->last()->filename ?? null;
-    }
-
-    public function getAttachmentsAttribute() {
-        return $this->medias()->whereTag('attachment')->get() ?? null;
     }
 }

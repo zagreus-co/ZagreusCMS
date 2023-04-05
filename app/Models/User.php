@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,12 +13,11 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasApiTokens;
 
     protected $fillable = [
-        'full_name',
-        'country_code',
-        'number',
         'email',
+        'number',
+        'full_name',
+        'role_id',
         'password',
-        'role_id'
     ];
 
     protected $hidden = [
@@ -27,23 +26,27 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'verified_at' => 'datetime',
     ];
 
-    public function role() {
-        return $this->belongsTo(User\Role::class);
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
-    public function hasPermission($permission) {
+    public function hasPermission($permission)
+    {
         if (is_null($this->role)) return false;
         return in_array($permission->tag ?? $permission, $this->role->permissions->pluck('tag')->toArray());
     }
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(\Modules\Blog\Entities\Post::class);
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         return $this->hasMany(\Modules\Notification\Entities\Notification::class);
     }
 }

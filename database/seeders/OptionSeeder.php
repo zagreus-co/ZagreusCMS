@@ -15,6 +15,8 @@ class OptionSeeder extends Seeder
     public function run()
     {
         foreach($this->preliminaryData() as $key => $option) {
+            if ( Option::whereTag($option['tag'])->first() ) continue;
+
             Option::create($option);
         }
     }
@@ -25,7 +27,7 @@ class OptionSeeder extends Seeder
                 'tag'=> 'front_theme',
                 'type'=> 'hidden',
                 'is_translatable'=> false,
-                'plain_data'=> '2021',
+                'plain_data'=> '2023',
             ],
             [
                 'tag'=> 'panel_theme',

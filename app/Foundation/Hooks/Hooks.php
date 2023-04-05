@@ -28,7 +28,7 @@ class Hooks {
     /**
      * Get the action instance.
      *
-     * @return TorMorten\Events\Action
+     * @return App\Foundation\Hooks\Action
      */
     public function getAction()
     {
@@ -38,7 +38,7 @@ class Hooks {
     /**
      * Get the action instance.
      *
-     * @return TorMorten\Events\Filter
+     * @return App\Foundation\Hooks\Filter
      */
     public function getFilter()
     {

@@ -19,13 +19,7 @@ class PostFactory extends Factory
      */
     public function configure()
     {
-        return $this->afterCreating(function (\Modules\Blog\Entities\Post $post) {
-            $post->medias()->create([
-                'user_id'=> 1,
-                'tag'=> 'cover',
-                'filename'=> $this->getCover($post->id)
-            ]);
-        });
+        return $this;
     }
 
     /**
@@ -43,6 +37,7 @@ class PostFactory extends Factory
             'user_id'=> 1,
             'category_id'=> rand(1,2),
             'published'=> 1,
+            'cover'=> $this->getCover(),
             'en'=> [
                 'title'=> $en_title,
                 'slug'=> generateSlug($en_title),
@@ -56,7 +51,7 @@ class PostFactory extends Factory
         ];
     }
 
-    protected function getCover(int $post_id): string {
+    protected function getCover(): string {
         $cover_list = [
             themeAsset('img/1.webp'),
             themeAsset('img/2.webp'),
@@ -67,9 +62,7 @@ class PostFactory extends Factory
             themeAsset('img/7.webp'),
         ];
 
-        return isset($cover_list[ $post_id - 1 ]) 
-            ? $cover_list[ $post_id - 1 ]
-            : $cover_list[ rand( 0, (count($cover_list) - 1) ) ];
+        return $cover_list[ rand( 0, (count($cover_list) - 1) ) ];
     }
 }
 

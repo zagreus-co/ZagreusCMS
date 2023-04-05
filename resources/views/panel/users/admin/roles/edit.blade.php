@@ -19,7 +19,7 @@
                 <div class="form-group mt-3">
                     <label for="permissions">{{ __('Permissions') }}</label>
                     <select name="permissions[]" id='permissions_select' multiple="multiple" class="form-control">
-                        @foreach (\App\Models\User\Permission::all() as $permission)
+                        @foreach (\App\Models\Permission::get() as $permission)
                             <option value="{{ $permission->id }}" {{ in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? "selected" : "" }}>{{ $permission->title }}</option>
                         @endforeach
                     </select>

@@ -1,8 +1,8 @@
 {
-    "Analytics": true,
     "Blog": true,
-    "Comment": true,
-    "Keyword": true,
+    "Page": true,
     "Notification": true,
-    "Page": true
+    "Analytics": true,
+    "Comment": true,
+    "Keyword": true
 }

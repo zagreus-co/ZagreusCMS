@@ -7,7 +7,7 @@ services:
     command: ['nginx-debug', '-g', 'daemon off;']
     volumes:
       - ./:/app/
-      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/octane.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
       - 443:443
@@ -22,8 +22,8 @@ services:
     restart: always
     working_dir: /app
     command: [ "bash", "/app/docker/initialize.sh" ]
-    ports:
-      - 0.0.0.0:6001:6001
+    # ports:
+    #   - 0.0.0.0:6001:6001
     volumes:
       - ./:/app/
       - ./docker/php/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
