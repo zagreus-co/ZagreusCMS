@@ -19,9 +19,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     apt-get install php8.1-zip php8.1-mbstring
 
-RUN pecl install redis 
+RUN pecl install redis swoole
 RUN docker-php-ext-install zip pdo_mysql exif pcntl bcmath gd intl soap
-RUN docker-php-ext-enable redis
+RUN docker-php-ext-enable redis swoole
 RUN docker-php-ext-configure intl
 # RUN docker-php-ext-configure zip --with-libzip
 

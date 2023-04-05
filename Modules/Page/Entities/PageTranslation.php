@@ -13,8 +13,4 @@ class PageTranslation extends Model
     protected $fillable = ['slug', 'title', 'content'];
     public $timestamps = false;
 
-    protected static function newFactory()
-    {
-        return \Modules\Page\Database\factories\PageTranslationFactory::new();
-    }
 }

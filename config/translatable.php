@@ -10,10 +10,8 @@ return [
     | Contains an array with the applications available locales.
     |
     */
-    'locales' => [
-        'en',
-        'fa',
-    ],
+    'locales' => config('app.available_locales') ?
+        array_keys(config('app.available_locales')) : ['en'],
 
     /*
     |--------------------------------------------------------------------------

@@ -1,32 +1,30 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 // Global routes
 Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/media/open/{filename}', 'MediaController@open')->where('filename', '.*')->name('media.open');
-
 // Guest only routes
-Route::middleware('guest')->group( function() {
+Route::middleware('guest')->group(function () {
     Route::match(['get', 'post'], 'login', 'Panel\User\AuthController@login')->name('login');
 
     if (get_option('allow_register'))
         Route::get('register', 'Panel\User\AuthController@register')->name('register');
-        Route::post('register', 'Panel\User\AuthController@doRegister')->name('register.post');
+    Route::post('register', 'Panel\User\AuthController@doRegister')->name('register.post');
 
     Route::get('/forget-password/{type?}', 'Panel\User\AuthController@forgetPassword')->name('password.request.email');
     Route::post('/forget-password/{type?}', 'Panel\User\AuthController@sendPasswordLink')->name('password.reset');
-    
+
     Route::get('user/reset-password/email/{token}', 'Panel\User\AuthController@resetPasswordUsingEmail')->middleware('guest')->name('password.reset');
     Route::post('user/reset-password/email', 'Panel\User\AuthController@updatePasswordUsingEmail')->middleware('guest')->name('password.update');
-
 });
 
 // Panel routes
-Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function() {
-    
+Route::prefix('panel/')->middleware('auth')->name('panel.')->group(function () {
+
     Route::get('/', 'Panel\PanelController@index')->name('index');
-    
+
     // Panel-User routes
     Route::resource('/users/roles', 'Panel\User\RolesController');
     Route::resource('/users', 'Panel\User\UserController');

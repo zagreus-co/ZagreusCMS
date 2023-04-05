@@ -47,7 +47,7 @@
                 <label for="permissions">{{__('Role')}}</label>
                 <select name="role_id" id='role_select' class="form-control">
                     <option value="0">{{__('Normal user')}}</option>
-                    @foreach (\App\Models\User\Role::all() as $role)
+                    @foreach (\App\Models\Role::get() as $role)
                         <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
                     @endforeach
                 </select>

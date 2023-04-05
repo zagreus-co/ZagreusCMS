@@ -2,6 +2,9 @@
 
 namespace Modules\Blog\Http\Controllers;
 
+use App\Models\User;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -19,7 +22,7 @@ class PostController extends Controller
         if (! checkGate('manage_blog') ) abort(403);
 
         if ($request->ajax()) return $this->table();
-        if (class_exists('\SEO')) \SEO::setTitle(__('Manage posts'));
+        if (class_exists('\SEO')) SEOTools::setTitle(__('Manage posts'));
         return view('blog::posts.index');
     }
 
@@ -31,7 +34,7 @@ class PostController extends Controller
     {
         if (! checkGate('manage_blog') ) abort(403);
 
-        if (class_exists('\SEO')) \SEO::setTitle(__('Create post'));
+        if (class_exists('\SEO')) SEOTools::setTitle(__('Create post'));
         return view('blog::posts.create');
     }
 
@@ -57,7 +60,7 @@ class PostController extends Controller
             $data[$locale]['slug'] = generateSlug($request->filled("{$locale}.generate_slug") ? $request->{$locale}['title'] : $request->{$locale}['slug'], Post::class);
         }
 
-        $post = auth()->user()->posts()->create($data);
+        $post = $this->getUser()->posts()->create($data);
         
         if ($request->filled('keywords')) {
             $request->validate([
@@ -66,22 +69,9 @@ class PostController extends Controller
             (new Keyword())->createKeyword($request->keywords, $post->id, get_class($post));
         } else { $post->keywords()->delete(); }
 
-        if ($request->filled('attachments')) {
-            $request->validate(['attachments'=> 'array']);
-            $post->medias()->whereTag('attachment')->delete();
-
-            foreach($request->attachments as $attachment) {
-                $post->medias()->create([
-                    'user_id'=> auth()->user()->id,
-                    'tag'=> 'attachment',
-                    'filename'=> $attachment
-                ]);
-            }
-        } else { $post->medias()->whereTag('attachment')->delete(); }
-
         if ($request->filled('image_url')) {
             $post->medias()->create([
-                'user_id'=> auth()->user()->id,
+                'user_id'=> $this->getUser()->id,
                 'tag'=> 'cover',
                 'filename'=> $request->image_url
             ]);
@@ -102,7 +92,7 @@ class PostController extends Controller
     {
         if (! checkGate('manage_blog') ) abort(403);
     
-        if (class_exists('\SEO')) \SEO::setTitle(__('Edit post'));
+        if (class_exists('\SEO')) SEOTools::setTitle(__('Edit post'));
         return view('blog::posts.edit', compact('post'));
     }
 
@@ -145,7 +135,7 @@ class PostController extends Controller
 
             foreach($request->attachments as $attachment) {
                 $post->medias()->create([
-                    'user_id'=> auth()->user()->id,
+                    'user_id'=> $this->getUser()->id,
                     'tag'=> 'attachment',
                     'filename'=> $attachment
                 ]);
@@ -155,7 +145,7 @@ class PostController extends Controller
         if ($request->filled('image_url')) {
             $post->medias()->updateOrCreate([ 'tag'=> 'cover' ], 
             [
-                'user_id'=> auth()->user()->id,
+                'user_id'=> $this->getUser()->id,
                 'filename'=> $request->image_url
             ]);
         } else { $post->medias()->whereTag('cover')->delete(); }
@@ -192,9 +182,9 @@ class PostController extends Controller
             ->wherePublished(1)
             ->paginate(get_option('index_posts_count'));
         
-        \SEO::setTitle(__('Search').' - '.get_option('site_short_name'))
+        SEOTools::setTitle(__('Search').' - '.get_option('site_short_name'))
             ->setDescription(get_option('site_description'));
-        \SEOMeta::setKeywords(get_option('site_keywords'));
+        SEOMeta::setKeywords(get_option('site_keywords'));
 
         return themeView('search', compact('posts'));
     }
@@ -207,10 +197,10 @@ class PostController extends Controller
 
         $comments = $post->comments()->whereParentId(0)->wherePublished(1)->latest()->get();
 
-        \SEO::setTitle($post->title.' - '.get_option('site_short_name'))
+        SEOTools::setTitle($post->title.' - '.get_option('site_short_name'))
             ->setDescription(mb_substr(strip_tags($post->content), 0, 151).' [...]');
         if ($post->keywords()->count() > 0)
-            \SEOMeta::setKeywords($post->keywords->pluck('keyword')->toArray());
+            SEOMeta::setKeywords($post->keywords->pluck('keyword')->toArray());
 
         return themeView(is_null($post->template) ? 'post' : 'templates.'.$post->template, compact('post', 'comments'));
     }
@@ -225,5 +215,10 @@ class PostController extends Controller
             config('app.locale').".content" => ['required', 'string'],
             "category_id" => ['required', 'numeric']
         ];
+    }
+
+    protected function getUser(): User
+    {
+        return auth()->user();
     }
 }

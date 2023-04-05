@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Panel\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User\Role;
-use App\Models\User\Permission;
+use App\Models\Role;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class RolesController extends Controller
 {
@@ -13,7 +14,7 @@ class RolesController extends Controller
     {
         if (!checkGate('manage_roles')) abort(403);
 
-        if (class_exists('\SEO')) \SEO::setTitle(__('Manage roles'));
+        if (class_exists('\SEO')) SEOTools::setTitle(__('Manage roles'));
 
         $roles = Role::with('permissions')->latest()->get();
         return view('panel.users.admin.roles.index', compact('roles'));
@@ -27,7 +28,7 @@ class RolesController extends Controller
     {
         if (!checkGate('manage_roles')) abort(403);
 
-        if (class_exists('\SEO')) \SEO::setTitle(__('Create role'));
+        if (class_exists('\SEO')) SEOMeta::setTitle(__('Create role'));
         return view('panel.users.admin.roles.create');
     }
 

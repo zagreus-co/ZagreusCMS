@@ -15,9 +15,6 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
-// Bind public_html to path.public when app is bootstraping
-$app->bind('path.public', fn() => base_path('public_html'));
-
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

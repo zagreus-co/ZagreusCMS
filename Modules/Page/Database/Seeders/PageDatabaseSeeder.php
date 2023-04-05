@@ -18,6 +18,8 @@ class PageDatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Model::unguard();
+
         $faker = Factory::create();
 
         Page::create([

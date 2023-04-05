@@ -16,11 +16,6 @@ class Notification extends Model
         'seen',
         'visible'
     ];
-    
-    protected static function newFactory()
-    {
-        return \Modules\Notification\Database\factories\NotificationFactory::new();
-    }
 
     public function seen() {
         return $this->update([

@@ -51,7 +51,6 @@
 
     </div>
 
-    <x-media.attachment-input />
 </div>
 <div class="col-span-12 md:col-span-4">
 
@@ -104,7 +103,6 @@
         </div>
     </div>
 
-    <x-media.cover-upload-input />
     <x-keywords parent='card' child='card-body' inputClass='form-control'/>
 </div>
 </form>

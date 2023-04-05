@@ -4,8 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User\Role;
-use App\Models\User\Permission;
+use App\Models\Role;
+use App\Models\Permission;
+use Nwidart\Modules\Facades\Module;
 
 class PermissionSeeding extends Command
 {
@@ -52,7 +53,7 @@ class PermissionSeeding extends Command
         }
 
         // Load the modules permissions [> modules/ModuleName/module.json]
-        foreach (\Module::getOrdered() as $module) {
+        foreach (Module::getOrdered() as $module) {
             if (!file_exists($module->getExtraPath('module.json'))) continue;
 
             $config = json_decode(file_get_contents($module->getExtraPath('module.json')), true);
