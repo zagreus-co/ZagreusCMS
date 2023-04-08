@@ -64,7 +64,7 @@ $ php artisan zagreus:load-permissions
 $ php artisan serve
 
 # Using Octane
-$ php artisan octane:watch
+$ php artisan octane:start --watch
 ```
 
 5. Enjoy :)
