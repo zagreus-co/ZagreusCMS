@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -18,7 +19,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        \SEO::setTitle(__('Register') . ' - ' . get_option('site_short_name'))
+        SEOTools::setTitle(__('Register') . ' - ' . get_option('site_short_name'))
             ->setDescription(get_option('site_description'));
         return panelView('register');
     }
@@ -39,7 +40,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if ($request->method() == 'GET') {
-            \SEO::setTitle(__('Login to account') . ' - ' . get_option('site_short_name'))
+            SEOTools::setTitle(__('Login to account') . ' - ' . get_option('site_short_name'))
                 ->setDescription(get_option('site_description'));
             return panelView('login');
         }
@@ -67,7 +68,7 @@ class AuthController extends Controller
     {
         if (!in_array($type, $this->resetPasswordTypes)) return back();
 
-        \SEO::setTitle(__('Forget password') . ' - ' . get_option('site_short_name'));
+        SEOTools::setTitle(__('Forget password') . ' - ' . get_option('site_short_name'));
 
         return panelView('passwords.' . $type);
     }
@@ -91,7 +92,7 @@ class AuthController extends Controller
 
     public function resetPasswordUsingEmail(Request $request, $token)
     {
-        \SEO::setTitle(__('Change password') . ' - ' . get_option('site_short_name'));
+        SEOTools::setTitle(__('Change password') . ' - ' . get_option('site_short_name'));
         return panelView('passwords.reset', ['token' => $token]);
     }
 
