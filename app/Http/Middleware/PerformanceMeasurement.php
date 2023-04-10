@@ -31,12 +31,11 @@ class PerformanceMeasurement
 
         // Check for roles based measurement
         if (
-            count($this->roles) >= 0
+            count($this->roles) > 0
             && (!auth()->check())
-            || count($this->roles) >= 0
-            && (auth()->check()
-                && isset(auth()->user()->role)
-                && !in_array(auth()->user()->role->title, $this->roles))
+            || count($this->roles) > 0
+            && auth()->check()
+            && !in_array(auth()->user()->role->title ?? '-', $this->roles)
         ) {
             return $next($request);
         }
