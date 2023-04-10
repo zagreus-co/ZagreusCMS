@@ -143,5 +143,8 @@
     "Creation time": "زمان ایجاد",
     "Last update": "آخرین ویرایش",
     "Loading": "در حال بارگیری",
-    "This operation may take a few seconds. Please do not close this page": "این عملیات ممکن است چند ثانیه طول بکشد. لطفا این صفحه را نبندید"
+    "This operation may take a few seconds. Please do not close this page": "این عملیات ممکن است چند ثانیه طول بکشد. لطفا این صفحه را نبندید",
+    "Select user": "انتخاب کاربر",
+    "Only staffs": "فقط کارکنان",
+    "Name, username or ID": "نام، نام کاربری یا شناسه"
 }
