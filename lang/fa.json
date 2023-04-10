@@ -141,5 +141,7 @@
     "License": "لایسنس",
     "Hidden columns": "ستون های مخفی",
     "Creation time": "زمان ایجاد",
-    "Last update": "آخرین ویرایش"
+    "Last update": "آخرین ویرایش",
+    "Loading": "در حال بارگیری",
+    "This operation may take a few seconds. Please do not close this page": "این عملیات ممکن است چند ثانیه طول بکشد. لطفا این صفحه را نبندید"
 }
