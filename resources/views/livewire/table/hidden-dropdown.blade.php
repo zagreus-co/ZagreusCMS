@@ -36,7 +36,7 @@
         <!-- Panel -->
         <div x-ref="panel" x-show="open" x-transition.origin.top.left x-on:click.outside="close($refs.button)"
             :id="$id('dropdown-button')" style="display: none;"
-            class="absolute left-0 mt-2 w-40 rounded-md bg-white shadow-md">
+            class="absolute left-0 mt-2 w-40 rounded-md bg-white shadow-md z-20">
 
             @foreach (collect($columns)->filter(fn($item) => isset($item['hidden']))->toArray() as $key => $column)
                 <button wire:click="toggleHiddenColumn('{{ $key }}')"

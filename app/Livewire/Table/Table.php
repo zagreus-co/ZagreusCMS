@@ -18,7 +18,7 @@ class Table extends Component
     public int $selected_id = 0;
 
     public array $actions = [];
-    public array $columns;
+    public array $columns = [];
 
     public array $filters = [
         'limit' => 25
