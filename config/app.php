@@ -226,7 +226,7 @@ return [
         'Theme' => \App\Facades\Theme::class,
         'Option' => \App\Facades\Option::class,
         'Hooks' => \App\Foundation\Hooks\HooksFacade::class,
-        'TableButton' => \App\Http\Livewire\Table\TableButton::class,
+        'TableButton' => \App\Livewire\Table\TableButton::class,
     ])->toArray(),
 
 ];

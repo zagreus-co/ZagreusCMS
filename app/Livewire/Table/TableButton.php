@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Table;
+namespace App\Livewire\Table;
 
 class TableButton
 {

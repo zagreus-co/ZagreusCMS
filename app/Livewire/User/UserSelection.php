@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\User;
+namespace App\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
@@ -79,7 +79,7 @@ class UserSelection extends Component
             if ($user) $this->selected = $user;
         }
 
-        $this->emit($this->selection_event, $this->selected->id ?? null);
+        $this->dispatch($this->selection_event, $this->selected->id ?? null);
     }
 
     public function render()

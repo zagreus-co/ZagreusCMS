@@ -7,7 +7,7 @@
             <label class="form-check-label" for="only_staff">{{ __('Only staffs') }}</label>
         </div>
     </div>
-    <div x-data="{showResult: false, selected: @entangle('selected'), view_mode: @entangle('view_mode') }" @click.outside="showResult = false" class="card-body relative">        
+    <div x-data="{showResult: false, selected: @entangle('selected').live, view_mode: @entangle('view_mode').live }" @click.outside="showResult = false" class="card-body relative">        
         <!-- Hidden multiple selectbox that allows to get the selected users on the HTTP form requests -->
 
         <div wire:loading.inline>

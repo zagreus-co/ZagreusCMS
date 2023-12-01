@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Table;
+namespace App\Livewire\Table;
 
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Model;
