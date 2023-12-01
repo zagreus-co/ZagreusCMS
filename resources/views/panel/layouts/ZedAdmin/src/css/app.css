@@ -10,8 +10,11 @@
 @import "./components/button";
 @import "./components/card";
 @import "./components/inputs";
+@import "./components/loading";
+@import "./components/modal";
 @import "./components/progress";
 @import "./components/tabs";
+@import "./components/table";
 @import "./components/typography";
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
@@ -44,19 +47,19 @@ aside.sidebar {
     }
 
     nav {
-        @apply mt-8 max-h-[85vh] overflow-x-hidden overflow-y-auto;
+        @apply mt-8 min-h-[50vh] max-h-[85vh] overflow-x-hidden overflow-y-auto;
 
         ul {
             @apply space-y-1 pr-6;
 
             li.badge {
                 font-size: 12px;
-                @apply text-gray-400 ml-8 mb-1;
+                @apply text-gray-400 ml-5 mb-1 rounded-none;
             }
 
-            li.badge:not(:first-child) {
+            /* li.badge:not(:first-child) {
                 @apply border-t border-gray-100 mt-2 pt-4
-            }
+            } */
             li{
                 @apply relative;
             }
@@ -127,10 +130,16 @@ aside.sidebar {
         }
     }
     .dropdown-content {
-        @apply absolute -right-14 sm:-right-8 md:right-1 w-80 z-20 bg-white border-2 border-gray-100 rounded-md shadow-lg top-6 mt-1;
+        @apply absolute -right-8 sm:-right-8 md:right-1 w-80 z-20 bg-white border-2 border-gray-100 rounded-md shadow-lg top-6 mt-1;
     }
 }
 
 main {
     @apply ml-10 lg:ml-80 pr-10 mt-7 pb-8 ;
+}
+
+.hide-number-arrows {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
 }
