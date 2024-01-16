@@ -10,23 +10,41 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'email',
-        'number',
-        'full_name',
         'role_id',
+        'first_name',
+        'last_name',
+        'number',
+        'email',
         'password',
+        'email_verified_at'
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
-        'verified_at' => 'datetime',
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
     public function role()
@@ -36,17 +54,18 @@ class User extends Authenticatable
 
     public function hasPermission($permission)
     {
-        if (is_null($this->role)) return false;
+        if (is_null($this->role_id)) return false;
+        
         return in_array($permission->tag ?? $permission, $this->role->permissions->pluck('tag')->toArray());
     }
 
-    public function posts()
+    public function getNameAttribute(): string
     {
-        return $this->hasMany(\Modules\Blog\Entities\Post::class);
+        return $this->first_name;
     }
 
-    public function notifications()
+    public function getFullNameAttribute(): string
     {
-        return $this->hasMany(\Modules\Notification\Entities\Notification::class);
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

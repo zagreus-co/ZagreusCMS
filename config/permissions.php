@@ -1,9 +1,8 @@
 <?php
 
 return [
-    "manage_themes"=> "Add, Edit, Delete themes",
+    "manage_blog"=> "Add, Edit, Delete blog",
     "manage_roles"=> "Add, Edit, Delete roles",
-    "manage_options"=> "Add, Edit, Delete options",
+    "manage_settings"=> "Full-access to website settings",
     "manage_users"=> "Add, Edit, Delete users",
-    "manage_media"=> "Add, Edit, Delete media",
 ];

@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-            OptionSeeder::class,
-        ]);
+        $this->call(PermissionSeeder::class);
 
-        // \App\Models\User::factory(10)->create();
+        User::firstOrCreate(
+            ['role_id' => Role::where('title', 'sudo')->first()->id],
+            [
+                'email' => 'test@zagreus.company',
+                'first_name' => 'Zagreus',
+                'password' => Hash::make('123456789'),
+            ]
+        );
+
+        $this->call([
+            // 
+        ]);
     }
 }
