@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function DataTable({ columns, data }) {
     const [tableData, setTableData] = useState({
@@ -7,6 +7,10 @@ export default function DataTable({ columns, data }) {
         data: data.data,
         selectHidden: false
     });
+
+    useEffect(() => {
+        setTableData(prevTableData => ({ ...prevTableData, data: data.data }));
+    }, [data]);
 
     const toggleHiddenColumn = (key) => {
         setTableData((prevTableData) => ({
