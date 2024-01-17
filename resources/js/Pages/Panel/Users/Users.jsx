@@ -1,6 +1,6 @@
 import DataTable from '@/Components/DataTable';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import moment from 'moment';
 
 export default function Users({ auth, users }) {
@@ -16,6 +16,7 @@ export default function Users({ auth, users }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className=" overflow-hidden shadow-sm sm:rounded-lg p-3">
+                        <Link href={route('panel.users.create')}>Create user</Link>
                         <DataTable
                             columns={{
                                 id: {
