@@ -7,19 +7,19 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
 import moment from 'moment';
 
-export default function Users({ auth }) {
+export default function Users({ auth, user }) {
 
-    const { data, setData, post, processing, errors } = useForm({
-        first_name: '',
-        last_name: '',
-        email: '',
+    const { data, setData, patch, processing, errors } = useForm({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
         password: '',
     });
 
     function submit(e) {
         e.preventDefault()
-        post(route('panel.users.create'), {
-            onSuccess: () => Toast.fire({ title: "User created successfully", icon: "success" })
+        patch(route('panel.users.update', user.id), {
+            onSuccess: () => Toast.fire({ title: "User updated successfully", icon: "success" })
         })
     }
 
@@ -94,15 +94,13 @@ export default function Users({ auth }) {
                                     value={data.password}
                                     className="mt-1 block w-full"
                                     autoComplete="password"
-                                    isFocused={true}
                                     onChange={(e) => setData('password', e.target.value)}
-                                    required
                                 />
 
                                 <InputError message={errors.password} className="mt-2" />
                             </div>
 
-                            <PrimaryButton type="submit" disabled={processing}>Create user</PrimaryButton>
+                            <PrimaryButton type="submit" disabled={processing}>Update user</PrimaryButton>
                         </form>
 
                     </div>

@@ -55,7 +55,9 @@ export default function Users({ auth, users }) {
                                     remark: '*',
                                     callback: ({ id }) => (
                                         <div className='space-x-1'>
-                                            <PrimaryButton>Edit</PrimaryButton>
+                                            <Link href={route('panel.users.edit', id)}>
+                                                <PrimaryButton>Edit</PrimaryButton>
+                                            </Link>
                                             <DangerButton onClick={() => DeleteUserById(id)} disabled={processing}>Delete</DangerButton>
                                         </div>
                                     )

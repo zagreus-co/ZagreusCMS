@@ -37,6 +37,8 @@ Route::middleware('auth')->prefix('/panel')->group(function () {
     Route::get('/users', 'Panel\UsersController@index')->name('panel.users.index');
     Route::get('/users/create', 'Panel\UsersController@create')->name('panel.users.create');
     Route::post('/users/create', 'Panel\UsersController@store');
+    Route::get('/users/edit/{user}', 'Panel\UsersController@edit')->name('panel.users.edit');
+    Route::patch('/users/edit/{user}', 'Panel\UsersController@update')->name('panel.users.update');
     Route::delete('/users/delete/{user}', 'Panel\UsersController@delete')->name('panel.users.delete');
 
 });
