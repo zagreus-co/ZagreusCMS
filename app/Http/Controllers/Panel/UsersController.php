@@ -37,7 +37,7 @@ class UsersController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            // 'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
@@ -47,6 +47,15 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        return to_route('panel.users.index');
+    }
+
+    public function delete(User $user)
+    {
+        if (!checkGate('manage_users')) return abort(403);
+
+        $user->delete();
 
         return to_route('panel.users.index');
     }

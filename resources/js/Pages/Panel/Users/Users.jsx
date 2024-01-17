@@ -1,9 +1,18 @@
+import DangerButton from '@/Components/DangerButton';
 import DataTable from '@/Components/DataTable';
+import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import moment from 'moment';
 
 export default function Users({ auth, users }) {
+    const { delete: destory, processing } = useForm();
+
+    const DeleteUserById = (id) => {
+        destory(route('panel.users.delete', id), {
+            onSuccess: () => Toast.fire({ icon: "success", title: 'User has been deleted successfully.' })
+        });
+    }
 
     return (
         <AuthenticatedLayout
@@ -44,10 +53,11 @@ export default function Users({ auth, users }) {
                                 },
                                 actions: {
                                     remark: '*',
-                                    callback: () => (
-                                        <>
-                                            <button>Test Btn</button>
-                                        </>
+                                    callback: ({ id }) => (
+                                        <div className='space-x-1'>
+                                            <PrimaryButton>Edit</PrimaryButton>
+                                            <DangerButton onClick={() => DeleteUserById(id)} disabled={processing}>Delete</DangerButton>
+                                        </div>
                                     )
                                 }
                             }}
