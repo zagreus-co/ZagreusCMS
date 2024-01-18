@@ -25,7 +25,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware('auth')->prefix('/panel')->group(function () {
+Route::middleware('auth')->prefix('/panel')->name('panel.')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
@@ -34,13 +34,14 @@ Route::middleware('auth')->prefix('/panel')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/users', 'Panel\UsersController@index')->name('panel.users.index');
-    Route::get('/users/create', 'Panel\UsersController@create')->name('panel.users.create');
+    Route::get('/users', 'Panel\UsersController@index')->name('users.index');
+    Route::get('/users/create', 'Panel\UsersController@create')->name('users.create');
     Route::post('/users/create', 'Panel\UsersController@store');
-    Route::get('/users/edit/{user}', 'Panel\UsersController@edit')->name('panel.users.edit');
-    Route::patch('/users/edit/{user}', 'Panel\UsersController@update')->name('panel.users.update');
-    Route::delete('/users/delete/{user}', 'Panel\UsersController@delete')->name('panel.users.delete');
+    Route::get('/users/edit/{user}', 'Panel\UsersController@edit')->name('users.edit');
+    Route::patch('/users/edit/{user}', 'Panel\UsersController@update')->name('users.update');
+    Route::delete('/users/delete/{user}', 'Panel\UsersController@delete')->name('users.delete');
 
+    Route::resource('blog', 'Panel\Blog\BlogController');
 });
 
 require __DIR__.'/auth.php';
