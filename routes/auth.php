@@ -34,10 +34,10 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('verify-email', "Auth/EmailVerificationPromptController@index")
+    Route::get('verify-email', "Auth\EmailVerificationPromptController@index")
                 ->name('verification.notice');
 
-    Route::get('verify-email/{id}/{hash}', 'Auth/VerifyEmailController@index')
+    Route::get('verify-email/{id}/{hash}', 'Auth\VerifyEmailController@index')
                 ->middleware(['signed', 'throttle:6,1'])
                 ->name('verification.verify');
 
