@@ -9,14 +9,21 @@ import RawTool from '@editorjs/raw';
 import InlineCode from '@editorjs/inline-code';
 import CodeTool from '@editorjs/code';
 
-export default function ReactEditorJS({ holder, tools, ...props }) {
+export default function ReactEditorJS({
+    holder,
+    tools,
+    ...props
+}) {
     const editorHolder = useRef(holder ?? `zcms-editor-js-${Date.now().toString(16)}`);
 
-    const editor = useRef(null);
+    if (props.editor === undefined) {
+        props.editor = useRef(null);
+    }
 
     useEffect(() => {
-        editor.current = new EditorJS({
+        props.editor.current = new EditorJS({
             holder: editorHolder.current,
+            logLevel: 'ERROR',
             tools: {
                 ...tools,
                 header: Header,
